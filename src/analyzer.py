@@ -39,5 +39,21 @@ def calculate_commitments(commitments):
     }
 
 
-def calculate_net_balance(received_income, total_expense, total_commitments):
-    return received_income - total_expense - total_commitments
+def calculate_net_position(income_summary, expense_summary, commitment_summary):
+    net_position = (
+        income_summary["received_income"]
+        - expense_summary["total_expense"]
+        - commitment_summary["outstanding_debt"]
+    )
+    cash_position = income_summary["received_income"] - expense_summary["total_expense"]
+    expected_position = (
+        cash_position
+        - commitment_summary["outstanding_debt"]
+        + income_summary["pending_income"]
+    )
+
+    return {
+        "net_position": net_position,
+        "cash_position": cash_position,
+        "expected_position": expected_position,
+    }

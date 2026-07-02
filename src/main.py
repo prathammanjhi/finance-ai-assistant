@@ -7,6 +7,7 @@ from analyzer import (
     calculate_summary,
     calculate_income,
     calculate_commitments,
+    calculate_net_position,
 )
 
 
@@ -22,6 +23,11 @@ def main():
     summary = calculate_summary(transactions)
     income_summary = calculate_income(income)
     commitment_summary = calculate_commitments(commitments)
+    financial_position = calculate_net_position(
+        income_summary,
+        summary,
+        commitment_summary,
+    )
 
     print("\n📊 Summary")
     print(f"Total Expense : ₹{summary['total_expense']:,.2f}")
@@ -35,7 +41,10 @@ def main():
     print(f"Total Repaid : ₹{commitment_summary['total_repaid']:,.2f}")
     print(f"Outstanding Debt : ₹{commitment_summary['outstanding_debt']:,.2f}")
     print(f"Active Commitments : {commitment_summary['active_commitments']}")
-
+    print("\n📈 Net Position")
+    print(f"Net Position : ₹{financial_position['net_position']:,.2f}")
+    print(f"Cash Position : ₹{financial_position['cash_position']:,.2f}")
+    print(f"Expected Position : ₹{financial_position['expected_position']:,.2f}")
 
 
 if __name__ == "__main__":
