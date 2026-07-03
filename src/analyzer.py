@@ -57,3 +57,8 @@ def calculate_net_position(income_summary, expense_summary, commitment_summary):
         "cash_position": cash_position,
         "expected_position": expected_position,
     }
+
+
+def calculate_expense_by_category(transactions):
+    expense_by_category = transactions.groupby("Category")["Amount"].sum()
+    return expense_by_category

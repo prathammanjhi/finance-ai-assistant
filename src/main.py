@@ -8,6 +8,7 @@ from analyzer import (
     calculate_income,
     calculate_commitments,
     calculate_net_position,
+    calculate_expense_by_category,
 )
 
 
@@ -28,6 +29,7 @@ def main():
         summary,
         commitment_summary,
     )
+    category_summary = calculate_expense_by_category(transactions)
 
     print("\n📊 Summary")
     print(f"Total Expense : ₹{summary['total_expense']:,.2f}")
@@ -45,6 +47,8 @@ def main():
     print(f"Net Position : ₹{financial_position['net_position']:,.2f}")
     print(f"Cash Position : ₹{financial_position['cash_position']:,.2f}")
     print(f"Expected Position : ₹{financial_position['expected_position']:,.2f}")
+    print("\n📊 Expense by Category")
+    print(category_summary)
 
 
 if __name__ == "__main__":
