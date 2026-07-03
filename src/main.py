@@ -9,6 +9,7 @@ from analyzer import (
     calculate_commitments,
     calculate_net_position,
     calculate_expense_by_category,
+    calculate_highest_spending_category,
 )
 
 
@@ -30,6 +31,7 @@ def main():
         commitment_summary,
     )
     category_summary = calculate_expense_by_category(transactions)
+    highest_spending = calculate_highest_spending_category(category_summary)
 
     print("\n📊 Summary")
     print(f"Total Expense : ₹{summary['total_expense']:,.2f}")
@@ -48,7 +50,11 @@ def main():
     print(f"Cash Position : ₹{financial_position['cash_position']:,.2f}")
     print(f"Expected Position : ₹{financial_position['expected_position']:,.2f}")
     print("\n📊 Expense by Category")
-    print(category_summary)
+    for category, amount in category_summary.items():
+        print(f"{category:<15} : ₹{amount:,.2f}")
+    print("\n🏆 Highest Spending Category")
+    print(highest_spending["category"])
+    print(f"₹{highest_spending['amount']:,.2f}")
 
 
 if __name__ == "__main__":

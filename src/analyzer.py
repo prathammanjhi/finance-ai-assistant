@@ -62,3 +62,18 @@ def calculate_net_position(income_summary, expense_summary, commitment_summary):
 def calculate_expense_by_category(transactions):
     expense_by_category = transactions.groupby("Category")["Amount"].sum()
     return expense_by_category
+
+
+def calculate_highest_spending_category(category_summary):
+    if not category_summary.empty:
+        highest_category = category_summary.idxmax()
+        highest_amount = category_summary.max()
+        return {
+            "category": highest_category,
+            "amount": highest_amount,
+        }
+    else:
+        return {
+            "category": None,
+            "amount": 0,
+        }
