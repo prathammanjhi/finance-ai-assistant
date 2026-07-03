@@ -77,3 +77,10 @@ def calculate_highest_spending_category(category_summary):
             "category": None,
             "amount": 0,
         }
+
+def calculate_top_categories(category_summary):
+    sorted_categories = category_summary.sort_values(ascending=False)
+    top_categories = sorted_categories[:3]
+    return {
+        "categories": top_categories
+    }

@@ -10,6 +10,7 @@ from analyzer import (
     calculate_net_position,
     calculate_expense_by_category,
     calculate_highest_spending_category,
+    calculate_top_categories,
 )
 
 
@@ -32,6 +33,7 @@ def main():
     )
     category_summary = calculate_expense_by_category(transactions)
     highest_spending = calculate_highest_spending_category(category_summary)
+    top_three_categories = calculate_top_categories(category_summary)
 
     print("\n📊 Summary")
     print(f"Total Expense : ₹{summary['total_expense']:,.2f}")
@@ -55,6 +57,9 @@ def main():
     print("\n🏆 Highest Spending Category")
     print(highest_spending["category"])
     print(f"₹{highest_spending['amount']:,.2f}")
+    print("\n🏆 Top 3 Spending Categories")
+    for top_three_category, amount in top_three_categories["categories"].items():
+        print(f"{top_three_category:<15} : ₹{amount:,.2f}")
 
 
 if __name__ == "__main__":
