@@ -91,3 +91,26 @@ All notable changes to Finance AI will be documented in this file.
 - Python Modules
 - Functions
 - Layered Architecture
+
+## v0.5.0
+
+### Added
+- Expense Distribution Engine
+- Need Spending Percentage
+- Want Spending Percentage
+- Empty expense handling
+- Improved expense analytics report
+
+### Learned
+- Percentage calculations
+- Defensive programming for division by zero
+- Data reuse across analyzer functions
+
+### Engineering Notes
+- Reused Expense Summary instead of recalculating transactions.
+- Kept business logic inside Analyzer.
+- Kept presentation logic inside Main.
+- Continued following layered architecture:
+  - Reader → Read Data
+  - Analyzer → Business Logic
+  - Main → Display
