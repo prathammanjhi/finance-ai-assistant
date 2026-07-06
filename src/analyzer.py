@@ -78,9 +78,32 @@ def calculate_highest_spending_category(category_summary):
             "amount": 0,
         }
 
+
 def calculate_top_categories(category_summary):
     sorted_categories = category_summary.sort_values(ascending=False)
     top_categories = sorted_categories[:3]
-    return {
-        "categories": top_categories
-    }
+    return {"categories": top_categories}
+
+
+def calculate_expense_distribution(calculate_summary):
+
+    total_expense = calculate_summary["total_expense"]
+    total_need = calculate_summary["total_need"]
+    total_want = calculate_summary["total_want"]
+    if total_expense == 0:
+        return {
+            "need_amount": total_need,
+            "want_amount": total_want,
+            "need_percentage": 0,
+            "want_percentage": 0,
+        }
+    else:
+        need_percentage = (total_need / total_expense) * 100
+        want_percentage = (total_want / total_expense) * 100
+
+        return {
+            "need_amount": total_need,
+            "want_amount": total_want,
+            "need_percentage": need_percentage,
+            "want_percentage": want_percentage,
+        }
