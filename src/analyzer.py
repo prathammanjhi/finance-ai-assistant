@@ -1,3 +1,8 @@
+import pandas as pd
+
+# ==========================
+# Expense Analytics
+# ==========================
 def calculate_summary(transactions):
     total_expense = transactions["Amount"].sum()
 
@@ -11,7 +16,32 @@ def calculate_summary(transactions):
         "total_want": total_want,
     }
 
+def calculate_expense_distribution(calculate_summary):
 
+    total_expense = calculate_summary["total_expense"]
+    total_need = calculate_summary["total_need"]
+    total_want = calculate_summary["total_want"]
+    if total_expense == 0:
+        return {
+            "need_amount": total_need,
+            "want_amount": total_want,
+            "need_percentage": 0,
+            "want_percentage": 0,
+        }
+    else:
+        need_percentage = (total_need / total_expense) * 100
+        want_percentage = (total_want / total_expense) * 100
+
+        return {
+            "need_amount": total_need,
+            "want_amount": total_want,
+            "need_percentage": need_percentage,
+            "want_percentage": want_percentage,
+        }
+
+# ==========================
+# Income Analytics
+# ==========================
 def calculate_income(income):
 
     received_income = income.loc[income["Status"] == "Received", "Amount"].sum()
@@ -85,25 +115,46 @@ def calculate_top_categories(category_summary):
     return {"categories": top_categories}
 
 
-def calculate_expense_distribution(calculate_summary):
 
-    total_expense = calculate_summary["total_expense"]
-    total_need = calculate_summary["total_need"]
-    total_want = calculate_summary["total_want"]
-    if total_expense == 0:
-        return {
-            "need_amount": total_need,
-            "want_amount": total_want,
-            "need_percentage": 0,
-            "want_percentage": 0,
-        }
-    else:
-        need_percentage = (total_need / total_expense) * 100
-        want_percentage = (total_want / total_expense) * 100
+# ==========================
+# Date Filtering
+# ==========================
+def filter_transactions_by_date(
+        transactions, 
+        month=None, 
+        year=None
+        ):
+    """
+    Filters transactions by month and year.
 
-        return {
-            "need_amount": total_need,
-            "want_amount": total_want,
-            "need_percentage": need_percentage,
-            "want_percentage": want_percentage,
-        }
+    If no month or year is provided,
+    current month and year are used.
+    """
+
+    today = pd.Timestamp.now()
+
+    # Case 1
+    if month is not None and year is not None:
+        return transactions[
+            (transactions["Date"].dt.month == month)
+            & (transactions["Date"].dt.year == year)
+        ]
+
+    # Case 2
+    if month is not None:
+        return transactions[
+            (transactions["Date"].dt.month == month)
+            & (transactions["Date"].dt.year == today.year)
+        ]
+
+    # Case 3
+    if year is not None:
+        return transactions[
+            transactions["Date"].dt.year == year
+        ]
+
+    # Case 4 (Default)
+    return transactions[
+        (transactions["Date"].dt.month == today.month)
+        & (transactions["Date"].dt.year == today.year)
+    ]

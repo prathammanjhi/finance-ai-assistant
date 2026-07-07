@@ -12,6 +12,7 @@ from analyzer import (
     calculate_highest_spending_category,
     calculate_top_categories,
     calculate_expense_distribution,
+    filter_transactions_by_date,
 )
 
 
@@ -36,6 +37,9 @@ def main():
     highest_spending = calculate_highest_spending_category(category_summary)
     top_three_categories = calculate_top_categories(category_summary)
     expense_distribution = calculate_expense_distribution(summary)
+    monthly_transactions = filter_transactions_by_date(transactions)
+    monthly_summary = calculate_summary(monthly_transactions)
+    monthly_distribution = calculate_expense_distribution(monthly_summary)
 
     print("\n📊 Summary")
     print(f"Total Expense : ₹{summary['total_expense']:,.2f}")
@@ -71,6 +75,20 @@ def main():
         print(f"Want Amount : ₹{expense_distribution['want_amount']:,.2f}")
         print(f"Need Spending : {expense_distribution['need_percentage']:.2f}%")
         print(f"Want Spending : {expense_distribution['want_percentage']:.2f}%")
+
+    print("\n📅 Monthly Summary")
+    print(f"Total Expense : ₹{monthly_summary['total_expense']:,.2f}")
+    print(f"Need Spending : ₹{monthly_summary['total_need']:,.2f}")
+    print(f"Want Spending : ₹{monthly_summary['total_want']:,.2f}")
+
+    print("\n📊 Monthly Expense Distribution")
+    if monthly_summary["total_expense"] == 0:
+        print("No spending made this month.")
+    else:
+        print(f"Need Amount : ₹{monthly_distribution['need_amount']:,.2f}")
+        print(f"Want Amount : ₹{monthly_distribution['want_amount']:,.2f}")
+        print(f"Need Spending : {monthly_distribution['need_percentage']:.2f}%")
+        print(f"Want Spending : {monthly_distribution['want_percentage']:.2f}%")
 
 
 if __name__ == "__main__":

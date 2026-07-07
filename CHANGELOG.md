@@ -114,3 +114,21 @@ All notable changes to Finance AI will be documented in this file.
   - Reader → Read Data
   - Analyzer → Business Logic
   - Main → Display
+
+## v0.6.0
+
+### Added
+- Monthly Transaction Filtering
+- Monthly Expense Summary
+- Flexible date filtering by month and year
+
+### Learned
+- pd.to_datetime()
+- Pandas Datetime Accessor (.dt)
+- Timestamp Objects
+- Default Parameters
+
+### Engineering Notes
+- Introduced reusable date filtering pipeline.
+- Reused existing Expense Engine for monthly analytics.
+- Followed Single Source of Truth by deriving month/year from Date.

@@ -8,6 +8,7 @@ def load_transactions():
     df = df.dropna(how="all")
     df = df[df["Date"].notna()]
     df["Need/Want"] = df["Need/Want"].astype(str).str.strip().str.title()
+    df["Date"] = pd.to_datetime(df["Date"])
 
     return df
 
@@ -28,3 +29,6 @@ def load_commitments():
     df = df.dropna(how="all")
 
     return df
+
+
+    
