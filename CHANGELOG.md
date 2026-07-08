@@ -132,3 +132,43 @@ All notable changes to Finance AI will be documented in this file.
 - Introduced reusable date filtering pipeline.
 - Reused existing Expense Engine for monthly analytics.
 - Followed Single Source of Truth by deriving month/year from Date.
+
+# v0.7.0
+
+## Added
+
+- Financial Snapshot Engine
+- Financial Insights Engine
+- Rule-based financial decision system
+- Structured insight objects (status, priority, reason)
+
+## Architecture
+
+Reader
+↓
+
+Financial Engines
+↓
+
+Financial Snapshot
+↓
+
+Financial Insights
+↓
+
+Main
+
+## Learned
+
+- Nested Dictionaries
+- Aggregator Pattern
+- Rule Engine
+- Decision Trees
+- Structured Knowledge Objects
+
+## Engineering Principles
+
+- Aggregator engines never calculate.
+- Insights consume snapshots instead of raw engine outputs.
+- One engine = One business responsibility.
+- Structured outputs over plain text.

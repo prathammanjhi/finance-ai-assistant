@@ -13,6 +13,8 @@ from analyzer import (
     calculate_top_categories,
     calculate_expense_distribution,
     filter_transactions_by_date,
+    generate_financial_snapshot,
+    generate_financial_insights,
 )
 
 
@@ -40,6 +42,15 @@ def main():
     monthly_transactions = filter_transactions_by_date(transactions)
     monthly_summary = calculate_summary(monthly_transactions)
     monthly_distribution = calculate_expense_distribution(monthly_summary)
+    financial_snapshot = generate_financial_snapshot(
+        monthly_summary,
+        monthly_distribution,
+        income_summary,
+        commitment_summary,
+        financial_position,
+    )
+    financial_insights = generate_financial_insights(financial_snapshot)
+
 
     print("\n📊 Summary")
     print(f"Total Expense : ₹{summary['total_expense']:,.2f}")
@@ -90,6 +101,12 @@ def main():
         print(f"Need Spending : {monthly_distribution['need_percentage']:.2f}%")
         print(f"Want Spending : {monthly_distribution['want_percentage']:.2f}%")
 
+    print("\n📊 Financial insights")
+    for category, insight in financial_insights.items():
+        print(f"\n{category}:")
+        print(f"  Status: {insight['status']}")
+        print(f"  Priority: {insight['priority']}")
+        print(f"  Reason: {insight['reason']}")
 
 if __name__ == "__main__":
     main()
