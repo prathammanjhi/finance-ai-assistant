@@ -24,3 +24,11 @@
 
 - Financial Snapshot Engine
 - Financial Insights Engine
+
+## Features Added in v0.8
+
+- Monthly Budget Engine
+- Budget Filtering by Month & Year
+- Budget Analysis
+- Budget Insight Engine
+- Budget Health Recommendations

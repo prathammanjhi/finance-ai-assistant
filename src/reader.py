@@ -1,8 +1,10 @@
 import pandas as pd
 
+file_path = "data/finance.xlsx"
+
 
 def load_transactions():
-    file_path = "data/finance.xlsx"
+    # file_path = "data/finance.xlsx"
 
     df = pd.read_excel(file_path, sheet_name="Transactions")
     df = df.dropna(how="all")
@@ -14,7 +16,7 @@ def load_transactions():
 
 
 def load_income():
-    file_path = "data/finance.xlsx"
+    # file_path = "data/finance.xlsx"
 
     df = pd.read_excel(file_path, sheet_name="Income")
     df = df.dropna(how="all")
@@ -23,7 +25,7 @@ def load_income():
 
 
 def load_commitments():
-    file_path = "data/finance.xlsx"
+    # file_path = "data/finance.xlsx"
 
     df = pd.read_excel(file_path, sheet_name="Financial Commitments")
     df = df.dropna(how="all")
@@ -31,4 +33,10 @@ def load_commitments():
     return df
 
 
-    
+def load_budget():
+    # file_path = "data/finance.xlsx"
+
+    df = pd.read_excel(file_path, sheet_name="Budget Sheet")
+    df = df.dropna(how="all")
+
+    return df

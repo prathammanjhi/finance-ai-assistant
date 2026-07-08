@@ -172,3 +172,13 @@ Main
 - Insights consume snapshots instead of raw engine outputs.
 - One engine = One business responsibility.
 - Structured outputs over plain text.
+
+## v0.8.0
+
+Added:
+- Budget Sheet support
+- Budget Reader
+- Budget Filter Engine
+- Budget Analysis Engine
+- Budget Insight Engine
+- Budget Health **recommendations**

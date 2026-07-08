@@ -2,6 +2,7 @@ from reader import (
     load_transactions,
     load_income,
     load_commitments,
+    load_budget,
 )
 from analyzer import (
     calculate_summary,
@@ -15,6 +16,9 @@ from analyzer import (
     filter_transactions_by_date,
     generate_financial_snapshot,
     generate_financial_insights,
+    calculate_budget_analysis,
+    filter_budget_by_date,
+    budget_insights,
 )
 
 
@@ -50,7 +54,14 @@ def main():
         financial_position,
     )
     financial_insights = generate_financial_insights(financial_snapshot)
-
+    budget = load_budget()
+    budget_analysis = calculate_budget_analysis(budget, monthly_summary)
+    filtered_budget = filter_budget_by_date(budget)
+    budget_analysis = calculate_budget_analysis(
+        filtered_budget,
+        monthly_summary,
+    )
+    budget_insight = budget_insights(budget_analysis)
 
     print("\n📊 Summary")
     print(f"Total Expense : ₹{summary['total_expense']:,.2f}")
@@ -107,6 +118,26 @@ def main():
         print(f"  Status: {insight['status']}")
         print(f"  Priority: {insight['priority']}")
         print(f"  Reason: {insight['reason']}")
+
+    budget = load_budget()
+
+    print("\n📊 Budget Analysis")
+
+    print(f"Budgeted Amount : ₹{budget_analysis['monthly_budget']:,.2f}")
+    print(f"Actual Spending : ₹{budget_analysis['spent']:,.2f}")
+    print(f"Budget Remaining : ₹{budget_analysis['budget_remaining']:,.2f}")
+    print(
+        f"Budget Utilization : {budget_analysis['budget_utilization_percentage']:.2f}%"
+    )
+    print(f"Status : {budget_analysis['status']}")
+
+    for category, insight in budget_insight.items():
+        print(f"\n{category}:\n")
+        print(f"  Status: {insight['status']}")
+        print(f"  Priority: {insight['priority']}")
+        print(f"  Reason: {insight['reason']}")
+        print(f"  Recommendation: {insight['recommendation']}\n")
+
 
 if __name__ == "__main__":
     main()
