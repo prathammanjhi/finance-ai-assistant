@@ -155,6 +155,9 @@ def filter_transactions_by_date(transactions, month=None, year=None):
         & (transactions["Date"].dt.year == today.year)
     ]
 
+# =========================
+# Snapshot and Insights
+# =========================
 
 def generate_financial_snapshot(
     monthly_summary,
@@ -162,6 +165,7 @@ def generate_financial_snapshot(
     income_summary,
     commitment_summary,
     financial_position,
+    savings_summary,
 ):
     snapshot = {
         "monthly_summary": monthly_summary,
@@ -169,6 +173,7 @@ def generate_financial_snapshot(
         "income_summary": income_summary,
         "commitment_summary": commitment_summary,
         "financial_position": financial_position,
+        "savings_summary": savings_summary,
     }
 
     return snapshot
@@ -376,3 +381,57 @@ def budget_insights(budget_analysis):
     }
 
     return insights
+
+
+# ==========================================================
+# Engine Name : Savings Engine
+# Layer       : Calculation Layer
+#
+# Responsibility
+# Calculates savings-related financial metrics.
+#
+# Inputs
+# - Income Summary
+# - Expense Summary
+# - Commitment Summary
+#
+# Outputs
+# - Savings Summary Dictionary
+#
+# Dependencies
+# - Income Engine
+# - Expense Engine
+# - Commitment Engine
+#
+# Used By
+# - Emergency Fund Engine
+# - Goal Engine
+# - Financial Health Score
+# - Recommendation Engine
+# ==========================================================
+
+
+#Savings Summary
+def calculate_savings(income_summary, expense_summary, commitment_summary):
+    total_income = income_summary["received_income"]
+    total_expense = expense_summary["total_expense"]
+    total_commitments = commitment_summary["outstanding_debt"]
+
+    gross_savings = total_income - total_expense
+    net_savings = gross_savings - total_commitments
+    expense_ratio = (total_expense / total_income) * 100 if total_income > 0 else 0
+    commitment_ratio = (
+        (total_commitments / total_income) * 100 if total_income > 0 else 0
+    )
+    savings_rate = (net_savings / total_income) * 100 if total_income > 0 else 0
+
+    return {
+        "total_income": total_income,
+        "total_expense": total_expense,
+        "total_commitments": total_commitments,
+        "gross_savings": gross_savings,
+        "net_savings": net_savings,
+        "expense_ratio": expense_ratio,
+        "commitment_ratio": commitment_ratio,
+        "savings_rate": savings_rate,
+    }

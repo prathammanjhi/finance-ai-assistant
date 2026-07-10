@@ -182,3 +182,31 @@ Added:
 - Budget Analysis Engine
 - Budget Insight Engine
 - Budget Health **recommendations**
+
+### Savings Intelligence (v0.9.1)
+
+- Gross Savings Calculation
+- Net Savings Calculation
+- Savings Rate
+- Expense Ratio
+- Commitment Ratio
+
+### Financial Intelligence
+
+- Financial Snapshot Engine
+- Financial Insights Engine
+- Budget Insight Engine
+
+### Filtering
+
+- Current Month
+- Month
+- Year
+- Month + Year
+
+### Architecture
+
+- Modular Engine Architecture
+- Separation of Responsibilities
+- Snapshot-Based Data Flow
+- Future-Proof Design

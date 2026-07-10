@@ -19,6 +19,7 @@ from analyzer import (
     calculate_budget_analysis,
     filter_budget_by_date,
     budget_insights,
+    calculate_savings,
 )
 
 
@@ -46,12 +47,14 @@ def main():
     monthly_transactions = filter_transactions_by_date(transactions)
     monthly_summary = calculate_summary(monthly_transactions)
     monthly_distribution = calculate_expense_distribution(monthly_summary)
+    savings_summary = calculate_savings(income_summary, summary, commitment_summary)
     financial_snapshot = generate_financial_snapshot(
         monthly_summary,
         monthly_distribution,
         income_summary,
         commitment_summary,
         financial_position,
+        savings_summary,
     )
     financial_insights = generate_financial_insights(financial_snapshot)
     budget = load_budget()
@@ -138,6 +141,13 @@ def main():
         print(f"  Reason: {insight['reason']}")
         print(f"  Recommendation: {insight['recommendation']}\n")
 
+    print("\n💰 Savings Summary")
+    print(f"gross_savings : ₹{savings_summary['gross_savings']:,.2f}")
+    print(f"net_savings : ₹{savings_summary['net_savings']:,.2f}")
+    print(f"savings_rate : {savings_summary['savings_rate']:.2f}%")
+    print(f"commitment_ratio : {savings_summary['commitment_ratio']:.2f}%")
+    print(f"expense_ratio : {savings_summary['expense_ratio']:.2f}%")
+    
 
 if __name__ == "__main__":
     main()
