@@ -1,33 +1,40 @@
 ## Roadmap
 
+## Roadmap
+
 ### Completed
 
 - Reader Engine
 - Filter Engine
 - Expense Analysis
 - Income Analysis
+- Financial Commitments Engine
 - Budget Engine
 - Financial Snapshot
 - Financial Insights
 - Budget Insights
 - Savings Engine
+- Emergency Fund Engine
 
 ### In Progress
 
-- Emergency Fund Engine
+- Goal Engine
 
 ### Planned
 
-- Goal Engine
 - Investment Engine
 - Asset Engine
 - Liability Engine
 - Net Worth Engine
+- Recurring Expense Engine
+- Subscription Tracker
 - Cash Flow Forecast Engine
 - Financial Health Score
 - Recommendation Engine
 - Report Generator
+- Backend API
 - Dashboard
+- Finance Context Builder
 - Finance Chat Assistant
 
 
@@ -108,3 +115,21 @@
 - Separation of Responsibilities
 - Snapshot-Based Data Flow
 - Future-Proof Design
+
+### Emergency Fund Intelligence (v0.9.2)
+
+- Monthly Survival Cost Calculation
+- Current Emergency Fund Tracking
+- 3-Month Emergency Fund Requirement
+- 6-Month Emergency Fund Requirement
+- 12-Month Emergency Fund Requirement
+- Emergency Fund Coverage in Months
+- Emergency Fund Gap Calculation
+
+### Financial Commitments
+
+- Total Borrowed Tracking
+- Total Repaid Tracking
+- Outstanding Debt Tracking
+- Active Commitment Tracking
+- Monthly Commitment Calculation

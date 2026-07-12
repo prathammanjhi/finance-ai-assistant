@@ -210,3 +210,60 @@ Added:
 - Separation of Responsibilities
 - Snapshot-Based Data Flow
 - Future-Proof Design
+
+## [v0.9.2] - Emergency Fund Engine
+
+### Added
+
+- Emergency Fund Engine (`calculate_emergency_fund()`)
+- Monthly Survival Cost calculation
+- Current Emergency Fund calculation
+- 3-month emergency fund requirement
+- 6-month emergency fund requirement
+- 12-month emergency fund requirement
+- Emergency Fund Coverage calculation
+- Emergency Fund Gap calculation
+- Emergency Fund Summary CLI output
+- Monthly Commitment metric
+- Active Commitments metric
+
+### Changed
+
+- Updated the Financial Commitments data schema.
+- Added `Start Date` to financial commitments.
+- Renamed commitment amount field to `Total Amount`.
+- Added `Commitment` field.
+- Added `Monthly Payment` field.
+- Added `End Date` field.
+- Commitment Engine now distinguishes total outstanding debt from monthly financial obligations.
+- Savings Engine now uses monthly commitments instead of outstanding debt when calculating Net Savings.
+- Financial Snapshot now includes Emergency Fund Summary.
+
+### Fixed
+
+- Fixed incorrect use of total outstanding debt as a monthly commitment.
+- Fixed Net Savings calculation to subtract monthly commitments instead of total outstanding debt.
+- Prevented negative temporary emergency fund balances.
+- Prevented division-by-zero errors in Emergency Fund Coverage calculation.
+- Prevented negative Emergency Fund Gap values.
+
+### Engineering Improvements
+
+- Evolved the Financial Commitments schema to support monthly obligation tracking.
+- Improved semantic separation between total liabilities and monthly commitments.
+- Added direct engine-to-engine data flow between the Commitment, Savings, and Emergency Fund engines.
+- Maintained calculation-only responsibility inside the Emergency Fund Engine.
+- Designed Emergency Fund Engine for future migration from Net Savings to Liquid Assets or a dedicated Emergency Fund Balance.
+
+### Known Limitations
+
+- Current Emergency Fund Balance is temporarily derived from Net Savings.
+- Monthly Survival Cost currently uses the Expense Summary total as its expense baseline.
+- Future versions will use liquid assets or a dedicated emergency fund balance.
+- Future versions should use a normalized monthly essential expense baseline for emergency survival calculations.
+
+### Future
+
+Next Version:
+
+- Goal Engine (v0.9.3)

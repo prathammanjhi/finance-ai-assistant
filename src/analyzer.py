@@ -54,9 +54,12 @@ def calculate_income(income):
     return {"received_income": received_income, "pending_income": pending_income}
 
 
+# ==========================
+# Commitment Engine
+# ==========================
 def calculate_commitments(commitments):
 
-    total_borrowed = commitments["Amount"].sum()
+    total_borrowed = commitments["Total Amount"].sum()
 
     total_repaid = commitments["Repaid"].sum()
 
@@ -64,10 +67,15 @@ def calculate_commitments(commitments):
 
     active_commitments = len(commitments.loc[commitments["Status"] == "Active"])
 
+    monthly_commitments = commitments.loc[
+        commitments["Status"] == "Active", "Monthly Payment"
+    ].sum()
+
     return {
         "total_borrowed": total_borrowed,
         "total_repaid": total_repaid,
         "outstanding_debt": outstanding_debt,
+        "monthly_commitments": monthly_commitments,
         "active_commitments": active_commitments,
     }
 
@@ -155,9 +163,11 @@ def filter_transactions_by_date(transactions, month=None, year=None):
         & (transactions["Date"].dt.year == today.year)
     ]
 
+
 # =========================
 # Snapshot and Insights
 # =========================
+
 
 def generate_financial_snapshot(
     monthly_summary,
@@ -411,11 +421,15 @@ def budget_insights(budget_analysis):
 # ==========================================================
 
 
-#Savings Summary
+# Savings Summary
 def calculate_savings(income_summary, expense_summary, commitment_summary):
     total_income = income_summary["received_income"]
     total_expense = expense_summary["total_expense"]
-    total_commitments = commitment_summary["outstanding_debt"]
+    total_commitments = (
+        commitment_summary["monthly_commitments"]
+        if "monthly_commitments" in commitment_summary
+        else 0
+    )
 
     gross_savings = total_income - total_expense
     net_savings = gross_savings - total_commitments
@@ -434,4 +448,71 @@ def calculate_savings(income_summary, expense_summary, commitment_summary):
         "expense_ratio": expense_ratio,
         "commitment_ratio": commitment_ratio,
         "savings_rate": savings_rate,
+    }
+
+
+# ==========================================================
+# Engine Name : Emergency Fund Engine
+# Layer       : Calculation Layer
+#
+# Responsibility
+# Calculates emergency fund and financial survival metrics.
+#
+# Inputs
+# - Expense Summary
+# - Commitment Summary
+# - Savings Summary
+#
+# Outputs
+# - Emergency Fund Summary Dictionary
+#
+# Dependencies
+# - Expense Engine
+# - Commitment Engine
+# - Savings Engine
+#
+# Used By
+# - Financial Health Score
+# - Recommendation Engine
+# - Goal Engine
+# - Cash Flow Forecast Engine
+#
+# Temporary Assumption
+# Net Savings is used as the current emergency fund balance.
+# Future versions will use liquid assets or a dedicated
+# emergency fund balance source.
+# ==========================================================
+
+
+def calculate_emergency_fund(expense_summary, commitment_summary, savings_summary):
+    current_emergency_fund = max(0, savings_summary["net_savings"])
+    # current_emergency_fund = 100000
+    total_monthly_expenses = expense_summary["total_expense"]
+    # total_monthly_expenses = 0
+    total_monthly_commitments = commitment_summary["monthly_commitments"]
+    # total_monthly_commitments = 0
+
+
+    monthly_survival_cost = total_monthly_expenses + total_monthly_commitments
+    required_3_months_fund = monthly_survival_cost * 3
+    required_6_months_fund = monthly_survival_cost * 6
+    required_12_months_fund = monthly_survival_cost * 12
+    coverage_months = (
+        current_emergency_fund / monthly_survival_cost
+        if monthly_survival_cost > 0
+        else 0
+    )
+    gap = required_6_months_fund - current_emergency_fund
+    emergency_fund_gap = max(0, gap)
+
+    return {
+        "current_emergency_fund": current_emergency_fund,
+        "total_monthly_expenses": total_monthly_expenses,
+        "total_monthly_commitments": total_monthly_commitments,
+        "monthly_survival_cost": monthly_survival_cost,
+        "required_3_months_fund": required_3_months_fund,
+        "required_6_months_fund": required_6_months_fund,
+        "required_12_months_fund": required_12_months_fund,
+        "coverage_months": coverage_months,
+        "emergency_fund_gap": emergency_fund_gap,
     }

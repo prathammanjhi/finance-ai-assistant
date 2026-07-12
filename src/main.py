@@ -20,6 +20,7 @@ from analyzer import (
     filter_budget_by_date,
     budget_insights,
     calculate_savings,
+    calculate_emergency_fund,
 )
 
 
@@ -65,23 +66,31 @@ def main():
         monthly_summary,
     )
     budget_insight = budget_insights(budget_analysis)
+    emergency_fund = calculate_emergency_fund(
+        summary, commitment_summary, savings_summary
+    )
 
     print("\n📊 Summary")
     print(f"Total Expense : ₹{summary['total_expense']:,.2f}")
     print(f"Need Spending : ₹{summary['total_need']:,.2f}")
     print(f"Want Spending : ₹{summary['total_want']:,.2f}")
+
     print("\n💵 Income Summary")
     print(f"Received Income : ₹{income_summary['received_income']:,.2f}")
     print(f"Pending Income : ₹{income_summary['pending_income']:,.2f}")
+
     print("\n💳 Commitments Summary")
-    print(f"Total Borrowed : ₹{commitment_summary['total_borrowed']:,.2f}")
-    print(f"Total Repaid : ₹{commitment_summary['total_repaid']:,.2f}")
-    print(f"Outstanding Debt : ₹{commitment_summary['outstanding_debt']:,.2f}")
-    print(f"Active Commitments : {commitment_summary['active_commitments']}")
+    print(f"total_borrowed : ₹{commitment_summary['total_borrowed']:,.2f}")
+    print(f"total_repaid : ₹{commitment_summary['total_repaid']:,.2f}")
+    print(f"outstanding_debt : ₹{commitment_summary['outstanding_debt']:,.2f}")
+    print(f"monthly_commitments : ₹{commitment_summary['monthly_commitments']:,.2f}")
+    print(f"active_commitments : {commitment_summary['active_commitments']}")
+
     print("\n📈 Net Position")
     print(f"Net Position : ₹{financial_position['net_position']:,.2f}")
     print(f"Cash Position : ₹{financial_position['cash_position']:,.2f}")
     print(f"Expected Position : ₹{financial_position['expected_position']:,.2f}")
+
     print("\n📊 Expense by Category")
     for category, amount in category_summary.items():
         print(f"{category:<15} : ₹{amount:,.2f}")
@@ -147,7 +156,18 @@ def main():
     print(f"savings_rate : {savings_summary['savings_rate']:.2f}%")
     print(f"commitment_ratio : {savings_summary['commitment_ratio']:.2f}%")
     print(f"expense_ratio : {savings_summary['expense_ratio']:.2f}%")
-    
+
+    print("\n🚨 Emergency Fund Summary")
+    print(f"Current Emergency Fund : ₹{emergency_fund['current_emergency_fund']:,.2f}")
+    print(f"Monthly Survival Cost : ₹{emergency_fund['monthly_survival_cost']:,.2f}")
+    print(f"Required 3-Months Fund : ₹{emergency_fund['required_3_months_fund']:,.2f}")
+    print(f"Required 6-Months Fund : ₹{emergency_fund['required_6_months_fund']:,.2f}")
+    print(
+        f"Required 12-Months Fund : ₹{emergency_fund['required_12_months_fund']:,.2f}"
+    )
+    print(f"Coverage Months : {emergency_fund['coverage_months']:.2f}")
+    print(f"Emergency Fund Gap : ₹{emergency_fund['emergency_fund_gap']:,.2f}")
+
 
 if __name__ == "__main__":
     main()
