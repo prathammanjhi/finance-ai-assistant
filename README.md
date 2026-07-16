@@ -1,7 +1,5 @@
 ## Roadmap
 
-## Roadmap
-
 Reader Layer
 
 - Transactions Reader
@@ -158,3 +156,17 @@ Current capabilities include:
 - Calculate required monthly contribution
 - Generate complete Goal Portfolio Summary
 - Generate Goal Snapshot for downstream AI modules
+
+## Goal Intelligence
+
+Finance AI now analyzes financial goals instead of only tracking them.
+
+Capabilities include:
+
+- Goal progress tracking
+- Remaining amount calculation
+- Months remaining calculation
+- Required monthly contribution
+- Goal portfolio summary
+- Goal insight generation
+- Goal recommendations

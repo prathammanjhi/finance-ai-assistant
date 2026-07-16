@@ -24,6 +24,7 @@ from analyzer import (
     calculate_emergency_fund,
     calculate_goals,
     generate_goal_snapshot,
+    generate_goal_insights,
 )
 
 
@@ -75,10 +76,21 @@ def main():
     goals = load_goals()
     goal_analysis = calculate_goals(goals)
     goal_analysis, goal_summary = calculate_goals(goals)
+
+    temp_goal_snapshot = {
+        "goal_analysis": goal_analysis,
+        "goal_summary": goal_summary,
+    }
+
+    goal_insights = generate_goal_insights(
+        temp_goal_snapshot
+    )
+
     goal_snapshot = generate_goal_snapshot(
-    goal_analysis,
-    goal_summary
-)
+        goal_analysis,
+        goal_summary,
+        goal_insights,
+    )
 
     print("\n📊 Summary")
     print(f"Total Expense : ₹{summary['total_expense']:,.2f}")
@@ -183,7 +195,15 @@ def main():
     for key, value in goal_summary.items():
         print(f"{key} : {value}")
 
-    print(goal_snapshot)
+    print("\n🎯 Goal Insights")
+
+    for insight in goal_insights:
+
+        print(f"\nGoal : {insight['goal']}")
+        print(f"Status : {insight['status']}")
+        print(f"Priority : {insight['priority']}")
+        print(f"Reason : {insight['reason']}")
+        print(f"Recommendation : {insight['recommendation']}")
 
 
 if __name__ == "__main__":

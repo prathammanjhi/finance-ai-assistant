@@ -307,3 +307,54 @@ Next Version:
 ## Internal
 - Goal module now follows the standard PrathamOS Engine Architecture:
   Reader → Calculation → Decision → Insight
+
+# v0.9.4
+
+## Added
+
+### Goal Intelligence
+
+- Added Goal Insight Engine
+- Added goal interpretation layer
+- Added recommendation generation for every financial goal
+
+### Goal Insight Rules
+
+The engine now evaluates every goal based on:
+
+- Progress Percentage
+- Months Remaining
+- Goal Priority
+- Goal Status
+
+and generates:
+
+- Insight Status
+- Insight Priority
+- Reason
+- Recommendation
+
+### Goal Snapshot
+
+Goal Snapshot now includes:
+
+- Goal Analysis
+- Goal Portfolio Summary
+- Goal Insights
+
+## Improvements
+
+- Separated Goal Priority from Insight Priority
+- Improved Goal Snapshot architecture
+- Established reusable Insight Engine pattern for future modules
+
+## Internal
+
+Finance AI now supports:
+
+Reader
+→ Calculation
+→ Snapshot
+→ Insight
+
+for the complete Goal module.

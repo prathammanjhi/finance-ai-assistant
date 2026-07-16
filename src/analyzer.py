@@ -1,4 +1,3 @@
-from ast import Not
 from datetime import datetime
 import pandas as pd
 import math
@@ -648,13 +647,80 @@ def calculate_goals(goals):
     return goal_analysis, goal_summary
 
 
+def generate_goal_insights(goal_snapshot):
+    goal_insights = []
+    goal_analysis = goal_snapshot["goal_analysis"]
+    for goal in goal_analysis:
+        goal_name = goal["goal"]
+        progress = goal["progress_percentage"]
+        months_remaining = goal["months_remaining"]
+        goal_priority = goal["priority"]
+        status = goal["status"]
+
+        if status == "Completed":
+            insight_status = "Completed"
+            insight_priority = "None"
+            reason = "Goal has been achieved."
+            recommendation = "Create a new financial goal."
+
+        elif progress < 20 and months_remaining <= 3:
+            insight_status = "Critical"
+            insight_priority = "High"
+            reason = "Goal is significantly behind schedule."
+            recommendation = "Increase monthly contribution immediately."
+
+        elif progress < 50 and goal_priority == "High":
+            insight_status = "Critical"
+            insight_priority = "High"
+            reason = "Goal progress is below expected pace."
+            recommendation = "Increase monthly savings toward this goal."
+
+        elif progress < 50 and goal_priority == "Medium":
+            insight_status = "Behind"
+            insight_priority = "Medium"
+            reason = "Goal progress is below expected pace."
+            recommendation = "Increase monthly savings toward this goal."
+
+        elif progress < 50:
+            insight_status = "Behind"
+            insight_priority = "Medium"
+            reason = "Goal progress is below expected pace."
+            recommendation = "Increase monthly savings toward this goal."
+
+        elif goal_priority == "High":
+            insight_status = "Behind"
+            insight_priority = "Medium"
+            reason = "Goal progress is below expected pace."
+            recommendation = "Increase monthly savings toward this goal."
+
+        else:
+            insight_status = "On Track"
+            insight_priority = "Normal"
+            reason = "Goal is progressing steadily."
+            recommendation = "Continue current contribution."
+
+        goal_insights.append(
+            {
+                "goal": goal_name,
+                "goal_priority": goal_priority,
+                "status": insight_status,
+                "priority": insight_priority,
+                "reason": reason,
+                "recommendation": recommendation,
+            }
+        )
+    return goal_insights
+
+
 def generate_goal_snapshot(
     goal_analysis,
     goal_summary,
+    goal_insights,
 ):
     goal_snapshot = {
-        "goal_ananlysis":goal_analysis,
-        "goal_summary":goal_summary,
+        "goal_analysis": goal_analysis,
+        "goal_summary": goal_summary,
+        "goal_insights": goal_insights,
     }
 
     return goal_snapshot
