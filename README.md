@@ -2,23 +2,34 @@
 
 ## Roadmap
 
-### Completed
+Reader Layer
 
-- Reader Engine
-- Filter Engine
-- Expense Analysis
-- Income Analysis
-- Financial Commitments Engine
+- Transactions Reader
+- Income Reader
+- Commitments Reader
+- Budget Reader
+- Goals Reader
+
+Calculation Layer
+
+- Expense Engine
+- Income Engine
+- Commitments Engine
 - Budget Engine
-- Financial Snapshot
-- Financial Insights
-- Budget Insights
 - Savings Engine
 - Emergency Fund Engine
-
-### In Progress
-
 - Goal Engine
+
+Decision Layer
+
+- Financial Snapshot Engine
+- Goal Snapshot Engine
+
+Insight Layer
+
+- Financial Insight Engine
+- Budget Insight Engine
+- Goal Insight Engine (Upcoming)
 
 ### Planned
 
@@ -133,3 +144,17 @@
 - Outstanding Debt Tracking
 - Active Commitment Tracking
 - Monthly Commitment Calculation
+
+## Goal Management
+
+Finance AI now supports complete goal tracking.
+
+Current capabilities include:
+
+- Read financial goals from Excel
+- Calculate remaining goal amount
+- Calculate goal progress percentage
+- Calculate months remaining until target date
+- Calculate required monthly contribution
+- Generate complete Goal Portfolio Summary
+- Generate Goal Snapshot for downstream AI modules

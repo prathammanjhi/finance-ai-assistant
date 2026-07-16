@@ -40,3 +40,11 @@ def load_budget():
     df = df.dropna(how="all")
 
     return df
+
+def load_goals():
+    # file_path = "data/finance.xlsx"
+
+    df = pd.read_excel(file_path, sheet_name="Financial Goals")
+    df = df.dropna(how="all")
+
+    return df

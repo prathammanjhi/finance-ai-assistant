@@ -3,6 +3,7 @@ from reader import (
     load_income,
     load_commitments,
     load_budget,
+    load_goals,
 )
 from analyzer import (
     calculate_summary,
@@ -21,6 +22,8 @@ from analyzer import (
     budget_insights,
     calculate_savings,
     calculate_emergency_fund,
+    calculate_goals,
+    generate_goal_snapshot,
 )
 
 
@@ -69,6 +72,13 @@ def main():
     emergency_fund = calculate_emergency_fund(
         summary, commitment_summary, savings_summary
     )
+    goals = load_goals()
+    goal_analysis = calculate_goals(goals)
+    goal_analysis, goal_summary = calculate_goals(goals)
+    goal_snapshot = generate_goal_snapshot(
+    goal_analysis,
+    goal_summary
+)
 
     print("\n📊 Summary")
     print(f"Total Expense : ₹{summary['total_expense']:,.2f}")
@@ -167,6 +177,13 @@ def main():
     )
     print(f"Coverage Months : {emergency_fund['coverage_months']:.2f}")
     print(f"Emergency Fund Gap : ₹{emergency_fund['emergency_fund_gap']:,.2f}")
+    
+    print("\n📊 Goal Portfolio Summary")
+
+    for key, value in goal_summary.items():
+        print(f"{key} : {value}")
+
+    print(goal_snapshot)
 
 
 if __name__ == "__main__":

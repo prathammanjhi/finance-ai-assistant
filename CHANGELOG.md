@@ -267,3 +267,43 @@ Added:
 Next Version:
 
 - Goal Engine (v0.9.3)
+# v0.9.3
+
+## Added
+
+### Goal Reader
+- Added Financial Goals sheet reader
+- Integrated Goal data into Finance AI pipeline
+
+### Goal Calculation Engine
+- Goal Progress Calculation
+- Remaining Amount Calculation
+- Months Remaining Calculation
+- Required Monthly Contribution Calculation
+
+### Goal Portfolio Summary
+- Total Goals
+- Active Goals
+- Completed Goals
+- Paused Goals
+- Cancelled Goals
+- Completion Rate
+- Active Goal Rate
+- Total Target Amount
+- Total Current Amount
+- Total Remaining Amount
+- Overall Progress Percentage
+
+### Goal Snapshot Engine
+- Added generate_goal_snapshot()
+- Unified Goal Analysis and Goal Summary into a single structured object
+
+## Improvements
+- Added defensive calculations for division-by-zero
+- Improved calculation consistency using shared variables
+- Rounded portfolio progress output
+- Extended Goal Engine architecture for future Insight and Recommendation layers
+
+## Internal
+- Goal module now follows the standard PrathamOS Engine Architecture:
+  Reader → Calculation → Decision → Insight
