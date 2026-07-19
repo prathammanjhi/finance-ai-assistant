@@ -128,6 +128,41 @@ def calculate_top_categories(category_summary):
     return {"categories": top_categories}
 
 
+def calculate_investments(investments):
+    total_invested = investments["Invested Amount"].sum()
+
+    current_value = investments["Current Value"].sum()
+
+    active_investments = (investments["Status"] == "Active").sum()
+
+    total_profit_loss = current_value - total_invested
+
+    return_percentage = (
+        (total_profit_loss / total_invested) * 100 if total_invested > 0 else 0
+    )
+
+    if total_invested == 0:
+        investment_growth = "No Investments"
+
+    elif total_profit_loss > 0:
+        investment_growth = "Profit"
+
+    elif total_profit_loss < 0:
+        investment_growth = "Loss"
+
+    else:
+        investment_growth = "Break Even"
+
+    return {
+        "total_invested": total_invested,
+        "current_value": current_value,
+        "total_profit_loss": total_profit_loss,
+        "return_percentage": return_percentage,
+        "active_investments": active_investments,
+        "investment_growth": investment_growth,
+    }
+
+
 # ==========================
 # Date Filtering
 # ==========================
@@ -394,6 +429,63 @@ def budget_insights(budget_analysis):
 
     return insights
 
+def generate_investment_snapshot(
+        investment_summary,
+        investment_insights,
+):
+    investment_snapshot = {
+        "investment_summary": investment_summary,
+        "investment_insights": investment_insights,
+    }
+
+    return investment_snapshot
+    
+def generate_investment_insights(investment_snapshot):
+
+    investment_summary = investment_snapshot["investment_summary"]
+
+    # total_invested = investment_summary["total_invested"]
+    # current_value = investment_summary["current_value"]
+    # total_profit_loss = investment_summary["total_profit_loss"]
+    # investment_growth = investment_summary["investment_growth"]
+    return_percentage = investment_summary["return_percentage"]
+    active_investments = investment_summary["active_investments"]
+
+    if active_investments == 0 :
+        insight_status = "No Investments"
+        insight_priority = "Medium"
+        reason = "No Active Investments found."
+        recommendation = "Start Investing to build Long-term wealth."
+    elif return_percentage < 0 :
+        insight_status = "Loss"
+        insight_priority = "High"
+        reason = "Investment portfolio is currently in loss."
+        recommendation = "Review investments before making new allocations."
+    elif 0 <= return_percentage < 8 :
+        insight_status = "Growing Slowly"
+        insight_priority = "Medium"
+        reason = "Portfolio is generating modest returns."
+        recommendation = "Review diversification and long-term strategy."
+    elif return_percentage >= 8 :
+        insight_status = "Healthy Growth"
+        insight_priority = "Low"
+        reason = "Portfolio is performing well."
+        recommendation = "Continue disciplined investing."
+    elif return_percentage > 15  :
+        insight_status = "Excellent Growth"
+        insight_priority = "Low"
+        reason = "Portfolio is performing Great."
+        recommendation = "Continue disciplined investing."
+
+
+
+    return {
+        "status": insight_status,
+        "priority": insight_priority,
+        "reason": reason,
+        "recommendation": recommendation,
+    }
+            
 
 # ==========================================================
 # Engine Name : Savings Engine
@@ -724,3 +816,161 @@ def generate_goal_snapshot(
     }
 
     return goal_snapshot
+
+#====================================================
+#Assets
+#====================================================
+
+def calculate_assets(assets):
+
+    total_asset_value = assets["Current Value"].sum()
+
+    purchase_value = assets["Purchase Value"].sum()
+
+    asset_profit_loss = total_asset_value - purchase_value
+
+    active_assets = (
+        assets["Status"] == "Active"
+    ).sum()
+
+    largest_asset_row = assets.loc[
+        assets["Current Value"].idxmax()
+    ] if not assets.empty else None
+
+    largest_asset = {
+        "asset": largest_asset_row["Asset"],
+        "category": largest_asset_row["Category"],
+        "purchase_value": largest_asset_row["Purchase Value"],
+        "current_value": largest_asset_row["Current Value"],
+    }
+
+    asset_return_percentage = (
+    (asset_profit_loss / purchase_value) * 100
+    if purchase_value > 0
+    else 0
+    )
+
+    asset_summary = {
+        "total_asset_value": total_asset_value,
+        "purchase_value": purchase_value,
+        "asset_profit_loss": asset_profit_loss,
+        "active_assets": active_assets,
+        "largest_asset": largest_asset,
+        "asset_return_percentage": asset_return_percentage,
+    }
+
+
+    return asset_summary
+
+def generate_asset_snapshot(
+    asset_summary,
+    asset_insights,
+):
+    asset_snapshot = {
+    "asset_summary": asset_summary,
+    "asset_insights": asset_insights,
+}
+
+    return asset_snapshot
+
+# ==========================================================
+# Asset Insight Engine
+# ==========================================================
+
+def generate_asset_insights(asset_snapshot):
+
+    asset_summary = asset_snapshot["asset_summary"]
+
+    active_assets = asset_summary["active_assets"]
+    asset_profit_loss = asset_summary["asset_profit_loss"]
+    largest_asset = asset_summary["largest_asset"]
+
+    # -------------------------------------------------
+    # Asset Health
+    # -------------------------------------------------
+
+    asset_health = (
+        "below the purchase value due to normal depreciation."
+        if asset_profit_loss < 0
+        else "maintaining or increasing its overall value."
+    )
+
+    # -------------------------------------------------
+    # No Assets
+    # -------------------------------------------------
+
+    if active_assets == 0:
+
+        insight_status = "No Assets"
+        insight_priority = "High"
+
+        reason = "No active assets found."
+
+        recommendation = (
+            "Start building personal assets to improve your financial strength."
+        )
+
+    # -------------------------------------------------
+    # Limited Asset Base
+    # -------------------------------------------------
+
+    elif active_assets <= 3:
+
+        insight_status = "Limited Assets"
+        insight_priority = "Medium"
+
+        reason = (
+            f"Your asset base is still limited and is currently {asset_health}"
+        )
+
+        if largest_asset is not None:
+
+            recommendation = (
+                f"Continue acquiring productive assets. "
+                f"Current largest asset: {largest_asset['asset']} "
+                f"(₹{largest_asset['current_value']:,.2f})."
+            )
+
+        else:
+
+            recommendation = (
+                "Continue acquiring productive assets."
+            )
+
+    # -------------------------------------------------
+    # Healthy Asset Base
+    # -------------------------------------------------
+
+    else:
+
+        insight_status = "Healthy Asset Base"
+        insight_priority = "Low"
+
+        reason = (
+            f"You have a diversified asset portfolio that is currently {asset_health}"
+        )
+
+        if largest_asset is not None:
+
+            recommendation = (
+                f"Maintain and grow your assets. "
+                f"Your largest asset is {largest_asset['asset']} "
+                f"(₹{largest_asset['current_value']:,.2f}). "
+                f"Gradually increase appreciating assets such as investments, "
+                f"gold, property, or business assets."
+            )
+
+        else:
+
+            recommendation = (
+                "Maintain your existing assets and gradually increase appreciating assets."
+            )
+
+    return {
+
+        "status": insight_status,
+        "priority": insight_priority,
+        "reason": reason,
+        "recommendation": recommendation,
+
+    }

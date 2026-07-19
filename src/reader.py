@@ -48,3 +48,15 @@ def load_goals():
     df = df.dropna(how="all")
 
     return df
+
+def load_investments():
+    df = pd.read_excel(file_path, sheet_name="Investments")
+    df = df.dropna(how="all")
+
+    return df
+
+def load_assets():
+    df = pd.read_excel(file_path, sheet_name="Assets")
+    df = df.dropna(how="all")
+
+    return df

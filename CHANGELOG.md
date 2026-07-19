@@ -358,3 +358,59 @@ Reader
 → Insight
 
 for the complete Goal module.
+
+# Finance AI v0.9.5
+
+## New Features
+
+### Investment Engine
+- Added Investment Summary Engine
+- Calculates total invested amount
+- Calculates current portfolio value
+- Calculates portfolio profit/loss
+- Calculates portfolio return percentage
+- Calculates active investment count
+- Added investment growth classification
+
+### Investment Insight Engine
+- Generates portfolio health insights
+- Detects no investment scenarios
+- Detects portfolio loss
+- Detects slow portfolio growth
+- Detects healthy portfolio growth
+- Provides actionable investment recommendations
+
+### Investment Snapshot
+- Added Investment Snapshot architecture
+- Includes investment summary
+- Includes investment insights
+
+### Asset Engine
+- Added Asset Summary Engine
+- Calculates total asset value
+- Calculates purchase value
+- Calculates overall asset profit/loss
+- Calculates asset return percentage
+- Detects active assets
+- Detects largest asset
+
+### Asset Insight Engine
+- Generates asset portfolio insights
+- Detects limited asset base
+- Detects healthy asset base
+- Detects no asset scenario
+- Separates portfolio strength from asset health
+- Accounts for normal depreciation
+- Generates personalized recommendations using largest asset
+
+### Asset Snapshot
+- Added Asset Snapshot architecture
+- Includes asset summary
+- Includes asset insights
+
+## Improvements
+- Improved future-proof architecture
+- Added asset return percentage metric
+- Added largest asset metadata
+- Improved recommendation engine foundation
+- Better separation between calculations and insights

@@ -4,6 +4,8 @@ from reader import (
     load_commitments,
     load_budget,
     load_goals,
+    load_investments,
+    load_assets,
 )
 from analyzer import (
     calculate_summary,
@@ -25,6 +27,12 @@ from analyzer import (
     calculate_goals,
     generate_goal_snapshot,
     generate_goal_insights,
+    calculate_investments,
+    generate_investment_insights,
+    generate_investment_snapshot,
+    calculate_assets,
+    generate_asset_snapshot,
+    generate_asset_insights,
 )
 
 
@@ -36,7 +44,23 @@ def main():
     transactions = load_transactions()
     income = load_income()
     commitments = load_commitments()
+    investments = load_investments()
+    investment_summary = calculate_investments(
+    investments
+    )
+    temp_snapshot = {
+    "investment_summary": investment_summary,
+    "investment_insights": {},
+    }
 
+    investment_insights = generate_investment_insights(
+        temp_snapshot
+    )
+
+    investment_snapshot = generate_investment_snapshot(
+        investment_summary,
+        investment_insights,
+    )
     summary = calculate_summary(transactions)
     income_summary = calculate_income(income)
     commitment_summary = calculate_commitments(commitments)
@@ -90,6 +114,26 @@ def main():
         goal_analysis,
         goal_summary,
         goal_insights,
+    )
+
+    assets = load_assets()
+
+    asset_summary = calculate_assets(
+        assets
+    )
+
+    temp_asset_snapshot = {
+        "asset_summary": asset_summary,
+        "asset_insights": {},
+    }
+
+    asset_insights = generate_asset_insights(
+        temp_asset_snapshot
+    )
+
+    asset_snapshot = generate_asset_snapshot(
+        asset_summary,
+        asset_insights,
     )
 
     print("\n📊 Summary")
@@ -204,6 +248,45 @@ def main():
         print(f"Priority : {insight['priority']}")
         print(f"Reason : {insight['reason']}")
         print(f"Recommendation : {insight['recommendation']}")
+
+    print("\n📈 Investment Summary")
+
+    for key, value in investment_summary.items():
+
+        if isinstance(value, (int, float)):
+
+            print(f"{key} : ₹{value:,.2f}")
+
+        else:
+
+            print(f"{key} : {value}")
+
+    print("\n📈 Investment Insights")
+
+    for key, value in investment_insights.items():
+
+        if isinstance(value, (int, float)):
+
+            print(f"{key} : ₹{value:,.2f}")
+
+        else:
+
+            print(f"{key} : {value}")
+
+    print("\n📦 Asset Summary")
+
+    print(f"Total Asset Value : ₹{asset_summary['total_asset_value']:,.2f}")
+    print(f"Purchase Value : ₹{asset_summary['purchase_value']:,.2f}")
+    print(f"Asset Profit/Loss : ₹{asset_summary['asset_profit_loss']:,.2f}")
+    print(f"Asset Return : {asset_summary['asset_return_percentage']:.2f}%")
+    print(f"Active Assets : {asset_summary['active_assets']}")
+
+    largest = asset_summary["largest_asset"]
+
+    if largest is not None:
+        print(f"Largest Asset : {largest['asset']}")
+        print(f"Category : {largest['category']}")
+        print(f"Current Value : ₹{largest['current_value']:,.2f}")
 
 
 if __name__ == "__main__":

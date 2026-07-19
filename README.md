@@ -170,3 +170,45 @@ Capabilities include:
 - Goal portfolio summary
 - Goal insight generation
 - Goal recommendations
+
+## Wealth Intelligence
+
+Finance AI now includes:
+
+- Investment Portfolio Tracking
+- Investment Performance Analysis
+- Investment Health Insights
+- Asset Portfolio Tracking
+- Asset Performance Analysis
+- Asset Health Insights
+- Largest Asset Detection
+- Asset Return Percentage
+
+# Current Engine
+
+### Calculation Engines
+
+- Expense Engine
+- Income Engine
+- Commitment Engine
+- Budget Engine
+- Savings Engine
+- Emergency Fund Engine
+- Goal Engine
+- Investment Engine
+- Asset Engine
+
+### Snapshot Engines
+
+- Financial Snapshot
+- Goal Snapshot
+- Investment Snapshot
+- Asset Snapshot
+
+### Insight Engines
+
+- Financial Insight Engine
+- Budget Insight Engine
+- Goal Insight Engine
+- Investment Insight Engine
+- Asset Insight Engine
