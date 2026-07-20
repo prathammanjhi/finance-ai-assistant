@@ -414,3 +414,113 @@ for the complete Goal module.
 - Added largest asset metadata
 - Improved recommendation engine foundation
 - Better separation between calculations and insights
+
+# Finance AI v0.9.6
+
+Release Date:
+20 July 2026
+
+--------------------------------------------------
+
+## New Features
+
+### Goal Engine
+- Added Financial Goals sheet loader.
+- Added Goal Analysis Engine.
+- Added Goal Portfolio Summary.
+- Added Goal Snapshot Engine.
+- Added Goal Insights Engine.
+- Added goal progress tracking.
+- Added remaining amount calculation.
+- Added progress percentage calculation.
+- Added months remaining calculation.
+- Added required monthly contribution calculation.
+- Added completion rate.
+- Added active goal rate.
+- Added overall goal progress calculation.
+- Added priority-aware goal recommendations.
+
+--------------------------------------------------
+
+### Investment Engine
+- Added Investment Summary Engine.
+- Added Investment Snapshot Engine.
+- Added Investment Insights Engine.
+- Added portfolio return calculation.
+- Added investment growth classification.
+- Added investment recommendation system.
+
+--------------------------------------------------
+
+### Asset Engine
+- Added Asset Summary Engine.
+- Added Asset Snapshot Engine.
+- Added Asset Insights Engine.
+- Added asset return calculation.
+- Added asset profit/loss calculation.
+- Added largest asset detection.
+- Added asset category tracking.
+- Added diversified asset recommendations.
+- Added depreciation-aware insights.
+- Added future-proof asset metadata.
+
+--------------------------------------------------
+
+### Liability Engine
+- Added Liability Summary Engine.
+- Added Liability Snapshot Engine.
+- Added Liability Insights Engine.
+- Added Original Loan tracking.
+- Added Outstanding Balance tracking.
+- Added Total Repaid calculation.
+- Added Loan Paid percentage.
+- Added Loan Outstanding percentage.
+- Added Monthly Liability calculation.
+- Added Largest Monthly EMI detection.
+- Added Highest Liability detection.
+- Added Liability Ratio calculation.
+- Added Average Liability calculation.
+- Added Consumer Loan categorization support.
+
+--------------------------------------------------
+
+## Improvements
+
+- Improved Goal Insight recommendation logic.
+- Improved Asset recommendation logic.
+- Improved Liability recommendation logic.
+- Standardized Snapshot architecture.
+- Standardized Insight architecture.
+- Improved CLI readability.
+- Added consistent financial terminology.
+- Added future-proof calculation fields.
+
+--------------------------------------------------
+
+## Internal Refactoring
+
+- Standardized all engines to:
+
+Calculation
+↓
+
+Summary
+↓
+
+Insights
+↓
+
+Snapshot
+
+- Improved dictionary structure consistency.
+- Improved naming consistency across modules.
+- Removed redundant calculations.
+- Prepared architecture for Net Worth Engine.
+
+--------------------------------------------------
+
+Status
+
+Finance AI Core Progress
+
+v0.9.6 Complete ✅

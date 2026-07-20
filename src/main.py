@@ -6,6 +6,7 @@ from reader import (
     load_goals,
     load_investments,
     load_assets,
+    load_liabilities,
 )
 from analyzer import (
     calculate_summary,
@@ -33,6 +34,9 @@ from analyzer import (
     calculate_assets,
     generate_asset_snapshot,
     generate_asset_insights,
+    calculate_liabilities,
+    generate_liability_insights,
+    generate_liability_snapshot,
 )
 
 
@@ -45,17 +49,13 @@ def main():
     income = load_income()
     commitments = load_commitments()
     investments = load_investments()
-    investment_summary = calculate_investments(
-    investments
-    )
+    investment_summary = calculate_investments(investments)
     temp_snapshot = {
-    "investment_summary": investment_summary,
-    "investment_insights": {},
+        "investment_summary": investment_summary,
+        "investment_insights": {},
     }
 
-    investment_insights = generate_investment_insights(
-        temp_snapshot
-    )
+    investment_insights = generate_investment_insights(temp_snapshot)
 
     investment_snapshot = generate_investment_snapshot(
         investment_summary,
@@ -106,9 +106,7 @@ def main():
         "goal_summary": goal_summary,
     }
 
-    goal_insights = generate_goal_insights(
-        temp_goal_snapshot
-    )
+    goal_insights = generate_goal_insights(temp_goal_snapshot)
 
     goal_snapshot = generate_goal_snapshot(
         goal_analysis,
@@ -118,22 +116,39 @@ def main():
 
     assets = load_assets()
 
-    asset_summary = calculate_assets(
-        assets
-    )
+    asset_summary = calculate_assets(assets)
 
     temp_asset_snapshot = {
         "asset_summary": asset_summary,
         "asset_insights": {},
     }
 
-    asset_insights = generate_asset_insights(
-        temp_asset_snapshot
-    )
+    asset_insights = generate_asset_insights(temp_asset_snapshot)
 
     asset_snapshot = generate_asset_snapshot(
         asset_summary,
         asset_insights,
+    )
+
+    liabilities = load_liabilities()
+
+    liability_summary = calculate_liabilities(
+        liabilities,
+        asset_snapshot,
+    )
+
+    temp_liability_snapshot = {
+        "liability_summary": liability_summary,
+        "liability_insights": {},
+    }
+
+    liability_insights = generate_liability_insights(
+        temp_liability_snapshot,
+    )
+
+    liability_snapshot = generate_liability_snapshot(
+        liability_summary,
+        liability_insights,
     )
 
     print("\n📊 Summary")
@@ -233,7 +248,7 @@ def main():
     )
     print(f"Coverage Months : {emergency_fund['coverage_months']:.2f}")
     print(f"Emergency Fund Gap : ₹{emergency_fund['emergency_fund_gap']:,.2f}")
-    
+
     print("\n📊 Goal Portfolio Summary")
 
     for key, value in goal_summary.items():
@@ -242,7 +257,6 @@ def main():
     print("\n🎯 Goal Insights")
 
     for insight in goal_insights:
-
         print(f"\nGoal : {insight['goal']}")
         print(f"Status : {insight['status']}")
         print(f"Priority : {insight['priority']}")
@@ -252,25 +266,19 @@ def main():
     print("\n📈 Investment Summary")
 
     for key, value in investment_summary.items():
-
         if isinstance(value, (int, float)):
-
             print(f"{key} : ₹{value:,.2f}")
 
         else:
-
             print(f"{key} : {value}")
 
     print("\n📈 Investment Insights")
 
     for key, value in investment_insights.items():
-
         if isinstance(value, (int, float)):
-
             print(f"{key} : ₹{value:,.2f}")
 
         else:
-
             print(f"{key} : {value}")
 
     print("\n📦 Asset Summary")
@@ -287,6 +295,36 @@ def main():
         print(f"Largest Asset : {largest['asset']}")
         print(f"Category : {largest['category']}")
         print(f"Current Value : ₹{largest['current_value']:,.2f}")
+
+    print("\n📄 Liability Summary")
+    print(f"Total Original Loan : ₹{liability_summary['total_original_loan']:,.2f}")
+    print(
+        f"Outstanding Balance : ₹{liability_summary['total_outstanding_balance']:,.2f}"
+    )
+    print(f"Total Repaid : ₹{liability_summary['total_repaid']:,.2f}")
+    print(f"Loan Paid : {liability_summary['repayment_percentage']:.2f}%")
+    print(
+        f"Monthly Liability Payment : ₹{liability_summary['monthly_liability_payment']:,.2f}"
+    )
+    print(f"Largest Monthly EMI : ₹{liability_summary['largest_monthly_emi']:,.2f}")
+    print(f"Active Liabilities : {liability_summary['active_liabilities']}")
+    print(
+        f"Liability Ratio (Debt / Assets) : {liability_summary['liability_ratio']:.2f}%"
+    )
+    print(f"Average Liability : ₹{liability_summary['average_liability']:,.2f}")
+    print(
+        f"Loan Outstanding : {liability_summary['remaining_repayment_percentage']:.2f}%"
+    )
+
+    highest = liability_summary["highest_liability"]
+
+    if highest is not None:
+        print("\n💳 Highest Liability")
+        print(f"Liability : {highest['liability']}")
+        print(f"Category : {highest['category']}")
+        print(f"Original Loan : ₹{highest['original_loan']:,.2f}")
+        print(f"Outstanding Balance : ₹{highest['outstanding_balance']:,.2f}")
+        print(f"Monthly EMI : ₹{highest['monthly_emi']:,.2f}")
 
 
 if __name__ == "__main__":

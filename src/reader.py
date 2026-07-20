@@ -60,3 +60,14 @@ def load_assets():
     df = df.dropna(how="all")
 
     return df
+
+def load_liabilities():
+    df = pd.read_excel(file_path, sheet_name="Liabilities")
+    df = df.dropna(how="all")
+    df["Category"] = (
+    df["Category"]
+        .fillna("Other")
+        .astype(str)
+        .str.strip()
+    )
+    return df

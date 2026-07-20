@@ -83,6 +83,8 @@ Insight Layer
 - Budget Insight Engine
 - Budget Health Recommendations
 
+
+
 ## Features
 
 ### Core Financial Analysis
@@ -212,3 +214,25 @@ Finance AI now includes:
 - Goal Insight Engine
 - Investment Insight Engine
 - Asset Insight Engine
+
+### Implemented Engines
+
+✅ Transaction Engine
+
+✅ Income Engine
+
+✅ Commitment Engine
+
+✅ Budget Engine
+
+✅ Savings Engine
+
+✅ Emergency Fund Engine
+
+✅ Goal Engine
+
+✅ Investment Engine
+
+✅ Asset Engine
+
+✅ Liability Engine
