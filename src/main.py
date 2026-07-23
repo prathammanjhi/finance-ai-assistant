@@ -37,6 +37,9 @@ from analyzer import (
     calculate_liabilities,
     generate_liability_insights,
     generate_liability_snapshot,
+    calculate_net_worth,
+    generate_net_worth_insights,
+    generate_net_worth_snapshot,
 )
 
 
@@ -149,6 +152,20 @@ def main():
     liability_snapshot = generate_liability_snapshot(
         liability_summary,
         liability_insights,
+    )
+
+    net_worth_summary = calculate_net_worth(
+        asset_snapshot,
+        liability_snapshot,
+    )
+
+    net_worth_insights = generate_net_worth_insights(
+        net_worth_summary,
+    )
+
+    net_worth_snapshot = generate_net_worth_snapshot(
+        net_worth_summary,
+        net_worth_insights,
     )
 
     print("\n📊 Summary")
@@ -325,6 +342,30 @@ def main():
         print(f"Original Loan : ₹{highest['original_loan']:,.2f}")
         print(f"Outstanding Balance : ₹{highest['outstanding_balance']:,.2f}")
         print(f"Monthly EMI : ₹{highest['monthly_emi']:,.2f}")
+
+
+    print("\n💰 Net Worth Summary")
+    print(f"Total Assets : ₹{net_worth_summary['total_assets']:,.2f}")
+    print(f"Total Liabilities : ₹{net_worth_summary['total_liabilities']:,.2f}")
+    print(f"Net Worth : ₹{net_worth_summary['net_worth']:,.2f}")
+    print(f"Equity : ₹{net_worth_summary['equity']:,.2f}")
+    print(f"Debt Percentage : {net_worth_summary['debt_percentage']:.2f}%")
+    print(f"Asset Coverage Ratio : {net_worth_summary['asset_coverage_ratio']:.2f}")
+    print(f"Wealth Category : {net_worth_summary['wealth_category']}")
+    print(f"Wealth Score : {net_worth_summary['wealth_score']:.2f}")
+    print(f"Asset/Liability Ratio : {net_worth_summary['asset_to_liability_ratio']:.2f}")
+    print(f"Financial Leverage : {net_worth_summary['financial_leverage']:.2f}")
+    print(f"Net Assets : ₹{net_worth_summary['net_assets']:,.2f}")
+    print(f"Debt Free : {net_worth_summary['debt_free_percentage']:.2f}%")
+    print(f"Wealth Efficiency : {net_worth_summary['wealth_efficiency']:.2f}%")
+    print(f"Wealth Growth : {net_worth_summary['wealth_growth']:.2f}%")
+
+
+    print("\n💡 Net Worth Insights")
+    print(f"Status : {net_worth_insights['status']}")
+    print(f"Priority : {net_worth_insights['priority']}")
+    print(f"Reason : {net_worth_insights['reason']}")
+    print(f"Recommendation : {net_worth_insights['recommendation']}")
 
 
 if __name__ == "__main__":

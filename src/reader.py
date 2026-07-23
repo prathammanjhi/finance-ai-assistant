@@ -71,3 +71,4 @@ def load_liabilities():
         .str.strip()
     )
     return df
+

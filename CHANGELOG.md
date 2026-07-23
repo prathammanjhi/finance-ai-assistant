@@ -524,3 +524,70 @@ Status
 Finance AI Core Progress
 
 v0.9.6 Complete ✅
+
+# Finance AI v0.9.7
+
+Release Date:
+21 July 2026
+
+--------------------------------------------------
+
+## New Features
+
+### Net Worth Engine
+- Added Net Worth Summary Engine.
+- Added Net Worth Snapshot Engine.
+- Added Net Worth Insights Engine.
+- Added Net Worth calculation.
+- Added Equity calculation.
+- Added Debt Percentage calculation.
+- Added Asset Coverage Ratio.
+- Added Wealth Category classification.
+- Added Wealth Score calculation.
+
+--------------------------------------------------
+
+### Future Proofing
+
+- Added Asset to Liability Ratio.
+- Added Financial Leverage.
+- Added Net Assets.
+- Added Debt Free Percentage.
+- Added Wealth Efficiency.
+- Added Wealth Growth placeholder.
+
+--------------------------------------------------
+
+### Insights
+
+- Added Negative Net Worth detection.
+- Added Highly Leveraged detection.
+- Added Balanced Wealth detection.
+- Added Strong Net Worth detection.
+- Added recommendation engine for wealth management.
+
+--------------------------------------------------
+
+## Improvements
+
+- Connected Asset Engine with Liability Engine.
+- Introduced cross-engine financial calculations.
+- Standardized Net Worth architecture.
+- Improved CLI output formatting.
+- Improved financial terminology consistency.
+
+--------------------------------------------------
+
+## Internal Refactoring
+
+- Added Snapshot architecture for Net Worth Engine.
+- Standardized Summary → Insights → Snapshot flow.
+- Prepared architecture for Wealth Health Engine.
+
+--------------------------------------------------
+
+Status
+
+Finance AI Core Progress
+
+v0.9.7 Complete ✅
