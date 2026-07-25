@@ -591,3 +591,5 @@ Status
 Finance AI Core Progress
 
 v0.9.7 Complete ✅
+
+Let's start workin on version v9.8.0
