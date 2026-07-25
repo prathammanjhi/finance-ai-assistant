@@ -43,6 +43,9 @@ from analyzer import (
     generate_wealth_health_snapshot,
     generate_wealth_health_insights,
     calculate_wealth_health,
+    generate_financial_health_snapshot,
+    generate_financial_health_insights,
+    calculate_financial_health,
 )
 
 
@@ -192,6 +195,28 @@ def main():
     wealth_health_snapshot = generate_wealth_health_snapshot(
         wealth_health_summary,
         wealth_health_insights,
+    )
+
+    financial_health_summary = calculate_financial_health(
+        financial_snapshot,
+        budget_analysis,
+        savings_summary,
+        emergency_summary,
+        goal_snapshot,
+        investment_snapshot,
+        asset_snapshot,
+        liability_snapshot,
+        net_worth_snapshot,
+        wealth_health_snapshot,
+    )
+
+    financial_health_insights = generate_financial_health_insights(
+        financial_health_summary
+    )
+
+    financial_health_snapshot = generate_financial_health_snapshot(
+        financial_health_summary,
+        financial_health_insights,
     )
 
     print("\n📊 Summary")
@@ -431,6 +456,49 @@ def main():
     print(f"Priority                     : {wealth_health_insights['priority']}")
     print(f"Reason                       : {wealth_health_insights['reason']}")
     print(f"Recommendation               : {wealth_health_insights['recommendation']}")
+
+    print("\n")
+    print("############################################################")
+    print("#               Financial Health Summary                   #")
+    print("############################################################")
+
+    print(f"Financial Health Score     : {financial_health_summary['financial_health_score']}/100")
+    print(f"Financial Grade            : {financial_health_summary['financial_grade']}")
+    print(f"Financial Risk             : {financial_health_summary['financial_risk']}")
+    print(f"Financial Strength         : {financial_health_summary['financial_strength']}")
+
+    print()
+
+    print(f"Financial Snapshot Score   : {financial_health_summary['financial_score']}/15")
+    print(f"Budget Score               : {financial_health_summary['budget_score']}/10")
+    print(f"Savings Score              : {financial_health_summary['savings_score']}/15")
+    print(f"Emergency Fund Score       : {financial_health_summary['emergency_score']}/10")
+    print(f"Goal Score                 : {financial_health_summary['goal_score']}/10")
+    print(f"Investment Score           : {financial_health_summary['investment_score']}/10")
+    print(f"Asset Score                : {financial_health_summary['asset_score']}/5")
+    print(f"Liability Score            : {financial_health_summary['liability_score']}/10")
+    print(f"Net Worth Score            : {financial_health_summary['net_worth_score']}/5")
+    print(f"Wealth Health Score        : {financial_health_summary['wealth_health_score']}/10")
+
+
+    print("\n")
+    print("############################################################")
+    print("#              Financial Health Insights                   #")
+    print("############################################################")
+
+    print(f"Status                     : {financial_health_insights['status']}")
+    print(f"Priority                   : {financial_health_insights['priority']}")
+    print(f"Primary Focus              : {financial_health_insights['focus_area']}")
+
+    print()
+
+    print("Reason")
+    print(financial_health_insights["reason"])
+
+    print()
+
+    print("Recommendation")
+    print(financial_health_insights["recommendation"])
 
 if __name__ == "__main__":
     main()
