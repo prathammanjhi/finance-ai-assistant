@@ -313,26 +313,47 @@ Upcoming
 ⬜ Unified Snapshot
 ⬜ Decision Engine (v2)
 
-v0.9.0 ✅ Budget Intelligence
+v0.9.0 ✅ Budget
 
-v0.9.1 ✅ Savings Engine
+v0.9.1 ✅ Savings
 
-v0.9.2 ✅ Emergency Fund Engine
+v0.9.2 ✅ Emergency Fund
 
-v0.9.3 ✅ Goal Engine
+v0.9.3 ✅ Goals
 
-v0.9.4 ✅ Investment Engine
+v0.9.4 ✅ Investments
 
-v0.9.5 ✅ Asset Engine
+v0.9.5 ✅ Assets
 
-v0.9.6 ✅ Liability Engine
+v0.9.6 ✅ Liabilities
 
-v0.9.7 ✅ Net Worth Engine
+v0.9.7 ✅ Net Worth
 
---------------------------------
+v0.9.8 ✅ Wealth Health
 
-v0.9.8 🎯 Wealth Health Engine
+────────────────────────
 
-v0.9.9 🎯 Financial Health Engine
+v0.9.9 🎯 Financial Health
 
-v1.0.0 🚀 Finance AI Core Complete
+v1.0.0 🚀 Core Complete
+
+✅ Transaction Engine
+✅ Income Engine
+✅ Commitment Engine
+✅ Budget Engine
+✅ Savings Engine
+✅ Emergency Fund Engine
+✅ Goal Engine
+✅ Investment Engine
+✅ Asset Engine
+✅ Liability Engine
+✅ Net Worth Engine
+✅ Wealth Health Engine
+
+Current Version
+
+v0.9.8
+
+Next Sprint
+
+Financial Health Engine

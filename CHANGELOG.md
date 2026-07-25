@@ -592,4 +592,66 @@ Finance AI Core Progress
 
 v0.9.7 Complete ✅
 
-Let's start workin on version v9.8.0
+# Finance AI v0.9.8
+
+Release Date:
+26 July 2026
+
+--------------------------------------------------
+
+## New Features
+
+### Wealth Health Engine
+
+- Added Wealth Health Summary Engine.
+- Added Wealth Health Insights Engine.
+- Added Wealth Health Snapshot Engine.
+- Added Wealth Health Scoring System.
+- Added Wealth Grade classification.
+- Added Wealth Risk classification.
+- Added Capital Strength analysis.
+
+--------------------------------------------------
+
+### Wealth Score Components
+
+Added weighted scoring based on:
+
+- Emergency Fund
+- Goals
+- Investments
+- Assets
+- Liabilities
+- Net Worth
+
+Total Wealth Score = 100
+
+--------------------------------------------------
+
+### Future-Proof Metrics
+
+Added:
+
+- Growth Readiness
+- Liquidity Strength
+- Wealth Momentum
+- Financial Stability
+- Long-Term Sustainability
+
+--------------------------------------------------
+
+### Insights
+
+Added:
+
+- Excellent Wealth detection
+- Healthy Wealth detection
+- Developing Wealth detection
+- Needs Improvement detection
+- Critical Wealth detection
+
+--------------------------------------------------
+
+Status
+
+Finance AI v0.9.8 Complete
