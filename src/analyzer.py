@@ -429,9 +429,10 @@ def budget_insights(budget_analysis):
 
     return insights
 
+
 def generate_investment_snapshot(
-        investment_summary,
-        investment_insights,
+    investment_summary,
+    investment_insights,
 ):
     investment_snapshot = {
         "investment_summary": investment_summary,
@@ -439,45 +440,39 @@ def generate_investment_snapshot(
     }
 
     return investment_snapshot
-    
+
+
 def generate_investment_insights(investment_snapshot):
 
     investment_summary = investment_snapshot["investment_summary"]
-
-    # total_invested = investment_summary["total_invested"]
-    # current_value = investment_summary["current_value"]
-    # total_profit_loss = investment_summary["total_profit_loss"]
-    # investment_growth = investment_summary["investment_growth"]
     return_percentage = investment_summary["return_percentage"]
     active_investments = investment_summary["active_investments"]
 
-    if active_investments == 0 :
+    if active_investments == 0:
         insight_status = "No Investments"
         insight_priority = "Medium"
         reason = "No Active Investments found."
         recommendation = "Start Investing to build Long-term wealth."
-    elif return_percentage < 0 :
+    elif return_percentage < 0:
         insight_status = "Loss"
         insight_priority = "High"
         reason = "Investment portfolio is currently in loss."
         recommendation = "Review investments before making new allocations."
-    elif 0 <= return_percentage < 8 :
+    elif 0 <= return_percentage < 8:
         insight_status = "Growing Slowly"
         insight_priority = "Medium"
         reason = "Portfolio is generating modest returns."
         recommendation = "Review diversification and long-term strategy."
-    elif return_percentage >= 8 :
+    elif return_percentage >= 8:
         insight_status = "Healthy Growth"
         insight_priority = "Low"
         reason = "Portfolio is performing well."
         recommendation = "Continue disciplined investing."
-    elif return_percentage > 15  :
+    elif return_percentage > 15:
         insight_status = "Excellent Growth"
         insight_priority = "Low"
         reason = "Portfolio is performing Great."
         recommendation = "Continue disciplined investing."
-
-
 
     return {
         "status": insight_status,
@@ -485,34 +480,6 @@ def generate_investment_insights(investment_snapshot):
         "reason": reason,
         "recommendation": recommendation,
     }
-            
-
-# ==========================================================
-# Engine Name : Savings Engine
-# Layer       : Calculation Layer
-#
-# Responsibility
-# Calculates savings-related financial metrics.
-#
-# Inputs
-# - Income Summary
-# - Expense Summary
-# - Commitment Summary
-#
-# Outputs
-# - Savings Summary Dictionary
-#
-# Dependencies
-# - Income Engine
-# - Expense Engine
-# - Commitment Engine
-#
-# Used By
-# - Emergency Fund Engine
-# - Goal Engine
-# - Financial Health Score
-# - Recommendation Engine
-# ==========================================================
 
 
 # Savings Summary
@@ -545,41 +512,9 @@ def calculate_savings(income_summary, expense_summary, commitment_summary):
     }
 
 
-# ==========================================================
-# Engine Name : Emergency Fund Engine
-# Layer       : Calculation Layer
-#
-# Responsibility
-# Calculates emergency fund and financial survival metrics.
-#
-# Inputs
-# - Expense Summary
-# - Commitment Summary
-# - Savings Summary
-#
-# Outputs
-# - Emergency Fund Summary Dictionary
-#
-# Dependencies
-# - Expense Engine
-# - Commitment Engine
-# - Savings Engine
-#
-# Used By
-# - Financial Health Score
-# - Recommendation Engine
-# - Goal Engine
-# - Cash Flow Forecast Engine
-#
-# Temporary Assumption
-# Net Savings is used as the current emergency fund balance.
-# Future versions will use liquid assets or a dedicated
-# emergency fund balance source.
-# ==========================================================
+def calculate_emergency_fund(expense_summary, commitment_summary, asset_summary):
 
-
-def calculate_emergency_fund(expense_summary, commitment_summary, savings_summary):
-    current_emergency_fund = max(0, savings_summary["net_savings"])
+    current_emergency_fund = max(0, asset_summary["emergency_fund"])
     # current_emergency_fund = 100000
     total_monthly_expenses = expense_summary["total_expense"]
     # total_monthly_expenses = 0
@@ -611,39 +546,6 @@ def calculate_emergency_fund(expense_summary, commitment_summary, savings_summar
     }
 
     return emergency_summary
-
-
-# ==========================================================
-# Engine Name : Financial Goal Engine
-# Layer       : Calculation Layer
-
-# Responsibility
-# Calculates individual and portfolio-level
-# financial goal progress metrics.
-
-# Inputs
-# - Financial Goals DataFrame
-
-# Outputs
-# - Goal Analysis
-# - Goal Portfolio Summary
-
-# Dependencies
-# - Financial Goals Reader
-
-# Used By
-# - Financial Health Score
-# - Recommendation Engine
-# - Finance Context Builder
-# - Dashboard
-# - Monthly Review
-
-# Does Not
-# - Allocate savings
-# - Assign recommendations
-# - Change user priorities
-# - Generate financial advice
-# ==========================================================
 
 
 def calculate_goals(goals):
@@ -819,9 +721,11 @@ def generate_goal_snapshot(
 
     return goal_snapshot
 
-#====================================================
-#Assets
-#====================================================
+
+# ====================================================
+# Assets
+# ====================================================
+
 
 def calculate_assets(assets):
 
@@ -831,13 +735,15 @@ def calculate_assets(assets):
 
     asset_profit_loss = total_asset_value - purchase_value
 
-    active_assets = (
-        assets["Status"] == "Active"
-    ).sum()
+    active_assets = (assets["Status"] == "Active").sum()
 
-    largest_asset_row = assets.loc[
-        assets["Current Value"].idxmax()
-    ] if not assets.empty else None
+    emergency_fund = assets.loc[
+        assets["Asset"] == "Emergency Fund", "Current Value"
+    ].sum()
+
+    largest_asset_row = (
+        assets.loc[assets["Current Value"].idxmax()] if not assets.empty else None
+    )
 
     largest_asset = {
         "asset": largest_asset_row["Asset"],
@@ -847,11 +753,8 @@ def calculate_assets(assets):
     }
 
     asset_return_percentage = (
-    (asset_profit_loss / purchase_value) * 100
-    if purchase_value > 0
-    else 0
+        (asset_profit_loss / purchase_value) * 100 if purchase_value > 0 else 0
     )
-    
 
     asset_summary = {
         "total_asset_value": total_asset_value,
@@ -860,25 +763,28 @@ def calculate_assets(assets):
         "active_assets": active_assets,
         "largest_asset": largest_asset,
         "asset_return_percentage": asset_return_percentage,
+        "emergency_fund": emergency_fund,
     }
 
-
     return asset_summary
+
 
 def generate_asset_snapshot(
     asset_summary,
     asset_insights,
 ):
     asset_snapshot = {
-    "asset_summary": asset_summary,
-    "asset_insights": asset_insights,
-}
+        "asset_summary": asset_summary,
+        "asset_insights": asset_insights,
+    }
 
     return asset_snapshot
+
 
 # ==========================================================
 # Asset Insight Engine
 # ==========================================================
+
 
 def generate_asset_insights(asset_snapshot):
 
@@ -903,7 +809,6 @@ def generate_asset_insights(asset_snapshot):
     # -------------------------------------------------
 
     if active_assets == 0:
-
         insight_status = "No Assets"
         insight_priority = "High"
 
@@ -918,16 +823,12 @@ def generate_asset_insights(asset_snapshot):
     # -------------------------------------------------
 
     elif active_assets <= 3:
-
         insight_status = "Limited Assets"
         insight_priority = "Medium"
 
-        reason = (
-            f"Your asset base is still limited and is currently {asset_health}"
-        )
+        reason = f"Your asset base is still limited and is currently {asset_health}"
 
         if largest_asset is not None:
-
             recommendation = (
                 f"Continue acquiring productive assets. "
                 f"Current largest asset: {largest_asset['asset']} "
@@ -935,17 +836,13 @@ def generate_asset_insights(asset_snapshot):
             )
 
         else:
-
-            recommendation = (
-                "Continue acquiring productive assets."
-            )
+            recommendation = "Continue acquiring productive assets."
 
     # -------------------------------------------------
     # Healthy Asset Base
     # -------------------------------------------------
 
     else:
-
         insight_status = "Healthy Asset Base"
         insight_priority = "Low"
 
@@ -954,7 +851,6 @@ def generate_asset_insights(asset_snapshot):
         )
 
         if largest_asset is not None:
-
             recommendation = (
                 f"Maintain and grow your assets. "
                 f"Your largest asset is {largest_asset['asset']} "
@@ -964,23 +860,20 @@ def generate_asset_insights(asset_snapshot):
             )
 
         else:
-
-            recommendation = (
-                "Maintain your existing assets and gradually increase appreciating assets."
-            )
+            recommendation = "Maintain your existing assets and gradually increase appreciating assets."
 
     return {
-
         "status": insight_status,
         "priority": insight_priority,
         "reason": reason,
         "recommendation": recommendation,
-
     }
+
 
 ##########################################################
 # Liabilities Engine
 #########################################################
+
 
 def calculate_liabilities(liabilities, asset_snapshot):
 
@@ -990,24 +883,20 @@ def calculate_liabilities(liabilities, asset_snapshot):
 
     total_outstanding_balance = liabilities["Outstanding Balance"].sum()
 
-    monthly_liability_payment = (
-        liabilities.loc[
-            liabilities["Status"] == "Active",
-            "Monthly EMI",
-        ].sum()
-    )
+    monthly_liability_payment = liabilities.loc[
+        liabilities["Status"] == "Active",
+        "Monthly EMI",
+    ].sum()
     active_liabilities = len(liabilities.loc[liabilities["Status"] == "Active"])
     monthly_liability_payment = liabilities.loc[
         liabilities["Status"] == "Active",
         "Monthly EMI",
     ].sum()
-    
+
     highest_liability_row = (
-    liabilities.loc[
-        liabilities["Outstanding Balance"].idxmax()
-    ]
-    if not liabilities.empty
-    else None
+        liabilities.loc[liabilities["Outstanding Balance"].idxmax()]
+        if not liabilities.empty
+        else None
     )
 
     highest_liability = (
@@ -1029,37 +918,20 @@ def calculate_liabilities(liabilities, asset_snapshot):
     )
 
     average_liability = (
-        total_outstanding_balance / active_liabilities
-        if active_liabilities > 0
-        else 0
+        total_outstanding_balance / active_liabilities if active_liabilities > 0 else 0
     )
 
-    total_repaid = (
-        total_original_loan
-        - total_outstanding_balance
-    )
+    total_repaid = total_original_loan - total_outstanding_balance
 
     repayment_percentage = (
-        (
-            total_repaid
-            / total_original_loan
-        )
-        * 100
-        if total_original_loan > 0
-        else 0
+        (total_repaid / total_original_loan) * 100 if total_original_loan > 0 else 0
     )
 
     largest_monthly_emi = (
-        liabilities["Monthly EMI"].max()
-        if not liabilities.empty
-        else 0
+        liabilities["Monthly EMI"].max() if not liabilities.empty else 0
     )
 
-    remaining_repayment_percentage = (
-        100
-        - repayment_percentage
-    )
-
+    remaining_repayment_percentage = 100 - repayment_percentage
 
     liability_summary = {
         "total_original_loan": total_original_loan,
@@ -1077,6 +949,7 @@ def calculate_liabilities(liabilities, asset_snapshot):
 
     return liability_summary
 
+
 def generate_liability_insights(liability_snapshot):
 
     liability_summary = liability_snapshot["liability_summary"]
@@ -1090,40 +963,31 @@ def generate_liability_insights(liability_snapshot):
     # -------------------------------------------------
 
     if active_liabilities == 0:
-
         insight_status = "No Liabilities"
         insight_priority = "Low"
 
         reason = "No active liabilities found."
 
-        recommendation = (
-            "Maintain a debt-free financial position."
-        )
+        recommendation = "Maintain a debt-free financial position."
 
     # -------------------------------------------------
     # Few Liabilities
     # -------------------------------------------------
 
     elif active_liabilities <= 2:
-
         insight_status = "Manageable Liabilities"
         insight_priority = "Medium"
 
         if liability_ratio >= 50:
-
             reason = (
                 "You have a manageable number of liabilities, "
                 "but they represent a significant portion of your assets."
             )
 
         else:
-
-            reason = (
-                "Your liabilities are currently manageable."
-            )
+            reason = "Your liabilities are currently manageable."
 
         if highest_liability is not None:
-
             recommendation = (
                 f"Prioritize paying down your largest liability "
                 f"({highest_liability['liability']}) "
@@ -1131,26 +995,19 @@ def generate_liability_insights(liability_snapshot):
             )
 
         else:
-
-            recommendation = (
-                "Continue paying liabilities on time."
-            )
+            recommendation = "Continue paying liabilities on time."
 
     # -------------------------------------------------
     # High Liability Load
     # -------------------------------------------------
 
     else:
-
         insight_status = "High Liability Load"
         insight_priority = "High"
 
-        reason = (
-            "You currently have multiple active liabilities."
-        )
+        reason = "You currently have multiple active liabilities."
 
         if highest_liability is not None:
-
             recommendation = (
                 f"Reduce your highest liability "
                 f"({highest_liability['liability']}) "
@@ -1158,19 +1015,17 @@ def generate_liability_insights(liability_snapshot):
             )
 
         else:
-
             recommendation = (
                 "Avoid taking additional liabilities until existing ones are reduced."
             )
 
     return {
-
         "status": insight_status,
         "priority": insight_priority,
         "reason": reason,
         "recommendation": recommendation,
-
     }
+
 
 def generate_liability_snapshot(
     liability_summary,
@@ -1178,17 +1033,17 @@ def generate_liability_snapshot(
 ):
 
     liability_snapshot = {
-
         "liability_summary": liability_summary,
         "liability_insights": liability_insights,
-
     }
 
     return liability_snapshot
 
+
 ###########################################################
 # Net Worth Engine
 ##########################################################
+
 
 def calculate_net_worth(
     asset_snapshot,
@@ -1202,14 +1057,10 @@ def calculate_net_worth(
     net_worth = total_assets - total_liabilities
     equity = net_worth
     debt_percentage = (
-        (total_liabilities / total_assets) * 100
-        if total_assets > 0
-        else 0
+        (total_liabilities / total_assets) * 100 if total_assets > 0 else 0
     )
     asset_coverage_ratio = (
-        total_assets / total_liabilities
-        if total_liabilities > 0
-        else 0
+        total_assets / total_liabilities if total_liabilities > 0 else 0
     )
     if net_worth < 0:
         wealth_category = "Negative"
@@ -1223,86 +1074,41 @@ def calculate_net_worth(
     else:
         wealth_category = "Strong"
 
-    wealth_score = max(
-        0,
-        min(
-            100,
-            100 - debt_percentage
-        )
-    )
+    wealth_score = max(0, min(100, 100 - debt_percentage))
     asset_to_liability_ratio = (
-        total_assets / total_liabilities
-        if total_liabilities > 0
-        else float("inf")
+        total_assets / total_liabilities if total_liabilities > 0 else float("inf")
     )
-    financial_leverage = (
-        total_liabilities / total_assets
-        if total_assets > 0
-        else 0
-    )
+    financial_leverage = total_liabilities / total_assets if total_assets > 0 else 0
     wealth_growth = 0
-    net_assets = (
-        total_assets
-        - total_liabilities
-    )
-    debt_free_percentage = (
-        (net_assets / total_assets) * 100
-        if total_assets > 0
-        else 0
-    )
-    wealth_score = (
-            (debt_free_percentage * 0.5)
-            + (asset_coverage_ratio * 25)
-    )
+    net_assets = total_assets - total_liabilities
+    debt_free_percentage = (net_assets / total_assets) * 100 if total_assets > 0 else 0
+    wealth_score = (debt_free_percentage * 0.5) + (asset_coverage_ratio * 25)
 
-    wealth_score = max(
-        0,
-        min(100, wealth_score)
-    )
+    wealth_score = max(0, min(100, wealth_score))
 
-    wealth_efficiency = (
-        (net_assets / total_assets) * 100
-        if total_assets > 0
-        else 0
-    )
+    wealth_efficiency = (net_assets / total_assets) * 100 if total_assets > 0 else 0
 
     net_worth_summary = {
-
         "total_assets": total_assets,
-
         "total_liabilities": total_liabilities,
-
         "net_worth": net_worth,
-
         "equity": equity,
-
         "asset_coverage_ratio": asset_coverage_ratio,
-
         "debt_percentage": debt_percentage,
-
         "wealth_category": wealth_category,
-
         "wealth_score": wealth_score,
-
         # Future Proofing
-
         "asset_to_liability_ratio": asset_to_liability_ratio,
-
         "financial_leverage": financial_leverage,
-
         "wealth_growth": wealth_growth,
-
         "net_assets": net_assets,
-
         "debt_free_percentage": debt_free_percentage,
-
         "wealth_score": wealth_score,
-
-        "wealth_efficiency" : wealth_efficiency,
- 
+        "wealth_efficiency": wealth_efficiency,
     }
 
-    return  net_worth_summary
+    return net_worth_summary
+
 
 def generate_net_worth_insights(net_worth_summary):
 
@@ -1310,80 +1116,52 @@ def generate_net_worth_insights(net_worth_summary):
     debt_percentage = net_worth_summary["debt_percentage"]
     net_assets = net_worth_summary["net_assets"]
     total_assets = net_worth_summary["total_assets"]
-    
-
 
     if net_worth < 0:
-
         insight_status = "Negative Net Worth"
 
         insight_priority = "High"
 
-        reason = (
-            "Your liabilities exceed your total assets."
-        )
+        reason = "Your liabilities exceed your total assets."
 
-        recommendation = (
-            "Reduce liabilities and build appreciating assets."
-        )
+        recommendation = "Reduce liabilities and build appreciating assets."
 
     elif debt_percentage >= 70:
-
         insight_status = "Highly Leveraged"
 
         insight_priority = "High"
 
-        reason = (
-            "Debt represents a large portion of your assets."
-        )
+        reason = "Debt represents a large portion of your assets."
 
-        recommendation = (
-            "Prioritize loan repayment before taking additional debt."
-        )
+        recommendation = "Prioritize loan repayment before taking additional debt."
 
     elif debt_percentage >= 30:
-
         insight_status = "Balanced"
 
         insight_priority = "Medium"
 
-        reason = (
-            "Your debt is currently manageable."
-        )
+        reason = "Your debt is currently manageable."
 
-        recommendation = (
-            "Continue increasing assets while reducing liabilities."
-        )
+        recommendation = "Continue increasing assets while reducing liabilities."
 
     else:
-
         insight_status = "Strong Net Worth"
 
         insight_priority = "Low"
 
-        reason = (
-            "You have a healthy balance between assets and liabilities."
-        )
+        reason = "You have a healthy balance between assets and liabilities."
 
-        recommendation = (
-            "Continue growing appreciating assets."
-        )
-
-    
+        recommendation = "Continue growing appreciating assets."
 
     net_worth_insights = {
-
         "status": insight_status,
-
         "priority": insight_priority,
-
         "reason": reason,
-
         "recommendation": recommendation,
-
     }
 
     return net_worth_insights
+
 
 def generate_net_worth_snapshot(
     net_worth_summary,
@@ -1391,29 +1169,17 @@ def generate_net_worth_snapshot(
 ):
 
     net_worth_snapshot = {
-
         "net_worth_summary": net_worth_summary,
-
         "net_worth_insights": net_worth_insights,
-
     }
 
     return net_worth_snapshot
-
-# Test Case
-
-#Assets = 164840
-#Liabilities = 86000
-
-#Expected Net Worth = 78840
-#Expected Debt % = 52.17
-#Expected Coverage = 1.92
-#Expected Debt Free = 47.83
 
 
 ##################################################################
 #             Wealth Engine           #
 ##################################################################
+
 
 def calculate_wealth_health(
     emergency_summary,
@@ -1422,14 +1188,14 @@ def calculate_wealth_health(
     asset_snapshot,
     liability_snapshot,
     net_worth_snapshot,
-):  
+):
     goal_summary = goal_snapshot["goal_summary"]
     investment_summary = investment_snapshot["investment_summary"]
     asset_summary = asset_snapshot["asset_summary"]
     liability_summary = liability_snapshot["liability_summary"]
     net_worth_summary = net_worth_snapshot["net_worth_summary"]
     emergency_months = emergency_summary["coverage_months"]
-    
+
     goal_progress = goal_summary["overall_progress_percentage"]
     investment_return = investment_summary["return_percentage"]
     asset_return = asset_summary["asset_return_percentage"]
@@ -1475,7 +1241,7 @@ def calculate_wealth_health(
     # Investment Score (10)
 
     if active_investments == 0:
-        investment_score = 4          # No investments yet
+        investment_score = 4  # No investments yet
 
     elif investment_return < 0:
         investment_score = 2
@@ -1500,7 +1266,7 @@ def calculate_wealth_health(
     else:
         asset_score = 15
 
-    #Outstanding Liabilities / Total Assets × 100
+    # Outstanding Liabilities / Total Assets × 100
 
     # Liability Score (20)
 
@@ -1544,7 +1310,6 @@ def calculate_wealth_health(
 
     else:
         net_worth_score = 20
-
 
     wealth_score = (
         emergency_score
@@ -1597,11 +1362,7 @@ def calculate_wealth_health(
 
     # Capital Strength #
 
-    capital_score = (
-        net_worth_score
-        + asset_score
-        + emergency_score
-    )
+    capital_score = net_worth_score + asset_score + emergency_score
     if capital_score >= 50:
         capital_strength = "Excellent"
 
@@ -1618,106 +1379,97 @@ def calculate_wealth_health(
 
     growth_readiness = "Excellent" if goal_score >= 12 else "Moderate"
 
-    liquidity_strength = (
-        "Strong" if emergency_score >= 15 else "Weak"
-    )
+    liquidity_strength = "Strong" if emergency_score >= 15 else "Weak"
 
-    wealth_momentum = (
-        "Positive" if goal_score >= 8 else "Slow"
-    )
+    wealth_momentum = "Positive" if goal_score >= 8 else "Slow"
 
-    financial_stability = (
-        "Stable" if liability_score >= 15 else "Needs Improvement"
-    )
+    financial_stability = "Stable" if liability_score >= 15 else "Needs Improvement"
 
-    long_term_sustainability = (
-        "Excellent" if wealth_score >= 80 else "Developing"
-    )
+    long_term_sustainability = "Excellent" if wealth_score >= 80 else "Developing"
 
     wealth_health_summary = {
-    "wealth_score": wealth_score,
-    "wealth_grade": wealth_grade,
-    "wealth_risk": wealth_risk,
-    "capital_strength": capital_strength,
-    "emergency_score": emergency_score,
-    "goal_score": goal_score,
-    "investment_score": investment_score,
-    "asset_score": asset_score,
-    "liability_score": liability_score,
-    "net_worth_score": net_worth_score,
-    "growth_readiness": growth_readiness,
-    "liquidity_strength": liquidity_strength,
-    "wealth_momentum": wealth_momentum,
-    "financial_stability": financial_stability,
-    "long_term_sustainability": long_term_sustainability,
-}
+        "wealth_score": wealth_score,
+        "wealth_grade": wealth_grade,
+        "wealth_risk": wealth_risk,
+        "capital_strength": capital_strength,
+        "emergency_score": emergency_score,
+        "goal_score": goal_score,
+        "investment_score": investment_score,
+        "asset_score": asset_score,
+        "liability_score": liability_score,
+        "net_worth_score": net_worth_score,
+        "growth_readiness": growth_readiness,
+        "liquidity_strength": liquidity_strength,
+        "wealth_momentum": wealth_momentum,
+        "financial_stability": financial_stability,
+        "long_term_sustainability": long_term_sustainability,
+    }
 
     return wealth_health_summary
 
-#      Wealth Health Insights Engine    # 
 
-def generate_wealth_health_insights(wealth_health_summary): 
+#      Wealth Health Insights Engine    #
+
+
+def generate_wealth_health_insights(wealth_health_summary):
 
     wealth_score = wealth_health_summary["wealth_score"]
 
     if wealth_score >= 90:
-
         status = "Excellent"
 
         priority = "Low"
 
-        reason = "Your overall wealth position is excellent."
+        reason = "Your financial foundation is excellent with strong wealth growth, healthy liquidity, and disciplined financial management."
 
-        recommendation = "Maintain your current financial discipline and continue long-term investing."
+        recommendation = "Maintain your current financial discipline while continuing to invest for long-term wealth creation."
 
     elif wealth_score >= 75:
-
         status = "Healthy"
         priority = "Low"
-        reason = "Your overall wealth position is Okay."
-        recommendation = "Continue taking financial decisions in same directions for long-term investments."
+        reason = "Your financial position is healthy and continues to move in the right direction."
+
+        recommendation = "Continue improving your investments and savings while maintaining your current financial habits."
 
     elif wealth_score >= 60:
         status = "Developing"
         priority = "Medium"
-        reason = "Your wealth foundation is improving but there are areas that require attention."
-        recommendation = "Bulid Good investments, keep improving you emergency funds and increase your savings rate."
+        reason = "Your financial foundation is developing well, although a few key areas still need improvement."
+
+        recommendation = "Increase your savings rate, strengthen your emergency fund, and continue investing consistently."
 
     elif wealth_score >= 40:
         status = "Needs Improvement"
         priority = "High"
-        reason = "Bad Finance management, start investing and build your emergency funds while saving your money."
-        recommendation = "Delay directionary pruchase start investing and build your emergency funds while saving your money."
+        reason = "Your financial foundation needs improvement. While some areas are healthy, liabilities or limited reserves are reducing your overall financial strength."
+
+        recommendation = "Reduce unnecessary discretionary spending, improve monthly savings, and continue building your emergency fund before taking additional financial risks."
 
     else:
         status = "Critical"
         priority = "Critical"
-        reason = "Your wealth foundation is currently weak due to low net worth, limited emergency savings and the absence of long-term investments."
-        recommendation = (
-            "• Build a 3–6 month emergency fund.\n"
-            "• Continue reducing liabilities.\n"
-            "• Start investing once emergency savings are established."
-        )
-        wealth_health_insights = {
-            "status": status,
-            "priority": priority,
-            "reason": reason,
-            "recommendation": recommendation,  
-        }
+        reason = "Your overall financial position is weak because liabilities outweigh assets and your financial safety margin remains limited."
+
+        recommendation = "Prioritize building an emergency fund, reduce outstanding liabilities, and avoid major discretionary purchases until your financial position improves."
+
+    wealth_health_insights = {
+        "status": status,
+        "priority": priority,
+        "reason": reason,
+        "recommendation": recommendation,
+    }
 
     return wealth_health_insights
 
+
 def generate_wealth_health_snapshot(
-        wealth_health_summary,
-        wealth_health_insights,
+    wealth_health_summary,
+    wealth_health_insights,
 ):
 
     wealth_health_snapshot = {
-
         "wealth_health_summary": wealth_health_summary,
-
-        "wealth_health_insights": wealth_health_insights
-
+        "wealth_health_insights": wealth_health_insights,
     }
 
     return wealth_health_snapshot
@@ -1726,6 +1478,7 @@ def generate_wealth_health_snapshot(
 ############################################################
 #           Financial Health Engine             #
 ############################################################
+
 
 def calculate_financial_health(
     financial_snapshot,
@@ -1770,7 +1523,7 @@ def calculate_financial_health(
     # Wealth Health
     wealth_score = wealth_health_summary["wealth_score"]
 
-    #Financial Snapshot Score (15)
+    # Financial Snapshot Score (15)
     if cash_flow > 0 and net_position > 0:
         financial_score = 15
 
@@ -1783,7 +1536,7 @@ def calculate_financial_health(
     else:
         financial_score = 0
 
-    #Budget Score (10)
+    # Budget Score (10)
     if budget_utilization <= 50:
         budget_score = 10
 
@@ -1822,7 +1575,7 @@ def calculate_financial_health(
     else:
         emergency_score = 0
 
-    #Goal Score (10)
+    # Goal Score (10)
     if goal_progress >= 75:
         goal_score = 10
 
@@ -1891,9 +1644,7 @@ def calculate_financial_health(
         net_worth_score = 0
 
     # Wealth Health Score (10)
-    wealth_health_score = round(
-        (wealth_score / 100) * 10
-    )
+    wealth_health_score = round((wealth_score / 100) * 10)
 
     # Final Score
     financial_health_score = (
@@ -1979,11 +1730,11 @@ def calculate_financial_health(
 
     return financial_health_summary
 
+
 def generate_financial_health_insights(financial_health_summary):
     score = financial_health_summary["financial_health_score"]
 
     if score >= 90:
-
         status = "Excellent"
 
         priority = "Low"
@@ -2002,7 +1753,6 @@ def generate_financial_health_insights(financial_health_summary):
         )
 
     elif score >= 75:
-
         status = "Healthy"
 
         priority = "Low"
@@ -2021,7 +1771,6 @@ def generate_financial_health_insights(financial_health_summary):
         )
 
     elif score >= 60:
-
         status = "Developing"
 
         priority = "Medium"
@@ -2039,7 +1788,6 @@ def generate_financial_health_insights(financial_health_summary):
         )
 
     elif score >= 40:
-
         status = "Needs Improvement"
 
         priority = "High"
@@ -2058,7 +1806,6 @@ def generate_financial_health_insights(financial_health_summary):
         )
 
     else:
-
         status = "Critical"
 
         priority = "Critical"
@@ -2076,31 +1823,23 @@ def generate_financial_health_insights(financial_health_summary):
         )
 
     financial_health_insights = {
-
         "status": status,
-
         "priority": priority,
-
         "reason": reason,
-
         "recommendation": recommendation,
-
-        "focus_area": "Emergency Fund"
+        "focus_area": "Emergency Fund",
     }
-
 
     return financial_health_insights
 
-def generate_financial_health_snapshot (
-        financial_health_summary,
-        financial_health_insights,
+
+def generate_financial_health_snapshot(
+    financial_health_summary,
+    financial_health_insights,
 ):
     financial_health_snapshot = {
-
         "financial_health_summary": financial_health_summary,
-
-        "financial_health_insights": financial_health_insights
-
+        "financial_health_insights": financial_health_insights,
     }
 
     return financial_health_snapshot

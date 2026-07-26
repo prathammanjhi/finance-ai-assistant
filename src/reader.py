@@ -1,6 +1,6 @@
 import pandas as pd
 
-file_path = "data/finance.xlsx"
+file_path = "data/healthy.xlsx"
 
 
 def load_transactions():
@@ -41,6 +41,7 @@ def load_budget():
 
     return df
 
+
 def load_goals():
     # file_path = "data/finance.xlsx"
 
@@ -49,11 +50,13 @@ def load_goals():
 
     return df
 
+
 def load_investments():
     df = pd.read_excel(file_path, sheet_name="Investments")
     df = df.dropna(how="all")
 
     return df
+
 
 def load_assets():
     df = pd.read_excel(file_path, sheet_name="Assets")
@@ -61,14 +64,9 @@ def load_assets():
 
     return df
 
+
 def load_liabilities():
     df = pd.read_excel(file_path, sheet_name="Liabilities")
     df = df.dropna(how="all")
-    df["Category"] = (
-    df["Category"]
-        .fillna("Other")
-        .astype(str)
-        .str.strip()
-    )
+    df["Category"] = df["Category"].fillna("Other").astype(str).str.strip()
     return df
-

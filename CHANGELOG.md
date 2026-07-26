@@ -655,3 +655,152 @@ Added:
 Status
 
 Finance AI v0.9.8 Complete
+
+# Finance AI Changelog
+
+---
+
+# v0.9.9 - Stable Core Release
+Release Date: 2026-07-26
+
+## Overview
+This release marks the completion of the Finance AI Core Engine. All major financial analysis modules are now integrated, tested with large datasets, and producing stable outputs.
+
+---
+
+## Added
+
+### Financial Health Engine
+- Added overall Financial Health Score.
+- Added Financial Grade system.
+- Added Financial Risk assessment.
+- Added Financial Strength analysis.
+- Added engine-wise weighted scoring.
+- Added Financial Health Insights.
+
+### Wealth Health Engine
+- Added Wealth Score.
+- Added Wealth Grade.
+- Added Wealth Risk analysis.
+- Added Capital Strength evaluation.
+- Added Growth Readiness analysis.
+- Added Liquidity Strength analysis.
+- Added Wealth Momentum analysis.
+- Added Financial Stability analysis.
+- Added Long-Term Sustainability analysis.
+- Added Wealth Health Insights.
+
+### Emergency Fund Engine
+- Emergency Fund now automatically reads the Emergency Fund asset from the Asset Engine.
+- Removed manual emergency fund dependency.
+- Added automatic liquidity calculations.
+
+---
+
+## Improved
+
+### Engine Integration
+- Improved cross-engine communication.
+- Financial Health Engine now integrates:
+  - Financial Snapshot
+  - Budget
+  - Savings
+  - Emergency Fund
+  - Goals
+  - Investments
+  - Assets
+  - Liabilities
+  - Net Worth
+  - Wealth Health
+
+### Insights
+- Improved recommendation quality.
+- Improved financial reasoning.
+- Improved wealth analysis wording.
+- Improved recommendation consistency.
+
+### Code Quality
+- Removed debugging statements.
+- Removed unused variables.
+- Removed commented debugging code.
+- Improved readability.
+- Improved modular architecture.
+
+---
+
+## Fixed
+
+- Fixed Emergency Fund integration bug.
+- Fixed duplicate Emergency Fund calculation.
+- Fixed snapshot dependency issues.
+- Fixed cross-engine data flow.
+- Fixed Wealth Health insight generation.
+- Fixed multiple KeyErrors during engine integration.
+- Fixed Financial Health score calculation.
+- Fixed asset lookup for Emergency Fund.
+- Fixed budget integration.
+- Fixed liability integration.
+- Fixed snapshot generation flow.
+
+---
+
+## Testing
+
+### Large Dataset Validation
+
+Successfully tested using realistic financial data including:
+
+- Multiple income sources
+- High transaction volume
+- Budget analysis
+- Financial goals
+- Investments
+- Assets
+- Liabilities
+- Emergency fund
+- Negative Net Worth scenario
+- Financial Health evaluation
+
+Result:
+Stable execution with no runtime errors.
+
+---
+
+## Architecture
+
+Finance AI Core Architecture is now stable.
+
+Reader Layer
+
+↓
+
+Calculation Engines
+
+↓
+
+Insight Engines
+
+↓
+
+Snapshot Engines
+
+↓
+
+Health Engines
+
+↓
+
+Console Output
+
+---
+
+## Status
+
+Finance AI Core:
+Stable
+
+Production Readiness:
+Core Complete
+
+Next Milestone:
+Finance AI v1.0

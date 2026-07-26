@@ -95,33 +95,6 @@ def main():
         savings_summary,
     )
     financial_insights = generate_financial_insights(financial_snapshot)
-    budget = load_budget()
-    budget_analysis = calculate_budget_analysis(budget, monthly_summary)
-    filtered_budget = filter_budget_by_date(budget)
-    budget_analysis = calculate_budget_analysis(
-        filtered_budget,
-        monthly_summary,
-    )
-    budget_insight = budget_insights(budget_analysis)
-    emergency_fund = calculate_emergency_fund(
-        summary, commitment_summary, savings_summary
-    )
-    goals = load_goals()
-    goal_analysis = calculate_goals(goals)
-    goal_analysis, goal_summary = calculate_goals(goals)
-
-    temp_goal_snapshot = {
-        "goal_analysis": goal_analysis,
-        "goal_summary": goal_summary,
-    }
-
-    goal_insights = generate_goal_insights(temp_goal_snapshot)
-
-    goal_snapshot = generate_goal_snapshot(
-        goal_analysis,
-        goal_summary,
-        goal_insights,
-    )
 
     assets = load_assets()
 
@@ -137,6 +110,40 @@ def main():
     asset_snapshot = generate_asset_snapshot(
         asset_summary,
         asset_insights,
+    )
+
+    budget = load_budget()
+
+    filtered_budget = filter_budget_by_date(budget)
+
+    budget_analysis = calculate_budget_analysis(
+        filtered_budget,
+        monthly_summary,
+    )
+
+    budget_insight = budget_insights(budget_analysis)
+
+    emergency_summary = calculate_emergency_fund(
+        summary,
+        commitment_summary,
+        asset_summary,
+    )
+
+    goals = load_goals()
+
+    goal_analysis, goal_summary = calculate_goals(goals)
+
+    temp_goal_snapshot = {
+        "goal_analysis": goal_analysis,
+        "goal_summary": goal_summary,
+    }
+
+    goal_insights = generate_goal_insights(temp_goal_snapshot)
+
+    goal_snapshot = generate_goal_snapshot(
+        goal_analysis,
+        goal_summary,
+        goal_insights,
     )
 
     liabilities = load_liabilities()
@@ -174,11 +181,12 @@ def main():
         net_worth_insights,
     )
 
-    emergency_summary = calculate_emergency_fund(
-        summary,
-        commitment_summary,
-        savings_summary,
-    )
+    #emergency_summary = calculate_emergency_fund(
+    #    summary,
+    #   commitment_summary,
+    #    savings_summary,
+    #)
+
     wealth_health_summary = calculate_wealth_health(
         emergency_summary,
         goal_snapshot,
@@ -188,9 +196,7 @@ def main():
         net_worth_snapshot,
     )
 
-    wealth_health_insights = generate_wealth_health_insights(
-        wealth_health_summary
-    )
+    wealth_health_insights = generate_wealth_health_insights(wealth_health_summary)
 
     wealth_health_snapshot = generate_wealth_health_snapshot(
         wealth_health_summary,
@@ -280,8 +286,6 @@ def main():
         print(f"  Priority: {insight['priority']}")
         print(f"  Reason: {insight['reason']}")
 
-    budget = load_budget()
-
     print("\n📊 Budget Analysis")
 
     print(f"Budgeted Amount : ₹{budget_analysis['monthly_budget']:,.2f}")
@@ -307,15 +311,21 @@ def main():
     print(f"expense_ratio : {savings_summary['expense_ratio']:.2f}%")
 
     print("\n🚨 Emergency Fund Summary")
-    print(f"Current Emergency Fund : ₹{emergency_fund['current_emergency_fund']:,.2f}")
-    print(f"Monthly Survival Cost : ₹{emergency_fund['monthly_survival_cost']:,.2f}")
-    print(f"Required 3-Months Fund : ₹{emergency_fund['required_3_months_fund']:,.2f}")
-    print(f"Required 6-Months Fund : ₹{emergency_fund['required_6_months_fund']:,.2f}")
     print(
-        f"Required 12-Months Fund : ₹{emergency_fund['required_12_months_fund']:,.2f}"
+        f"Current Emergency Fund : ₹{emergency_summary['current_emergency_fund']:,.2f}"
     )
-    print(f"Coverage Months : {emergency_fund['coverage_months']:.2f}")
-    print(f"Emergency Fund Gap : ₹{emergency_fund['emergency_fund_gap']:,.2f}")
+    print(f"Monthly Survival Cost : ₹{emergency_summary['monthly_survival_cost']:,.2f}")
+    print(
+        f"Required 3-Months Fund : ₹{emergency_summary['required_3_months_fund']:,.2f}"
+    )
+    print(
+        f"Required 6-Months Fund : ₹{emergency_summary['required_6_months_fund']:,.2f}"
+    )
+    print(
+        f"Required 12-Months Fund : ₹{emergency_summary['required_12_months_fund']:,.2f}"
+    )
+    print(f"Coverage Months : {emergency_summary['coverage_months']:.2f}")
+    print(f"Emergency Fund Gap : ₹{emergency_summary['emergency_fund_gap']:,.2f}")
 
     print("\n📊 Goal Portfolio Summary")
 
@@ -394,7 +404,6 @@ def main():
         print(f"Outstanding Balance : ₹{highest['outstanding_balance']:,.2f}")
         print(f"Monthly EMI : ₹{highest['monthly_emi']:,.2f}")
 
-
     print("\n💰 Net Worth Summary")
     print(f"Total Assets : ₹{net_worth_summary['total_assets']:,.2f}")
     print(f"Total Liabilities : ₹{net_worth_summary['total_liabilities']:,.2f}")
@@ -404,20 +413,20 @@ def main():
     print(f"Asset Coverage Ratio : {net_worth_summary['asset_coverage_ratio']:.2f}")
     print(f"Wealth Category : {net_worth_summary['wealth_category']}")
     print(f"Wealth Score : {net_worth_summary['wealth_score']:.2f}")
-    print(f"Asset/Liability Ratio : {net_worth_summary['asset_to_liability_ratio']:.2f}")
+    print(
+        f"Asset/Liability Ratio : {net_worth_summary['asset_to_liability_ratio']:.2f}"
+    )
     print(f"Financial Leverage : {net_worth_summary['financial_leverage']:.2f}")
     print(f"Net Assets : ₹{net_worth_summary['net_assets']:,.2f}")
     print(f"Debt Free : {net_worth_summary['debt_free_percentage']:.2f}%")
     print(f"Wealth Efficiency : {net_worth_summary['wealth_efficiency']:.2f}%")
     print(f"Wealth Growth : {net_worth_summary['wealth_growth']:.2f}%")
 
-
     print("\n💡 Net Worth Insights")
     print(f"Status : {net_worth_insights['status']}")
     print(f"Priority : {net_worth_insights['priority']}")
     print(f"Reason : {net_worth_insights['reason']}")
     print(f"Recommendation : {net_worth_insights['recommendation']}")
-
 
     print("\n")
     print("############################################################")
@@ -431,20 +440,34 @@ def main():
 
     print()
 
-    print(f"Emergency Fund Score         : {wealth_health_summary['emergency_score']}/20")
+    print(
+        f"Emergency Fund Score         : {wealth_health_summary['emergency_score']}/20"
+    )
     print(f"Goal Score                   : {wealth_health_summary['goal_score']}/15")
-    print(f"Investment Score             : {wealth_health_summary['investment_score']}/10")
+    print(
+        f"Investment Score             : {wealth_health_summary['investment_score']}/10"
+    )
     print(f"Asset Score                  : {wealth_health_summary['asset_score']}/15")
-    print(f"Liability Score              : {wealth_health_summary['liability_score']}/20")
-    print(f"Net Worth Score              : {wealth_health_summary['net_worth_score']}/20")
+    print(
+        f"Liability Score              : {wealth_health_summary['liability_score']}/20"
+    )
+    print(
+        f"Net Worth Score              : {wealth_health_summary['net_worth_score']}/20"
+    )
 
     print()
 
     print(f"Growth Readiness             : {wealth_health_summary['growth_readiness']}")
-    print(f"Liquidity Strength           : {wealth_health_summary['liquidity_strength']}")
+    print(
+        f"Liquidity Strength           : {wealth_health_summary['liquidity_strength']}"
+    )
     print(f"Wealth Momentum              : {wealth_health_summary['wealth_momentum']}")
-    print(f"Financial Stability          : {wealth_health_summary['financial_stability']}")
-    print(f"Long Term Sustainability     : {wealth_health_summary['long_term_sustainability']}")
+    print(
+        f"Financial Stability          : {wealth_health_summary['financial_stability']}"
+    )
+    print(
+        f"Long Term Sustainability     : {wealth_health_summary['long_term_sustainability']}"
+    )
 
     print("\n")
 
@@ -462,24 +485,41 @@ def main():
     print("#               Financial Health Summary                   #")
     print("############################################################")
 
-    print(f"Financial Health Score     : {financial_health_summary['financial_health_score']}/100")
+    print(
+        f"Financial Health Score     : {financial_health_summary['financial_health_score']}/100"
+    )
     print(f"Financial Grade            : {financial_health_summary['financial_grade']}")
     print(f"Financial Risk             : {financial_health_summary['financial_risk']}")
-    print(f"Financial Strength         : {financial_health_summary['financial_strength']}")
+    print(
+        f"Financial Strength         : {financial_health_summary['financial_strength']}"
+    )
 
     print()
 
-    print(f"Financial Snapshot Score   : {financial_health_summary['financial_score']}/15")
+    print(
+        f"Financial Snapshot Score   : {financial_health_summary['financial_score']}/15"
+    )
     print(f"Budget Score               : {financial_health_summary['budget_score']}/10")
-    print(f"Savings Score              : {financial_health_summary['savings_score']}/15")
-    print(f"Emergency Fund Score       : {financial_health_summary['emergency_score']}/10")
+    print(
+        f"Savings Score              : {financial_health_summary['savings_score']}/15"
+    )
+    print(
+        f"Emergency Fund Score       : {financial_health_summary['emergency_score']}/10"
+    )
     print(f"Goal Score                 : {financial_health_summary['goal_score']}/10")
-    print(f"Investment Score           : {financial_health_summary['investment_score']}/10")
+    print(
+        f"Investment Score           : {financial_health_summary['investment_score']}/10"
+    )
     print(f"Asset Score                : {financial_health_summary['asset_score']}/5")
-    print(f"Liability Score            : {financial_health_summary['liability_score']}/10")
-    print(f"Net Worth Score            : {financial_health_summary['net_worth_score']}/5")
-    print(f"Wealth Health Score        : {financial_health_summary['wealth_health_score']}/10")
-
+    print(
+        f"Liability Score            : {financial_health_summary['liability_score']}/10"
+    )
+    print(
+        f"Net Worth Score            : {financial_health_summary['net_worth_score']}/5"
+    )
+    print(
+        f"Wealth Health Score        : {financial_health_summary['wealth_health_score']}/10"
+    )
 
     print("\n")
     print("############################################################")
@@ -499,6 +539,7 @@ def main():
 
     print("Recommendation")
     print(financial_health_insights["recommendation"])
+
 
 if __name__ == "__main__":
     main()
