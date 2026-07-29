@@ -1,6 +1,10 @@
 import pandas as pd
 
-file_path = "data/healthy.xlsx"
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parents[2]
+
+file_path = BASE_DIR / "data" / "healthy.xlsx"
 
 
 def load_transactions():

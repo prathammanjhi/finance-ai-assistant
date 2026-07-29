@@ -1,0 +1,347 @@
+def print_summary(summary):
+    print("\n📊 Summary")
+    print(f"Total Expense : ₹{summary['total_expense']:,.2f}")
+    print(f"Need Spending : ₹{summary['total_need']:,.2f}")
+    print(f"Want Spending : ₹{summary['total_want']:,.2f}")
+
+def print_income(income):
+
+    print("\nIncome Summary")
+    print("----------------")
+
+    print(f"Received : {income['received_income']}")
+    print(f"Pending  : {income['pending_income']}")
+
+def print_budget(budget):
+
+    summary = budget["summary"]
+    insights = budget["insights"]
+
+    print("\n==============================")
+    print("      Budget Summary")
+    print("==============================")
+
+    print(f"Monthly Budget : ₹{summary['monthly_budget']:,.2f}")
+    print(f"Spent          : ₹{summary['spent']:,.2f}")
+    print(f"Remaining      : ₹{summary['remaining']:,.2f}")
+    print(f"Utilization    : {summary['utilization']:.2f}%")
+    print(f"Status         : {summary['status']}")
+
+    print("\nBudget Insight")
+    print(f"Status         : {insights['status']}")
+    print(f"Priority       : {insights['priority']}")
+    print(f"Reason         : {insights['reason']}")
+    print(f"Recommendation : {insights['recommendation']}")
+    
+
+#####################################
+old print section of main above is the function that i made in printer
+#####################################
+
+    
+
+    print("\n💳 Commitments Summary")
+    print(f"total_borrowed : ₹{commitment_summary['total_borrowed']:,.2f}")
+    print(f"total_repaid : ₹{commitment_summary['total_repaid']:,.2f}")
+    print(f"outstanding_debt : ₹{commitment_summary['outstanding_debt']:,.2f}")
+    print(f"monthly_commitments : ₹{commitment_summary['monthly_commitments']:,.2f}")
+    print(f"active_commitments : {commitment_summary['active_commitments']}")
+
+    print("\n📈 Net Position")
+    print(f"Net Position : ₹{financial_position['net_position']:,.2f}")
+    print(f"Cash Position : ₹{financial_position['cash_position']:,.2f}")
+    print(f"Expected Position : ₹{financial_position['expected_position']:,.2f}")
+
+    print("\n📊 Expense by Category")
+    for category, amount in category_summary.items():
+        print(f"{category:<15} : ₹{amount:,.2f}")
+    print("\n🏆 Highest Spending Category")
+    print(highest_spending["category"])
+    print(f"₹{highest_spending['amount']:,.2f}")
+    print("\n🏆 Top 3 Spending Categories")
+    for top_three_category, amount in top_three_categories["categories"].items():
+        print(f"{top_three_category:<15} : ₹{amount:,.2f}")
+
+    print("\n📊 Expense Distribution")
+    if summary["total_expense"] == 0:
+        print("No spending made this month.")
+    else:
+        print(f"Need Amount : ₹{expense_distribution['need_amount']:,.2f}")
+        print(f"Want Amount : ₹{expense_distribution['want_amount']:,.2f}")
+        print(f"Need Spending : {expense_distribution['need_percentage']:.2f}%")
+        print(f"Want Spending : {expense_distribution['want_percentage']:.2f}%")
+
+    print("\n📅 Monthly Summary")
+    print(f"Total Expense : ₹{monthly_summary['total_expense']:,.2f}")
+    print(f"Need Spending : ₹{monthly_summary['total_need']:,.2f}")
+    print(f"Want Spending : ₹{monthly_summary['total_want']:,.2f}")
+
+    print("\n📊 Monthly Expense Distribution")
+    if monthly_summary["total_expense"] == 0:
+        print("No spending made this month.")
+    else:
+        print(f"Need Amount : ₹{monthly_distribution['need_amount']:,.2f}")
+        print(f"Want Amount : ₹{monthly_distribution['want_amount']:,.2f}")
+        print(f"Need Spending : {monthly_distribution['need_percentage']:.2f}%")
+        print(f"Want Spending : {monthly_distribution['want_percentage']:.2f}%")
+
+    print("\n📊 Financial insights")
+    for category, insight in financial_insights.items():
+        print(f"\n{category}:")
+        print(f"  Status: {insight['status']}")
+        print(f"  Priority: {insight['priority']}")
+        print(f"  Reason: {insight['reason']}")
+
+    print("\n📊 Budget Analysis")
+
+    print(f"Budgeted Amount : ₹{budget_analysis['monthly_budget']:,.2f}")
+    print(f"Actual Spending : ₹{budget_analysis['spent']:,.2f}")
+    print(f"Budget Remaining : ₹{budget_analysis['budget_remaining']:,.2f}")
+    print(
+        f"Budget Utilization : {budget_analysis['budget_utilization_percentage']:.2f}%"
+    )
+    print(f"Status : {budget_analysis['status']}")
+
+    for category, insight in budget_insight.items():
+        print(f"\n{category}:\n")
+        print(f"  Status: {insight['status']}")
+        print(f"  Priority: {insight['priority']}")
+        print(f"  Reason: {insight['reason']}")
+        print(f"  Recommendation: {insight['recommendation']}\n")
+
+    print("\n💰 Savings Summary")
+    print(f"gross_savings : ₹{savings_summary['gross_savings']:,.2f}")
+    print(f"net_savings : ₹{savings_summary['net_savings']:,.2f}")
+    print(f"savings_rate : {savings_summary['savings_rate']:.2f}%")
+    print(f"commitment_ratio : {savings_summary['commitment_ratio']:.2f}%")
+    print(f"expense_ratio : {savings_summary['expense_ratio']:.2f}%")
+
+    print("\n🚨 Emergency Fund Summary")
+    print(
+        f"Current Emergency Fund : ₹{emergency_summary['current_emergency_fund']:,.2f}"
+    )
+    print(f"Monthly Survival Cost : ₹{emergency_summary['monthly_survival_cost']:,.2f}")
+    print(
+        f"Required 3-Months Fund : ₹{emergency_summary['required_3_months_fund']:,.2f}"
+    )
+    print(
+        f"Required 6-Months Fund : ₹{emergency_summary['required_6_months_fund']:,.2f}"
+    )
+    print(
+        f"Required 12-Months Fund : ₹{emergency_summary['required_12_months_fund']:,.2f}"
+    )
+    print(f"Coverage Months : {emergency_summary['coverage_months']:.2f}")
+    print(f"Emergency Fund Gap : ₹{emergency_summary['emergency_fund_gap']:,.2f}")
+
+    print("\n📊 Goal Portfolio Summary")
+
+    for key, value in goal_summary.items():
+        print(f"{key} : {value}")
+
+    print("\n🎯 Goal Insights")
+
+    for insight in goal_insights:
+        print(f"\nGoal : {insight['goal']}")
+        print(f"Status : {insight['status']}")
+        print(f"Priority : {insight['priority']}")
+        print(f"Reason : {insight['reason']}")
+        print(f"Recommendation : {insight['recommendation']}")
+
+    print("\n📈 Investment Summary")
+
+    for key, value in investment_summary.items():
+        if isinstance(value, (int, float)):
+            print(f"{key} : ₹{value:,.2f}")
+
+        else:
+            print(f"{key} : {value}")
+
+    print("\n📈 Investment Insights")
+
+    for key, value in investment_insights.items():
+        if isinstance(value, (int, float)):
+            print(f"{key} : ₹{value:,.2f}")
+
+        else:
+            print(f"{key} : {value}")
+
+    print("\n📦 Asset Summary")
+
+    print(f"Total Asset Value : ₹{asset_summary['total_asset_value']:,.2f}")
+    print(f"Purchase Value : ₹{asset_summary['purchase_value']:,.2f}")
+    print(f"Asset Profit/Loss : ₹{asset_summary['asset_profit_loss']:,.2f}")
+    print(f"Asset Return : {asset_summary['asset_return_percentage']:.2f}%")
+    print(f"Active Assets : {asset_summary['active_assets']}")
+
+    largest = asset_summary["largest_asset"]
+
+    if largest is not None:
+        print(f"Largest Asset : {largest['asset']}")
+        print(f"Category : {largest['category']}")
+        print(f"Current Value : ₹{largest['current_value']:,.2f}")
+
+    print("\n📄 Liability Summary")
+    print(f"Total Original Loan : ₹{liability_summary['total_original_loan']:,.2f}")
+    print(
+        f"Outstanding Balance : ₹{liability_summary['total_outstanding_balance']:,.2f}"
+    )
+    print(f"Total Repaid : ₹{liability_summary['total_repaid']:,.2f}")
+    print(f"Loan Paid : {liability_summary['repayment_percentage']:.2f}%")
+    print(
+        f"Monthly Liability Payment : ₹{liability_summary['monthly_liability_payment']:,.2f}"
+    )
+    print(f"Largest Monthly EMI : ₹{liability_summary['largest_monthly_emi']:,.2f}")
+    print(f"Active Liabilities : {liability_summary['active_liabilities']}")
+    print(
+        f"Liability Ratio (Debt / Assets) : {liability_summary['liability_ratio']:.2f}%"
+    )
+    print(f"Average Liability : ₹{liability_summary['average_liability']:,.2f}")
+    print(
+        f"Loan Outstanding : {liability_summary['remaining_repayment_percentage']:.2f}%"
+    )
+
+    highest = liability_summary["highest_liability"]
+
+    if highest is not None:
+        print("\n💳 Highest Liability")
+        print(f"Liability : {highest['liability']}")
+        print(f"Category : {highest['category']}")
+        print(f"Original Loan : ₹{highest['original_loan']:,.2f}")
+        print(f"Outstanding Balance : ₹{highest['outstanding_balance']:,.2f}")
+        print(f"Monthly EMI : ₹{highest['monthly_emi']:,.2f}")
+
+    print("\n💰 Net Worth Summary")
+    print(f"Total Assets : ₹{net_worth_summary['total_assets']:,.2f}")
+    print(f"Total Liabilities : ₹{net_worth_summary['total_liabilities']:,.2f}")
+    print(f"Net Worth : ₹{net_worth_summary['net_worth']:,.2f}")
+    print(f"Equity : ₹{net_worth_summary['equity']:,.2f}")
+    print(f"Debt Percentage : {net_worth_summary['debt_percentage']:.2f}%")
+    print(f"Asset Coverage Ratio : {net_worth_summary['asset_coverage_ratio']:.2f}")
+    print(f"Wealth Category : {net_worth_summary['wealth_category']}")
+    print(f"Wealth Score : {net_worth_summary['wealth_score']:.2f}")
+    print(
+        f"Asset/Liability Ratio : {net_worth_summary['asset_to_liability_ratio']:.2f}"
+    )
+    print(f"Financial Leverage : {net_worth_summary['financial_leverage']:.2f}")
+    print(f"Net Assets : ₹{net_worth_summary['net_assets']:,.2f}")
+    print(f"Debt Free : {net_worth_summary['debt_free_percentage']:.2f}%")
+    print(f"Wealth Efficiency : {net_worth_summary['wealth_efficiency']:.2f}%")
+    print(f"Wealth Growth : {net_worth_summary['wealth_growth']:.2f}%")
+
+    print("\n💡 Net Worth Insights")
+    print(f"Status : {net_worth_insights['status']}")
+    print(f"Priority : {net_worth_insights['priority']}")
+    print(f"Reason : {net_worth_insights['reason']}")
+    print(f"Recommendation : {net_worth_insights['recommendation']}")
+
+    print("\n")
+    print("############################################################")
+    print("#                 Wealth Health Summary                    #")
+    print("############################################################")
+
+    print(f"Wealth Score                 : {wealth_health_summary['wealth_score']}/100")
+    print(f"Wealth Grade                 : {wealth_health_summary['wealth_grade']}")
+    print(f"Wealth Risk                  : {wealth_health_summary['wealth_risk']}")
+    print(f"Capital Strength             : {wealth_health_summary['capital_strength']}")
+
+    print()
+
+    print(
+        f"Emergency Fund Score         : {wealth_health_summary['emergency_score']}/20"
+    )
+    print(f"Goal Score                   : {wealth_health_summary['goal_score']}/15")
+    print(
+        f"Investment Score             : {wealth_health_summary['investment_score']}/10"
+    )
+    print(f"Asset Score                  : {wealth_health_summary['asset_score']}/15")
+    print(
+        f"Liability Score              : {wealth_health_summary['liability_score']}/20"
+    )
+    print(
+        f"Net Worth Score              : {wealth_health_summary['net_worth_score']}/20"
+    )
+
+    print()
+
+    print(f"Growth Readiness             : {wealth_health_summary['growth_readiness']}")
+    print(
+        f"Liquidity Strength           : {wealth_health_summary['liquidity_strength']}"
+    )
+    print(f"Wealth Momentum              : {wealth_health_summary['wealth_momentum']}")
+    print(
+        f"Financial Stability          : {wealth_health_summary['financial_stability']}"
+    )
+    print(
+        f"Long Term Sustainability     : {wealth_health_summary['long_term_sustainability']}"
+    )
+
+    print("\n")
+
+    print("############################################################")
+    print("#                 Wealth Health Insights                   #")
+    print("############################################################")
+
+    print(f"Status                       : {wealth_health_insights['status']}")
+    print(f"Priority                     : {wealth_health_insights['priority']}")
+    print(f"Reason                       : {wealth_health_insights['reason']}")
+    print(f"Recommendation               : {wealth_health_insights['recommendation']}")
+
+    print("\n")
+    print("############################################################")
+    print("#               Financial Health Summary                   #")
+    print("############################################################")
+
+    print(
+        f"Financial Health Score     : {financial_health_summary['financial_health_score']}/100"
+    )
+    print(f"Financial Grade            : {financial_health_summary['financial_grade']}")
+    print(f"Financial Risk             : {financial_health_summary['financial_risk']}")
+    print(
+        f"Financial Strength         : {financial_health_summary['financial_strength']}"
+    )
+
+    print()
+
+    print(
+        f"Financial Snapshot Score   : {financial_health_summary['financial_score']}/15"
+    )
+    print(f"Budget Score               : {financial_health_summary['budget_score']}/10")
+    print(
+        f"Savings Score              : {financial_health_summary['savings_score']}/15"
+    )
+    print(
+        f"Emergency Fund Score       : {financial_health_summary['emergency_score']}/10"
+    )
+    print(f"Goal Score                 : {financial_health_summary['goal_score']}/10")
+    print(
+        f"Investment Score           : {financial_health_summary['investment_score']}/10"
+    )
+    print(f"Asset Score                : {financial_health_summary['asset_score']}/5")
+    print(
+        f"Liability Score            : {financial_health_summary['liability_score']}/10"
+    )
+    print(
+        f"Net Worth Score            : {financial_health_summary['net_worth_score']}/5"
+    )
+    print(
+        f"Wealth Health Score        : {financial_health_summary['wealth_health_score']}/10"
+    )
+
+    print("\n")
+    print("############################################################")
+    print("#              Financial Health Insights                   #")
+    print("############################################################")
+
+    print(f"Status                     : {financial_health_insights['status']}")
+    print(f"Priority                   : {financial_health_insights['priority']}")
+    print(f"Primary Focus              : {financial_health_insights['focus_area']}")
+
+    print()
+
+    print("Reason")
+    print(financial_health_insights["reason"])
+
+    print()
+
+    print("Recommendation")
+    print(financial_health_insights["recommendation"])

@@ -213,6 +213,8 @@ def generate_financial_snapshot(
     commitment_summary,
     financial_position,
     savings_summary,
+    highest_spending,
+    top_three_categories,
 ):
     snapshot = {
         "monthly_summary": monthly_summary,
@@ -221,6 +223,8 @@ def generate_financial_snapshot(
         "commitment_summary": commitment_summary,
         "financial_position": financial_position,
         "savings_summary": savings_summary,
+        "highest_spending": highest_spending,
+        "top_three_categories": top_three_categories,
     }
 
     return snapshot
@@ -399,7 +403,7 @@ def calculate_budget_analysis(
     }
 
 
-def budget_insights(budget_analysis):
+def generate_budget_insights(budget_analysis):
     budget_utilization_percentage = budget_analysis["budget_utilization_percentage"]
 
     if budget_utilization_percentage < 50:
@@ -419,15 +423,34 @@ def budget_insights(budget_analysis):
         recommendation = "Consider reviewing your expenses and cutting down on non-essential spending."
 
     insights = {
-        "💰 Budget Health ": {
-            "status": status,
-            "priority": priority,
-            "reason": reason,
-            "recommendation": recommendation,
-        }
+            "budget_health": {
+                "status": status,
+                "priority": priority,
+                "reason": reason,
+                "recommendation": recommendation,
+            }
     }
 
     return insights
+
+
+
+def generate_budget_snapshot(
+    budget_analysis,
+    budget_insights,
+):
+
+    return {
+        "summary": {
+            "monthly_budget": budget_analysis["monthly_budget"],
+            "spent": budget_analysis["spent"],
+            "remaining": budget_analysis["budget_remaining"],
+            "utilization": budget_analysis["budget_utilization_percentage"],
+            "status": budget_analysis["status"],
+        },
+
+        "insights": budget_insights["budget_health"],
+    }
 
 
 def generate_investment_snapshot(
@@ -442,9 +465,9 @@ def generate_investment_snapshot(
     return investment_snapshot
 
 
-def generate_investment_insights(investment_snapshot):
+def generate_investment_insights(investment_summary):
 
-    investment_summary = investment_snapshot["investment_summary"]
+
     return_percentage = investment_summary["return_percentage"]
     active_investments = investment_summary["active_investments"]
 
@@ -643,9 +666,8 @@ def calculate_goals(goals):
     return goal_analysis, goal_summary
 
 
-def generate_goal_insights(goal_snapshot):
+def generate_goal_insights(goal_analysis):
     goal_insights = []
-    goal_analysis = goal_snapshot["goal_analysis"]
     for goal in goal_analysis:
         goal_name = goal["goal"]
         progress = goal["progress_percentage"]
@@ -786,9 +808,7 @@ def generate_asset_snapshot(
 # ==========================================================
 
 
-def generate_asset_insights(asset_snapshot):
-
-    asset_summary = asset_snapshot["asset_summary"]
+def generate_asset_insights(asset_summary):
 
     active_assets = asset_summary["active_assets"]
     asset_profit_loss = asset_summary["asset_profit_loss"]
@@ -950,9 +970,8 @@ def calculate_liabilities(liabilities, asset_snapshot):
     return liability_summary
 
 
-def generate_liability_insights(liability_snapshot):
+def generate_liability_insights(liability_summary):
 
-    liability_summary = liability_snapshot["liability_summary"]
 
     active_liabilities = liability_summary["active_liabilities"]
     liability_ratio = liability_summary["liability_ratio"]
