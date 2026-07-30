@@ -260,7 +260,12 @@ def analyze_finances(workbook_path=None):
     monthly_transactions = filter_transactions_by_date(transactions)
     monthly_summary = calculate_summary(monthly_transactions)
     monthly_distribution = calculate_expense_distribution(monthly_summary)
-    savings_summary = calculate_savings(income_summary, summary, commitment_summary,)
+    savings_summary = calculate_savings(
+        income_summary, 
+        summary, 
+        commitment_summary,
+        )
+    print(savings_summary)
     financial_snapshot = generate_financial_snapshot(
         monthly_summary,
         monthly_distribution,
