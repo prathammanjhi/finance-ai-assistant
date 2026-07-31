@@ -49,7 +49,7 @@ from src.core.analyzer import (
     calculate_financial_health,
 )
 
-
+from src.core.processors import *
 
 def process_investments():
 
@@ -67,6 +67,7 @@ def process_investments():
     )
 
     return investment_snapshot
+
 
 def process_budget(monthly_summary):
 
@@ -92,6 +93,7 @@ def process_budget(monthly_summary):
 
     return budget_analysis, budget_snapshot
 
+
 def process_assets():
 
     assets = load_assets()
@@ -110,6 +112,7 @@ def process_assets():
     )
 
     return asset_summary, asset_snapshot
+
 
 def process_goals():
 
@@ -131,6 +134,7 @@ def process_goals():
 
     return goal_snapshot
 
+
 def process_liabilities(asset_snapshot):
 
     liabilities = load_liabilities()
@@ -150,6 +154,7 @@ def process_liabilities(asset_snapshot):
     )
 
     return liability_snapshot
+
 
 def process_net_worth(
     asset_snapshot,
@@ -171,6 +176,7 @@ def process_net_worth(
     )
 
     return net_worth_snapshot
+
 
 def process_wealth_health(
     emergency_summary,
@@ -200,6 +206,7 @@ def process_wealth_health(
     )
 
     return wealth_health_snapshot
+
 
 def process_financial_health(
     financial_snapshot,
