@@ -27,7 +27,6 @@ def calculate_net_worth(
     else:
         wealth_category = "Strong"
 
-    wealth_score = max(0, min(100, 100 - debt_percentage))
     asset_to_liability_ratio = (
         total_assets / total_liabilities if total_liabilities > 0 else float("inf")
     )
@@ -49,7 +48,6 @@ def calculate_net_worth(
         "asset_coverage_ratio": asset_coverage_ratio,
         "debt_percentage": debt_percentage,
         "wealth_category": wealth_category,
-        "wealth_score": wealth_score,
         # Future Proofing
         "asset_to_liability_ratio": asset_to_liability_ratio,
         "financial_leverage": financial_leverage,

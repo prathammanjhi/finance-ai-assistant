@@ -1,3 +1,12 @@
+from src.core.reader.investment import *
+
+from src.core.analyzer import (
+    calculate_investments,
+    generate_investment_insights,
+    generate_investment_snapshot,
+)
+
+
 def process_investments():
 
     investments = load_investments()
@@ -14,4 +23,3 @@ def process_investments():
     )
 
     return investment_snapshot
-

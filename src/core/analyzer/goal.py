@@ -24,9 +24,18 @@ def calculate_goals(goals):
             2,
         )
         today = datetime.today()
-        days_remaining = (target_date - today).days
+
+        days_remaining = max(
+            0,
+            (target_date - today).days,
+        )
         months_remaining = max(0, math.ceil(days_remaining / 30))
-        required_monthly_contribution = math.ceil(remaining_amount / months_remaining)
+        if months_remaining > 0:
+            required_monthly_contribution = math.ceil(
+                remaining_amount / months_remaining
+            )
+        else:
+            required_monthly_contribution = remaining_amount
 
         # 3. Append dictionary
         goal_analysis.append(

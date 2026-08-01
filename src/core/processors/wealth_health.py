@@ -1,3 +1,10 @@
+from src.core.analyzer import (
+    calculate_wealth_health,
+    generate_wealth_health_insights,
+    generate_wealth_health_snapshot,
+)
+
+
 def process_wealth_health(
     emergency_summary,
     goal_snapshot,
@@ -26,4 +33,3 @@ def process_wealth_health(
     )
 
     return wealth_health_snapshot
-

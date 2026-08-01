@@ -16,14 +16,18 @@ def calculate_assets(assets):
         assets.loc[assets["Current Value"].idxmax()] if not assets.empty else None
     )
 
-    largest_asset = {
-        "asset": largest_asset_row["Asset"],
-        "category": largest_asset_row["Category"],
-        "purchase_value": largest_asset_row["Purchase Value"],
-        "current_value": largest_asset_row["Current Value"],
-    }
+    if largest_asset_row is not None:
+        largest_asset = {
+            "asset": largest_asset_row["Asset"],
+            "category": largest_asset_row["Category"],
+            "purchase_value": largest_asset_row["Purchase Value"],
+            "current_value": largest_asset_row["Current Value"],
+        }
+    else:
+        largest_asset = None
 
-    asset_return_percentage = (
+
+    asset_return_percentage = round(
         (asset_profit_loss / purchase_value) * 100 if purchase_value > 0 else 0
     )
 
@@ -53,9 +57,13 @@ def calculate_emergency_fund(expense_summary, commitment_summary, asset_summary)
     required_6_months_fund = monthly_survival_cost * 6
     required_12_months_fund = monthly_survival_cost * 12
     coverage_months = (
-        current_emergency_fund / monthly_survival_cost
+        round(
+            current_emergency_fund /
+            monthly_survival_cost,
+            2,
+        )
         if monthly_survival_cost > 0
-        else 0
+        else None
     )
     gap = required_6_months_fund - current_emergency_fund
     emergency_fund_gap = max(0, gap)

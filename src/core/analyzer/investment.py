@@ -7,7 +7,7 @@ def calculate_investments(investments):
 
     total_profit_loss = current_value - total_invested
 
-    return_percentage = (
+    return_percentage = round(
         (total_profit_loss / total_invested) * 100 if total_invested > 0 else 0
     )
 
@@ -53,15 +53,16 @@ def generate_investment_insights(investment_summary):
         insight_priority = "Medium"
         reason = "Portfolio is generating modest returns."
         recommendation = "Review diversification and long-term strategy."
-    elif return_percentage >= 8:
-        insight_status = "Healthy Growth"
-        insight_priority = "Low"
-        reason = "Portfolio is performing well."
-        recommendation = "Continue disciplined investing."
-    elif return_percentage > 15:
+    elif 8 <= return_percentage <= 15:
         insight_status = "Excellent Growth"
         insight_priority = "Low"
         reason = "Portfolio is performing Great."
+        recommendation = "Continue disciplined investing."
+
+    elif return_percentage >= 15:
+        insight_status = "Healthy Growth"
+        insight_priority = "Low"
+        reason = "Portfolio is performing well."
         recommendation = "Continue disciplined investing."
 
     return {

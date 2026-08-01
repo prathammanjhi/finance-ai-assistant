@@ -16,6 +16,7 @@ def filter_budget_by_date(
     """
 
     today = pd.Timestamp.now()
+    
 
     # Case 1
     if month is not None and year is not None:
@@ -33,10 +34,17 @@ def filter_budget_by_date(
     return budget[(budget["Month"] == today.month) & (budget["Year"] == today.year)]
 
 
+
+
 def calculate_budget_analysis(
     filtered_budget,
     monthly_summary,
 ):
+
+    if filtered_budget.empty:
+        raise ValueError(
+            "No budget found for selected month."
+        )
     monthly_budget = filtered_budget["Monthly_Budget"].iloc[0]
     spent = monthly_summary["total_expense"]
     budget_remaining = monthly_budget - spent

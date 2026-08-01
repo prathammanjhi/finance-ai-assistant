@@ -1,3 +1,12 @@
+from src.core.reader.goal import *
+
+from src.core.analyzer import (
+    calculate_goals,
+    generate_goal_insights,
+    generate_goal_snapshot,
+)
+
+
 def process_goals():
 
     goals = load_goals()
@@ -17,4 +26,3 @@ def process_goals():
     )
 
     return goal_snapshot
-

@@ -802,5 +802,52 @@ Stable
 Production Readiness:
 Core Complete
 
-Next Milestone:
-Finance AI v1.0
+# Finance AI Changelog
+
+---
+
+## v0.9.9 — Backend Architecture Complete
+
+### Added
+
+- Reader Layer
+- Analyzer Layer
+- Processor Layer
+- Engine Orchestration
+- Shared Configuration
+- Modular Folder Structure
+
+### Refactored
+
+- Split monolithic analyzer.py into domain analyzers.
+- Split readers into dedicated modules.
+- Introduced processors for business workflow orchestration.
+- Engine converted into pure orchestrator.
+- Standardized Summary → Insights → Snapshot architecture.
+
+### New Financial Engines
+
+- Financial Engine
+- Budget Engine
+- Goal Engine
+- Investment Engine
+- Asset Engine
+- Liability Engine
+- Net Worth Engine
+- Wealth Health Engine
+- Financial Health Engine
+- Emergency Fund Processor
+
+### Architecture
+
+Reader
+→ Analyzer
+→ Processor
+→ Engine
+
+### Status
+
+✅ Backend Architecture Frozen
+
+Next Phase:
+Founder Dashboard (CLI UI)

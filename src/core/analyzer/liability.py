@@ -11,10 +11,6 @@ def calculate_liabilities(liabilities, asset_snapshot):
         "Monthly EMI",
     ].sum()
     active_liabilities = len(liabilities.loc[liabilities["Status"] == "Active"])
-    monthly_liability_payment = liabilities.loc[
-        liabilities["Status"] == "Active",
-        "Monthly EMI",
-    ].sum()
 
     highest_liability_row = (
         liabilities.loc[liabilities["Outstanding Balance"].idxmax()]
@@ -34,19 +30,19 @@ def calculate_liabilities(liabilities, asset_snapshot):
         else None
     )
 
-    liability_ratio = (
+    liability_ratio = round(
         (total_outstanding_balance / total_asset_value) * 100
         if total_asset_value > 0
         else 0
     )
 
-    average_liability = (
+    average_liability = round(
         total_outstanding_balance / active_liabilities if active_liabilities > 0 else 0
     )
 
     total_repaid = total_original_loan - total_outstanding_balance
 
-    repayment_percentage = (
+    repayment_percentage = round(
         (total_repaid / total_original_loan) * 100 if total_original_loan > 0 else 0
     )
 
@@ -54,7 +50,13 @@ def calculate_liabilities(liabilities, asset_snapshot):
         liabilities["Monthly EMI"].max() if not liabilities.empty else 0
     )
 
-    remaining_repayment_percentage = 100 - repayment_percentage
+    remaining_repayment_percentage = max(
+        0,
+        round(
+            100 - repayment_percentage,
+            2,
+        ),
+    )
 
     liability_summary = {
         "total_original_loan": total_original_loan,

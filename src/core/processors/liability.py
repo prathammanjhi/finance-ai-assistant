@@ -1,3 +1,12 @@
+from src.core.reader.liability import *
+
+from src.core.analyzer import (
+    calculate_liabilities,
+    generate_liability_insights,
+    generate_liability_snapshot,
+)
+
+
 def process_liabilities(asset_snapshot):
 
     liabilities = load_liabilities()
@@ -17,4 +26,3 @@ def process_liabilities(asset_snapshot):
     )
 
     return liability_snapshot
-

@@ -1,3 +1,63 @@
+# Personal notes and architecture:
+
+Future Expense Intelligence (Roadmap Locked)
+
+Module: Life Events Engine
+
+Target Users: Especially low-income & middle-income households.
+
+Core Vision
+
+Finance AI sirf current expenses track nahi karega, balki future predictable expenses ke liye pehle se planning karwayega.
+
+Planned Features
+🎉 Festival Planning (Diwali, Raksha Bandhan, Holi, Eid, Christmas, etc.)
+🎂 Birthday Planning
+💍 Wedding Planning
+🎓 School / College Fees
+🏥 Insurance Renewals
+🚗 Vehicle Service & Insurance
+✈️ Travel Planning
+💻 Laptop / Phone Upgrade
+👶 Family Events
+Any custom life event
+AI Workflow
+Detect upcoming event.
+Estimate expected spending from historical data.
+Ask user to confirm or modify the estimate.
+Automatically create a savings goal.
+Calculate required monthly/weekly savings.
+Track progress.
+Warn early if the goal is at risk.
+Suggest budget adjustments to achieve the goal.
+Long-term Intelligence
+
+After several months of data, Finance AI should:
+
+Learn yearly spending patterns.
+Predict future event costs automatically.
+Recommend savings months in advance.
+Continuously rebalance budgets as income or expenses change.
+Integrate with the Decision Engine so recommendations are based on upcoming commitments as well as current finances.
+📌 Version Placement
+
+V1
+
+Manual Budget Analysis ✅
+
+V2
+
+Adaptive Budget Engine
+
+V3
+
+Life Events Engine / Future Expense Intelligence ⭐
+
+V4+
+
+AI Predictions + Automatic Goal Creation + Calendar Integration + Decision Engine Integration
+
+
 ## Roadmap
 
 Reader Layer
@@ -378,5 +438,34 @@ Modules Completed:
 - Wealth Health
 - Financial Health
 
-Current Phase:
-Production UI Development (v1.0)
+# Current Status
+
+Finance AI Backend
+
+Status:
+Architecture Complete ✅
+
+Layers
+
+✔ Readers
+
+✔ Analyzers
+
+✔ Processors
+
+✔ Engine
+
+✔ Shared Config
+
+Current Phase
+
+Phase 4
+Founder Dashboard (CLI UI)
+
+Upcoming
+
+- Dashboard
+- Founder Testing
+- Daily Usage
+- Feedback Collection
+- V1 Release
