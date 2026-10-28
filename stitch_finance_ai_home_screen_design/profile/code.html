@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Profile - Aura Finance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400&amp;family=JetBrains+Mono:wght@500&amp;family=Sora:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed": "#d0e4ff",
+                      "on-error-container": "#ffdad6",
+                      "error": "#ffb4ab",
+                      "on-tertiary": "#442c00",
+                      "on-primary": "#003256",
+                      "on-secondary-container": "#a3bbd7",
+                      "on-tertiary-fixed-variant": "#614000",
+                      "secondary": "#b1c9e6",
+                      "surface-dim": "#101418",
+                      "secondary-fixed": "#d0e4ff",
+                      "surface": "#101418",
+                      "surface-container-low": "#191c20",
+                      "surface-bright": "#36393e",
+                      "on-primary-container": "#004b7c",
+                      "surface-container-highest": "#323539",
+                      "secondary-container": "#344b63",
+                      "inverse-surface": "#e1e2e8",
+                      "primary": "#b3d6ff",
+                      "surface-variant": "#323539",
+                      "surface-container-high": "#272a2e",
+                      "tertiary-fixed-dim": "#fcbb4f",
+                      "surface-container-lowest": "#0b0e12",
+                      "tertiary-container": "#ebac42",
+                      "on-surface-variant": "#c1c7d1",
+                      "error-container": "#93000a",
+                      "tertiary-fixed": "#ffddaf",
+                      "outline": "#8b919b",
+                      "on-primary-fixed-variant": "#004a7a",
+                      "primary-fixed-dim": "#9bcbff",
+                      "surface-container": "#1d2024",
+                      "inverse-on-surface": "#2e3135",
+                      "outline-variant": "#414750",
+                      "on-tertiary-container": "#634200",
+                      "on-primary-fixed": "#001d34",
+                      "on-secondary-fixed-variant": "#324961",
+                      "surface-tint": "#9bcbff",
+                      "background": "#101418",
+                      "primary-container": "#7abcff",
+                      "on-tertiary-fixed": "#281800",
+                      "on-secondary": "#1a3249",
+                      "on-background": "#e1e2e8",
+                      "secondary-fixed-dim": "#b1c9e6",
+                      "tertiary": "#ffca7b",
+                      "inverse-primary": "#02629f",
+                      "on-secondary-fixed": "#021d33",
+                      "on-error": "#690005",
+                      "on-surface": "#e1e2e8"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "grid-margin": "24px",
+                      "bento-gap": "12px",
+                      "section-padding": "40px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": [
+                              "Sora"
+                      ],
+                      "label-mono": [
+                              "JetBrains Mono"
+                      ],
+                      "display-hero": [
+                              "Sora"
+                      ],
+                      "body-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg": [
+                              "Sora"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-mono": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-hero": [
+                              "80px",
+                              {
+                                      "lineHeight": "88px",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.03em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body {
+            background-color: #0B0D12;
+            color: #e1e2e8;
+        }
+        .bento-card {
+            background-color: rgba(25, 28, 32, 0.4);
+            border: 0.5px solid rgba(255, 255, 255, 0.06);
+            border-radius: 0.75rem;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+      </style>
+</head>
+<body class="font-body-md text-body-md antialiased pb-24 min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-margin-mobile h-16 w-full z-50 fixed top-0 w-full bg-background/80 backdrop-blur-xl">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-white/10" data-alt="A small, glowing digital orb representing an AI assistant, rendered in smooth cinematic obsidian glass style with a soft blue neon inner glow, macro photography against a deep black background." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBFYPoCR2E2UOCnYbDO-UxmOla5P4aIZU8lVkPn3C1xtIEBiUXOlIHF_y02x8uD8RZXxNj_hIlH8WcxcAHGq59iedwoM4B4N3_F359AwVJBKGKGiqJ5A-HTtQsSliTrPwkkK0LRd55R4BAagHKIhM_z4wzQvhmlmqesVr6NymdmrCJCPZXuPz8SMhqtEryu7GPuxthlWIrgtFTEjyTfP1HS09KchVvNNd1rSnrnmRerzcQQdpnIix-E')"></div>
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed-dim">Aura Finance</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant transition-colors group">
+<span class="material-symbols-outlined text-on-surface-muted dark:text-on-surface-variant group-hover:text-primary transition-colors">notifications</span>
+</button>
+</header>
+<main class="flex-grow pt-24 px-gutter md:px-grid-margin max-w-4xl mx-auto w-full flex flex-col gap-section-padding">
+<!-- Profile Identity & Hero -->
+<section class="flex flex-col items-center text-center gap-6">
+<div class="relative">
+<div class="w-24 h-24 rounded-full overflow-hidden border-2 border-primary-container shadow-[0_0_20px_rgba(122,188,255,0.2)]" data-alt="A sophisticated portrait of a young professional man in a dimly lit high-end tech environment, cinematic lighting with subtle cool blue rim lights, dark background, sharp focus." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA6mBdfT1cVOMEkbZ43ClWaxO7U_fdfDJ23Lxj7v9xlT-4RSsX2mOYH1e1D4HGJ4s1dQwtj0OwSgIZOns9-lrLeQIjeeLHpduiQ19rwXuizrCdWkrCwZg94XMr4vYXW8gx6e6L-wrFR3GaVd1XaG5CWFwoxEdMkWLKKuUXrSFMUOOfHKzyQfK4VmmPjLAzB9ZuLMeiyEQ4XPqkrA7ufFyPJyrw3ghCeNf121PiacDcyhOVsjfQeQWhi')"></div>
+<div class="absolute -bottom-2 -right-2 bg-primary-container text-on-primary-container px-3 py-1 rounded-full border border-surface flex items-center gap-1 shadow-lg shadow-primary-container/20">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+<span class="font-label-mono text-label-mono font-bold tracking-wider uppercase">82 · Excellent</span>
+</div>
+</div>
+<div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-1">Pratham</h1>
+<p class="font-label-mono text-label-mono text-primary-fixed-dim">Premium Member</p>
+</div>
+</section>
+<!-- Bento Grid Layout for Settings -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-bento-gap">
+<!-- Connected Accounts -->
+<section class="bento-card p-6 flex flex-col gap-4">
+<div class="flex justify-between items-center mb-2">
+<h2 class="font-label-mono text-label-mono text-on-surface-variant uppercase">Connected Accounts</h2>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-variant hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-on-surface text-sm">add</span>
+</button>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-center p-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-white flex items-center justify-center">
+<span class="text-blue-900 font-bold text-xs">CH</span>
+</div>
+<span class="text-on-surface">Chase Checking ····1234</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+<div class="flex justify-between items-center p-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-gray-200 flex items-center justify-center">
+<span class="text-gray-800 font-bold text-xs">AX</span>
+</div>
+<span class="text-on-surface">Amex Platinum ····5678</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+<div class="flex justify-between items-center p-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-purple-900 flex items-center justify-center">
+<span class="text-white font-bold text-xs">WF</span>
+</div>
+<span class="text-on-surface">Wealthfront Cash ····9012</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+</section>
+<div class="flex flex-col gap-bento-gap">
+<!-- AI Preferences (Glassmorphism highlight) -->
+<section class="glass-panel rounded-xl p-6 flex flex-col gap-4 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container/10 to-transparent pointer-events-none"></div>
+<h2 class="font-label-mono text-label-mono text-primary-fixed-dim uppercase z-10 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">auto_awesome</span> AI Preferences
+                    </h2>
+<div class="flex flex-col gap-4 z-10">
+<div class="flex justify-between items-center group cursor-pointer">
+<span class="text-on-surface group-hover:text-primary transition-colors">Interpretation Tone</span>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="text-sm">Direct &amp; Technical</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+</div>
+<div class="w-full h-px bg-white/5"></div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface">Proactive Insights</span>
+<div class="w-11 h-6 bg-primary-container rounded-full relative cursor-pointer shadow-[0_0_10px_rgba(122,188,255,0.3)]">
+<div class="absolute right-1 top-1 w-4 h-4 bg-background rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Security & Privacy -->
+<section class="bento-card p-6 flex flex-col gap-4">
+<h2 class="font-label-mono text-label-mono text-on-surface-variant uppercase">Security &amp; Privacy</h2>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-3 group cursor-pointer">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">lock</span>
+<span class="text-on-surface flex-grow">Password &amp; 2FA</span>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+<div class="flex items-center gap-3 group cursor-pointer">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">shield_person</span>
+<span class="text-on-surface flex-grow">Data Sharing</span>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Financial Documents & Help -->
+<div class="col-span-1 md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-bento-gap">
+<section class="bento-card p-6 flex items-center justify-between cursor-pointer hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center group-hover:bg-primary-container/20 transition-colors">
+<span class="material-symbols-outlined text-on-surface group-hover:text-primary-container transition-colors">description</span>
+</div>
+<div>
+<h3 class="text-on-surface font-medium">Financial Documents</h3>
+<p class="font-label-mono text-label-mono text-on-surface-variant mt-1">Tax forms, statements</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</section>
+<section class="bento-card p-6 flex items-center justify-between cursor-pointer hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center group-hover:bg-primary-container/20 transition-colors">
+<span class="material-symbols-outlined text-on-surface group-hover:text-primary-container transition-colors">help</span>
+</div>
+<div>
+<h3 class="text-on-surface font-medium">Help &amp; Feedback</h3>
+<p class="font-label-mono text-label-mono text-on-surface-variant mt-1">Support, FAQs, Contact</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</section>
+</div>
+</div>
+<!-- Log Out -->
+<section class="mt-8 mb-8 text-center">
+<button class="font-label-mono text-label-mono text-error uppercase hover:text-on-error-container tracking-wider transition-colors py-2 px-6 rounded-full border border-transparent hover:border-error/20 hover:bg-error/5">
+                Log Out
+            </button>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-surface-container-lowest/85 dark:bg-surface-container-lowest/85 backdrop-blur-12 shadow-[0px_-4px_20px_rgba(0,0,0,0.04)] md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-muted dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-high/50 scale-95 active:scale-90 transition-all duration-300 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">home</span>
+<span class="font-label-mono text-[10px] mt-1 opacity-70 group-hover:opacity-100 group-hover:text-primary transition-colors">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-muted dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-high/50 scale-95 active:scale-90 transition-all duration-300 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">analytics</span>
+<span class="font-label-mono text-[10px] mt-1 opacity-70 group-hover:opacity-100 group-hover:text-primary transition-colors">Insights</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-muted dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-high/50 scale-95 active:scale-90 transition-all duration-300 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">track_changes</span>
+<span class="font-label-mono text-[10px] mt-1 opacity-70 group-hover:opacity-100 group-hover:text-primary transition-colors">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-muted dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-high/50 scale-95 active:scale-90 transition-all duration-300 rounded-lg group relative" href="#">
+<div class="absolute inset-0 bg-primary-container/10 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-primary-fixed-dim relative z-10" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-mono text-[10px] mt-1 opacity-70 text-primary-fixed-dim relative z-10">AI</span>
+</a>
+<!-- Active Tab -->
+<a class="flex flex-col items-center justify-center bg-primary-fixed dark:bg-primary-container text-on-primary-fixed dark:text-on-primary-container rounded-full px-4 py-1 scale-95 active:scale-90 transition-all duration-300 shadow-[0_0_15px_rgba(122,188,255,0.3)]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-mono text-[10px] mt-1 font-bold">Profile</span>
+</a>
+</nav>
+<!-- Desktop Nav (Hidden on mobile) -->
+<div class="hidden md:flex fixed top-0 right-margin-mobile h-16 items-center gap-6 z-50">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-sm uppercase" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-sm uppercase" href="#">Insights</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-sm uppercase" href="#">Goals</a>
+<a class="text-primary-fixed-dim hover:text-primary transition-colors font-label-mono text-sm uppercase flex items-center gap-1" href="#"><span class="material-symbols-outlined text-sm">auto_awesome</span> AI</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-mono text-sm uppercase" href="#">Profile</a>
+</div>
+</body></html>

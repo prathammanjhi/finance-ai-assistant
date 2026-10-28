@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Finance AI - Investments</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Sora & Hanken Grotesk & JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Sora:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-highest": "#323539",
+                      "on-tertiary-container": "#634200",
+                      "primary": "#b3d6ff",
+                      "outline-variant": "#414750",
+                      "inverse-on-surface": "#2e3135",
+                      "on-primary-container": "#004b7c",
+                      "tertiary": "#ffca7b",
+                      "surface-container-lowest": "#0b0e12",
+                      "on-primary-fixed-variant": "#004a7a",
+                      "outline": "#8b919b",
+                      "on-error": "#690005",
+                      "secondary-container": "#344b63",
+                      "surface-container-high": "#272a2e",
+                      "primary-fixed": "#d0e4ff",
+                      "on-secondary-container": "#a3bbd7",
+                      "primary-fixed-dim": "#9bcbff",
+                      "surface-tint": "#9bcbff",
+                      "error": "#ffb4ab",
+                      "on-secondary": "#1a3249",
+                      "inverse-primary": "#02629f",
+                      "on-tertiary-fixed-variant": "#614000",
+                      "on-secondary-fixed": "#021d33",
+                      "on-primary": "#003256",
+                      "surface": "#101418",
+                      "on-primary-fixed": "#001d34",
+                      "on-surface": "#e1e2e8",
+                      "surface-dim": "#101418",
+                      "surface-container-low": "#191c20",
+                      "on-background": "#e1e2e8",
+                      "secondary-fixed-dim": "#b1c9e6",
+                      "on-error-container": "#ffdad6",
+                      "secondary-fixed": "#d0e4ff",
+                      "surface-container": "#1d2024",
+                      "tertiary-fixed": "#ffddaf",
+                      "on-tertiary": "#442c00",
+                      "background": "#101418",
+                      "inverse-surface": "#e1e2e8",
+                      "secondary": "#b1c9e6",
+                      "surface-variant": "#323539",
+                      "on-tertiary-fixed": "#281800",
+                      "error-container": "#93000a",
+                      "tertiary-container": "#ebac42",
+                      "on-surface-variant": "#c1c7d1",
+                      "on-secondary-fixed-variant": "#324961",
+                      "tertiary-fixed-dim": "#fcbb4f",
+                      "surface-bright": "#36393e",
+                      "primary-container": "#7abcff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "bento-gap": "12px",
+                      "section-padding": "40px",
+                      "gutter": "16px",
+                      "grid-margin": "24px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Sora"],
+                      "display-hero": ["Sora"],
+                      "body-md": ["Hanken Grotesk"],
+                      "headline-lg-mobile": ["Sora"],
+                      "label-mono": ["JetBrains Mono"]
+              },
+              "fontSize": {
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+                      "display-hero": ["80px", {"lineHeight": "88px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+              },
+              "animation": {
+                  'ambient-pulse': 'pulse-opacity 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                  'draw-line': 'draw 1.5s ease-out forwards',
+              },
+              "keyframes": {
+                  'pulse-opacity': {
+                      '0%, 100%': { opacity: '0.8' },
+                      '50%': { opacity: '1' },
+                  },
+                  'draw': {
+                      '0%': { strokeDasharray: '0 1000' },
+                      '100%': { strokeDasharray: '1000 0' },
+                  }
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        /* Glassmorphism utility for AI cards */
+        .ai-glass {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            border: 1px solid;
+            border-image-source: linear-gradient(135deg, rgba(122, 188, 255, 0.3) 0%, transparent 100%);
+            border-image-slice: 1;
+            /* Fallback for border-image */
+            border-color: rgba(122, 188, 255, 0.15); 
+        }
+        
+        /* Subtle inner border for base cards (Level 1) */
+        .card-inner-border {
+            box-shadow: inset 0 0 0 0.5px rgba(255,255,255,0.06);
+        }
+
+        /* Hide scrollbar for story swipe */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface antialiased min-h-screen flex flex-col selection:bg-primary/30">
+<!-- TopAppBar -->
+<header class="docked full-width top-0 sticky z-50 bg-background dark:bg-background flex justify-between items-center w-full px-gutter md:px-grid-margin py-4 flat no shadows transition-transform duration-200">
+<div class="flex items-center gap-3">
+<button class="hover:opacity-80 transition-opacity flex items-center justify-center w-10 h-10 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-white/5 flex items-center justify-center overflow-hidden flex-shrink-0">
+<span class="font-label-mono text-label-mono text-primary font-bold">FA</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary tracking-tighter hidden sm:block">Finance AI</h1>
+</div>
+<button class="hover:opacity-80 transition-opacity p-2 rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined text-on-surface-variant dark:text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col px-gutter md:px-grid-margin pb-32 pt-2 md:pt-6 max-w-5xl mx-auto w-full gap-8">
+<!-- Header Section -->
+<section>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface">Investments</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Portfolio Analysis &amp; Insights</p>
+</section>
+<!-- Top AI Insight Card -->
+<section class="ai-glass rounded-xl p-5 md:p-6 relative overflow-hidden animate-ambient-pulse group hover:bg-white/[0.08] transition-colors duration-500">
+<!-- Glow Effect -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary/20 rounded-full blur-[40px] pointer-events-none"></div>
+<div class="flex items-start gap-4 relative z-10">
+<div class="mt-1 flex-shrink-0 text-primary">
+<span class="material-symbols-outlined" data-icon="auto_awesome" data-weight="fill" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+                        "Bhai, tera portfolio currently up hai — <span class="text-primary font-semibold">9.4%</span>. Tera long-term investing pattern is healthy. Tension mat lo."
+                    </p>
+</div>
+</div>
+</section>
+<!-- Total Invested / Current Value Bento Block & P/L Row -->
+<section class="flex flex-col gap-bento-gap">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-bento-gap">
+<!-- Total Invested Card -->
+<div class="bg-surface-container-low card-inner-border rounded-xl p-5 md:p-6 flex flex-col justify-between">
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-wider mb-2">Total Invested</h3>
+<div class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">₹12,40,000</div>
+</div>
+<!-- Current Value Card -->
+<div class="bg-surface-container-low card-inner-border rounded-xl p-5 md:p-6 flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-wider mb-2 relative z-10">Current Value</h3>
+<div class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary relative z-10">₹13,56,000</div>
+</div>
+</div>
+<!-- Profit/Loss + Return Row -->
+<div class="flex flex-wrap gap-3 mt-1">
+<div class="bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-[16px]" data-icon="trending_up">trending_up</span>
+<span class="font-label-mono text-label-mono">+₹1,16,000 Profit/Loss</span>
+</div>
+<div class="bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 flex items-center text-primary">
+<span class="font-label-mono text-label-mono">9.4% Return</span>
+</div>
+</div>
+</section>
+<!-- Performance Overview (Bento Box) -->
+<section class="bg-surface-container-low card-inner-border rounded-xl p-5 md:p-6">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-wider">Performance Overview</h3>
+<!-- Time Range Tabs -->
+<div class="flex bg-surface-container-highest rounded-lg p-1">
+<button class="px-3 py-1 rounded-md font-label-mono text-label-mono text-on-surface-variant hover:text-on-surface transition-colors">1M</button>
+<button class="px-3 py-1 rounded-md bg-surface-container text-on-surface font-label-mono text-label-mono shadow-sm">6M</button>
+<button class="px-3 py-1 rounded-md font-label-mono text-label-mono text-on-surface-variant hover:text-on-surface transition-colors">All</button>
+</div>
+</div>
+<!-- Animated Chart Area (CSS based visualization for robust HTML) -->
+<div class="h-48 w-full relative mt-4">
+<!-- Background Grid -->
+<div class="absolute inset-0 flex flex-col justify-between border-l border-b border-white/5 pb-6 pl-2">
+<div class="w-full border-t border-white/5 border-dashed h-0 opacity-50"></div>
+<div class="w-full border-t border-white/5 border-dashed h-0 opacity-50"></div>
+<div class="w-full border-t border-white/5 border-dashed h-0 opacity-50"></div>
+<div class="w-full border-t border-white/5 border-dashed h-0 opacity-50"></div>
+</div>
+<!-- SVG Line Chart Path -->
+<svg class="absolute inset-0 h-full w-full overflow-visible" preserveaspectratio="none" viewbox="0 0 100 100">
+<defs>
+<lineargradient id="chartGradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#7abcff" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#7abcff" stop-opacity="0.0"></stop>
+</lineargradient>
+<filter height="140%" id="glow" width="140%" x="-20%" y="-20%">
+<fegaussianblur result="blur" stddeviation="2"></fegaussianblur>
+<fecomposite in="SourceGraphic" in2="blur" operator="over"></fecomposite>
+</filter>
+</defs>
+<!-- Fill -->
+<path class="animate-[fade-in_2s_ease-out]" d="M0,100 L0,70 Q25,80 50,40 T100,10 L100,100 Z" fill="url(#chartGradient)"></path>
+<!-- Neon Filament Line -->
+<path class="animate-draw-line" d="M0,70 Q25,80 50,40 T100,10" fill="none" filter="url(#glow)" stroke="#7abcff" stroke-width="2"></path>
+<!-- Current Value Dot -->
+<circle cx="100" cy="10" fill="#004b7c" r="3" stroke="#7abcff" stroke-width="2"></circle>
+</svg>
+<!-- Axis Labels -->
+<div class="absolute bottom-0 w-full flex justify-between text-on-surface-variant/50 font-label-mono text-[10px] pt-2 ml-2">
+<span>Jan</span>
+<span>Mar</span>
+<span>May</span>
+<span>Jul</span>
+</div>
+</div>
+</section>
+<!-- Recommended Action Card -->
+<section class="bg-surface-container-high card-inner-border rounded-xl p-5 md:p-6 flex flex-col sm:flex-row gap-5 items-start sm:items-center justify-between group">
+<div class="flex gap-4 items-start">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary">
+<span class="material-symbols-outlined" data-icon="lightbulb">lightbulb</span>
+</div>
+<div>
+<h3 class="font-body-md text-body-md text-on-surface font-semibold mb-1">Your cash balance is slightly high.</h3>
+<p class="font-label-mono text-label-mono text-on-surface-variant leading-relaxed">Consider a small top-up to your index fund to maximize potential returns.</p>
+</div>
+</div>
+<button class="w-full sm:w-auto bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-label-mono text-label-mono whitespace-nowrap hover:bg-primary-fixed transition-colors flex items-center justify-center gap-2">
+                Act Now <span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</section>
+<!-- Investment Breakdown -->
+<section class="bg-surface-container-low card-inner-border rounded-xl p-5 md:p-6">
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-wider mb-6">Allocation Breakdown</h3>
+<!-- Segmented Bar -->
+<div class="w-full h-3 rounded-full overflow-hidden flex bg-surface-container-highest mb-6">
+<div class="bg-primary h-full" style="width: 65%;"></div>
+<div class="bg-tertiary h-full" style="width: 25%;"></div>
+<div class="bg-outline-variant h-full" style="width: 10%;"></div>
+</div>
+<!-- Legend Stack -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-sm bg-primary"></div>
+<span class="font-body-md text-body-md text-on-surface">Equity Mutual Funds</span>
+</div>
+<span class="font-label-mono text-label-mono text-on-surface-variant">65%</span>
+</div>
+<div class="w-full h-[1px] bg-white/5"></div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-sm bg-tertiary"></div>
+<span class="font-body-md text-body-md text-on-surface">Gold</span>
+</div>
+<span class="font-label-mono text-label-mono text-on-surface-variant">25%</span>
+</div>
+<div class="w-full h-[1px] bg-white/5"></div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-sm bg-outline-variant"></div>
+<span class="font-body-md text-body-md text-on-surface">Crypto</span>
+</div>
+<span class="font-label-mono text-label-mono text-on-surface-variant">10%</span>
+</div>
+</div>
+</section>
+<!-- Calculation Transparency (Expandable) -->
+<section class="bg-surface-container-low card-inner-border rounded-xl overflow-hidden">
+<details class="group">
+<summary class="p-5 md:p-6 flex justify-between items-center cursor-pointer list-none hover:bg-white/[0.02] transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="calculate">calculate</span>
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-wider">Return Calculation Details</h3>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform duration-300" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="p-5 md:p-6 pt-0 border-t border-white/5 mt-2 flex flex-col gap-3">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Current Value</span>
+<span class="font-label-mono text-label-mono text-on-surface">₹13,56,000</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Total Invested</span>
+<span class="font-label-mono text-label-mono text-on-surface">- ₹12,40,000</span>
+</div>
+<div class="w-full h-[1px] bg-white/5 my-1"></div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface">Absolute Return</span>
+<span class="font-label-mono text-label-mono text-primary font-semibold">₹1,16,000</span>
+</div>
+<div class="flex justify-between items-center mt-2 bg-surface-container p-3 rounded-lg">
+<span class="font-label-mono text-label-mono text-on-surface-variant">Percentage = (Return / Invested) * 100</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-primary">9.4%</span>
+</div>
+</div>
+</details>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="docked full-width bottom-0 rounded-t-xl border-t border-white/5 bg-surface-container-low/80 dark:bg-surface-container-low/80 backdrop-blur-xl fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 md:hidden">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:bg-white/5 transition-colors group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="home">home</span>
+<span class="font-label-mono text-[10px] mt-1 opacity-80 group-hover:opacity-100">Home</span>
+</button>
+<!-- ACTIVE STATE: Insights -->
+<button class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-container text-on-primary-container dark:text-on-primary-container rounded-full px-5 py-1.5 scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="insights" data-weight="fill" style="font-variation-settings: 'FILL' 1;">insights</span>
+<span class="font-label-mono text-[10px] mt-0.5 font-semibold">Insights</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:bg-white/5 transition-colors group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="smart_toy">smart_toy</span>
+<span class="font-label-mono text-[10px] mt-1 opacity-80 group-hover:opacity-100">Ask</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:bg-white/5 transition-colors group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="track_changes">track_changes</span>
+<span class="font-label-mono text-[10px] mt-1 opacity-80 group-hover:opacity-100">Goals</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:bg-white/5 transition-colors group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="person">person</span>
+<span class="font-label-mono text-[10px] mt-1 opacity-80 group-hover:opacity-100">Profile</span>
+</button>
+</nav>
+</body></html>

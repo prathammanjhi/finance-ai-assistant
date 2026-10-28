@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Finance AI - Insights</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700&amp;family=JetBrains+Mono:wght@500&amp;family=Hanken+Grotesk:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed-dim": "#9bcbff",
+                      "outline": "#8b919b",
+                      "on-secondary-fixed": "#021d33",
+                      "on-primary-fixed": "#001d34",
+                      "surface-container-low": "#191c20",
+                      "surface-tint": "#9bcbff",
+                      "background": "#101418",
+                      "tertiary-container": "#ebac42",
+                      "surface-container-lowest": "#0b0e12",
+                      "inverse-surface": "#e1e2e8",
+                      "surface": "#101418",
+                      "tertiary-fixed-dim": "#fcbb4f",
+                      "tertiary": "#ffca7b",
+                      "on-error": "#690005",
+                      "surface-dim": "#101418",
+                      "primary-fixed": "#d0e4ff",
+                      "primary": "#b3d6ff",
+                      "surface-container-high": "#272a2e",
+                      "on-secondary-container": "#a3bbd7",
+                      "on-surface": "#e1e2e8",
+                      "on-tertiary-fixed": "#281800",
+                      "error-container": "#93000a",
+                      "error": "#ffb4ab",
+                      "on-background": "#e1e2e8",
+                      "on-secondary": "#1a3249",
+                      "secondary": "#b1c9e6",
+                      "on-primary-fixed-variant": "#004a7a",
+                      "secondary-fixed": "#d0e4ff",
+                      "surface-container": "#1d2024",
+                      "outline-variant": "#414750",
+                      "secondary-fixed-dim": "#b1c9e6",
+                      "tertiary-fixed": "#ffddaf",
+                      "surface-variant": "#323539",
+                      "on-surface-variant": "#c1c7d1",
+                      "surface-container-highest": "#323539",
+                      "on-primary": "#003256",
+                      "inverse-primary": "#02629f",
+                      "on-primary-container": "#004b7c",
+                      "on-error-container": "#ffdad6",
+                      "primary-container": "#7abcff",
+                      "surface-bright": "#36393e",
+                      "on-secondary-fixed-variant": "#324961",
+                      "on-tertiary-fixed-variant": "#614000",
+                      "on-tertiary": "#442c00",
+                      "on-tertiary-container": "#634200",
+                      "inverse-on-surface": "#2e3135",
+                      "secondary-container": "#344b63"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "section-padding": "40px",
+                      "bento-gap": "12px",
+                      "gutter": "16px",
+                      "grid-margin": "24px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": [
+                              "Sora"
+                      ],
+                      "label-mono": [
+                              "JetBrains Mono"
+                      ],
+                      "display-hero": [
+                              "Sora"
+                      ],
+                      "body-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg": [
+                              "Sora"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-mono": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-hero": [
+                              "80px",
+                              {
+                                      "lineHeight": "88px",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.03em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0b0e12;
+            color: #e1e2e8;
+            font-family: 'Hanken Grotesk', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .ai-glass-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid;
+            border-image-source: linear-gradient(135deg, rgba(122, 188, 255, 0.3) 0%, transparent 100%);
+            border-image-slice: 1;
+            animation: ambient-pulse 4s infinite alternate;
+        }
+
+        .base-card {
+            background: #101418;
+            box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.06);
+        }
+
+        @keyframes ambient-pulse {
+            0% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .story-progress-bar {
+            height: 2px;
+            background: rgba(255,255,255,0.2);
+            flex: 1;
+            border-radius: 99px;
+            overflow: hidden;
+        }
+        
+        .story-progress-fill {
+            height: 100%;
+            background: #7abcff;
+            width: 0%;
+        }
+
+        .active-story .story-progress-fill {
+            width: 100%;
+            transition: width 5s linear;
+        }
+        
+        .completed-story .story-progress-fill {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-surface-container-lowest min-h-screen pb-24 md:pb-0">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center px-gutter h-16 w-full z-50 fixed top-0 bg-background/80 backdrop-blur-xl border-b border-white/5 md:hidden">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-80 transition-opacity duration-200" data-icon="menu">menu</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Finance AI</h1>
+</div>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-80 transition-opacity duration-200" data-icon="notifications">notifications</span>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 px-gutter md:px-grid-margin max-w-7xl mx-auto flex flex-col gap-8 md:pt-8">
+<!-- Screen Title (Desktop) -->
+<div class="hidden md:block mb-4">
+<h1 class="font-headline-lg text-headline-lg text-on-background">Insights</h1>
+</div>
+<!-- AI Insight Overview Card (Glassmorphic) -->
+<section class="ai-glass-card rounded-xl p-6 relative overflow-hidden flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container" data-icon="smart_toy" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<span class="font-label-mono text-label-mono text-primary-container tracking-wider uppercase">AI Overview</span>
+</div>
+<p class="font-body-md text-body-md text-on-background text-lg leading-relaxed">
+                "Bhai, iss month tera spending pattern overall stable hai, but food spending normal se <span class="text-error font-bold">18% upar</span> hai."
+            </p>
+</section>
+<!-- Horizontal Story Swipe Area -->
+<section class="flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background">Deep Dive</h2>
+<span class="font-label-mono text-label-mono text-outline">Swipe for details</span>
+</div>
+<!-- Story Progress Indicators -->
+<div class="flex gap-2 w-full max-w-md mx-auto mb-2">
+<div class="story-progress-bar completed-story"><div class="story-progress-fill"></div></div>
+<div class="story-progress-bar active-story"><div class="story-progress-fill"></div></div>
+<div class="story-progress-bar"><div class="story-progress-fill"></div></div>
+</div>
+<!-- Swipeable Container -->
+<div class="flex overflow-x-auto gap-bento pb-8 hide-scrollbar snap-x snap-mandatory">
+<!-- Story Card 1: Subscription Alert -->
+<article class="base-card min-w-[85vw] md:min-w-[400px] flex-shrink-0 snap-center rounded-xl p-6 flex flex-col gap-6 relative">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error" data-icon="warning">warning</span>
+<span class="font-label-mono text-label-mono text-outline uppercase">Subscription Alert</span>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<div>
+<p class="font-label-mono text-label-mono text-outline mb-1 uppercase">What</p>
+<p class="font-body-md text-body-md text-on-background">You spent <span class="text-error font-bold">₹2,400</span> on streaming this month.</p>
+</div>
+<div>
+<p class="font-label-mono text-label-mono text-outline mb-1 uppercase">Why</p>
+<p class="font-body-md text-body-md text-on-surface-variant">This is 15% higher than your regular average.</p>
+</div>
+<div>
+<p class="font-label-mono text-label-mono text-outline mb-1 uppercase">Impact</p>
+<p class="font-body-md text-body-md text-on-background">₹320 extra spent.</p>
+</div>
+</div>
+<!-- Transparent Calculation -->
+<details class="group mt-2">
+<summary class="list-none cursor-pointer font-label-mono text-label-mono text-primary flex items-center gap-1">
+                            Show Calculation
+                            <span class="material-symbols-outlined text-[16px] group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="mt-4 p-3 bg-surface-container rounded-lg border border-white/5 flex flex-col gap-2 font-label-mono text-label-mono text-on-surface-variant">
+<div class="flex justify-between">
+<span>This Month</span>
+<span class="text-on-background">₹2,400</span>
+</div>
+<div class="flex justify-between">
+<span>Normal Avg</span>
+<span>₹2,080</span>
+</div>
+<div class="h-px bg-white/10 w-full my-1"></div>
+<div class="flex justify-between">
+<span>Over By</span>
+<span class="text-error">₹320</span>
+</div>
+</div>
+</details>
+<button class="mt-auto flex items-center justify-center gap-2 bg-primary-container text-on-primary-container font-label-mono text-label-mono py-3 rounded-full hover:bg-primary transition-colors">
+                        Review Subscriptions
+                        <span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</article>
+<!-- Story Card 2: Saving Opportunity -->
+<article class="base-card min-w-[85vw] md:min-w-[400px] flex-shrink-0 snap-center rounded-xl p-6 flex flex-col gap-6 relative">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="savings">savings</span>
+<span class="font-label-mono text-label-mono text-outline uppercase">Saving Opportunity</span>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<div>
+<p class="font-label-mono text-label-mono text-outline mb-1 uppercase">What</p>
+<p class="font-body-md text-body-md text-on-background"><span class="text-primary font-bold">₹1,280</span> in unused balance found.</p>
+</div>
+<div>
+<p class="font-label-mono text-label-mono text-outline mb-1 uppercase">Why</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Moving it to your Goa Trip goal would bring your timeline 4 days closer.</p>
+</div>
+<div>
+<p class="font-label-mono text-label-mono text-outline mb-1 uppercase">Impact</p>
+<p class="font-body-md text-body-md text-primary font-bold">4 days faster.</p>
+</div>
+</div>
+<button class="mt-auto flex items-center justify-center gap-2 border border-white/20 text-on-background font-label-mono text-label-mono py-3 rounded-full hover:bg-white/5 transition-colors">
+                        Sweep to Goal
+                        <span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</article>
+<!-- Story Card 3: Analysis Complete -->
+<article class="base-card min-w-[85vw] md:min-w-[400px] flex-shrink-0 snap-center rounded-xl p-6 flex flex-col justify-center items-center text-center gap-6 relative">
+<span class="material-symbols-outlined text-4xl text-primary mb-2" data-icon="check_circle">check_circle</span>
+<p class="font-body-md text-body-md text-on-background">
+                        These insights were generated from your last 30 days. No further critical alerts detected.
+                    </p>
+<button class="mt-4 flex items-center justify-center gap-2 text-outline font-label-mono text-label-mono hover:text-on-background transition-colors">
+                        Back to Dashboard
+                    </button>
+</article>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe bg-surface-container-lowest/90 backdrop-blur-2xl border-t border-white/5 z-50 md:hidden">
+<div class="flex flex-col items-center justify-center text-outline px-3 py-1 hover:text-primary transition-colors active:scale-95 duration-150 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-mono text-label-mono mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-3 py-1 hover:text-primary transition-colors active:scale-95 duration-150 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="query_stats" style="font-variation-settings: 'FILL' 1;">query_stats</span>
+<span class="font-label-mono text-label-mono mt-1">Insights</span>
+</div>
+<div class="flex flex-col items-center justify-center text-outline px-3 py-1 hover:text-primary transition-colors active:scale-95 duration-150 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+<span class="font-label-mono text-label-mono mt-1">Ask</span>
+</div>
+<div class="flex flex-col items-center justify-center text-outline px-3 py-1 hover:text-primary transition-colors active:scale-95 duration-150 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="track_changes">track_changes</span>
+<span class="font-label-mono text-label-mono mt-1">Goals</span>
+</div>
+<div class="flex flex-col items-center justify-center text-outline px-3 py-1 hover:text-primary transition-colors active:scale-95 duration-150 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-mono text-label-mono mt-1">Profile</span>
+</div>
+</nav>
+<!-- Side Navigation (Desktop) - Minimal version for layout completeness -->
+<aside class="hidden md:flex flex-col fixed left-0 top-0 h-screen w-64 border-r border-white/5 bg-surface-container-lowest/80 pt-8 px-6 gap-8 z-40">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Finance AI</h1>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-outline hover:text-primary hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-mono text-label-mono">Home</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-secondary-container text-on-secondary-container" href="#">
+<span class="material-symbols-outlined" data-icon="query_stats" style="font-variation-settings: 'FILL' 1;">query_stats</span>
+<span class="font-label-mono text-label-mono">Insights</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-outline hover:text-primary hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+<span class="font-label-mono text-label-mono">Ask</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-outline hover:text-primary hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="track_changes">track_changes</span>
+<span class="font-label-mono text-label-mono">Goals</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-outline hover:text-primary hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-mono text-label-mono">Profile</span>
+</a>
+</nav>
+</aside>
+<style>
+        /* Adjust main content padding for desktop side nav */
+        @media (min-width: 768px) {
+            main {
+                margin-left: 256px; /* width of aside */
+            }
+        }
+    </style>
+</body></html>

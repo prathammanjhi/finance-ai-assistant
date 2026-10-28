@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Finance AI - Commitments</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700&amp;family=Sora:wght@400;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary": "#b1c9e6",
+                        "tertiary": "#ffca7b",
+                        "on-tertiary-fixed-variant": "#614000",
+                        "primary-container": "#7abcff",
+                        "tertiary-fixed": "#ffddaf",
+                        "on-surface": "#e1e2e8",
+                        "tertiary-container": "#ebac42",
+                        "surface-bright": "#36393e",
+                        "surface-tint": "#9bcbff",
+                        "on-primary-fixed-variant": "#004a7a",
+                        "outline-variant": "#414750",
+                        "on-surface-variant": "#c1c7d1",
+                        "outline": "#8b919b",
+                        "surface-container-high": "#272a2e",
+                        "surface-container-lowest": "#0b0e12",
+                        "primary-fixed": "#d0e4ff",
+                        "inverse-surface": "#e1e2e8",
+                        "secondary-fixed-dim": "#b1c9e6",
+                        "tertiary-fixed-dim": "#fcbb4f",
+                        "background": "#101418",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed": "#d0e4ff",
+                        "on-primary-container": "#004b7c",
+                        "on-secondary-fixed-variant": "#324961",
+                        "surface-container": "#1d2024",
+                        "on-primary": "#003256",
+                        "primary": "#b3d6ff",
+                        "on-tertiary": "#442c00",
+                        "on-secondary-container": "#a3bbd7",
+                        "on-error": "#690005",
+                        "primary-fixed-dim": "#9bcbff",
+                        "on-background": "#e1e2e8",
+                        "on-primary-fixed": "#001d34",
+                        "surface-variant": "#323539",
+                        "surface-container-low": "#191c20",
+                        "surface-dim": "#101418",
+                        "inverse-primary": "#02629f",
+                        "surface-container-highest": "#323539",
+                        "on-tertiary-fixed": "#281800",
+                        "secondary-container": "#344b63",
+                        "on-secondary-fixed": "#021d33",
+                        "surface": "#101418",
+                        "error-container": "#93000a",
+                        "error": "#ffb4ab",
+                        "inverse-on-surface": "#2e3135",
+                        "on-secondary": "#1a3249",
+                        "on-tertiary-container": "#634200"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "gutter": "16px",
+                        "bento-gap": "12px",
+                        "section-padding": "32px",
+                        "grid-margin": "24px"
+                    },
+                    fontFamily: {
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Sora"],
+                        "display-hero": ["Sora"],
+                        "headline-lg-mobile": ["Sora"],
+                        "label-mono": ["JetBrains Mono"]
+                    },
+                    fontSize: {
+                        "body-md": ["16px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "400" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.03em", fontWeight: "700" }],
+                        "display-hero": ["80px", { lineHeight: "88px", letterSpacing: "-0.04em", fontWeight: "700" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "label-mono": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-ai-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+        .glass-ai-card::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: -1;
+            margin: -1px;
+            border-radius: inherit;
+            background: linear-gradient(135deg, rgba(122, 188, 255, 0.3), transparent);
+        }
+        .ai-pulse {
+            animation: ambient-pulse 4s infinite alternate;
+        }
+        @keyframes ambient-pulse {
+            0% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+        .bento-card {
+            background-color: var(--color-surface-container-low);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col pb-[100px]">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/5 flex justify-between items-center px-grid-margin h-16 transition-transform hover:opacity-80">
+<button class="text-on-surface-variant flex items-center justify-center p-2 rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tighter">Finance AI</h1>
+<button class="text-on-surface-variant flex items-center justify-center p-2 rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications</span>
+</button>
+</header>
+<main class="flex-1 mt-16 px-gutter md:px-grid-margin pt-6 flex flex-col gap-section-padding max-w-3xl mx-auto w-full">
+<!-- AI Insight Card (Glassmorphism) -->
+<section>
+<div class="glass-ai-card ai-pulse rounded-xl p-5 flex gap-4 items-start shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
+<div class="flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<div>
+<p class="text-on-surface leading-relaxed">Bhai, next 15 days mein <span class="font-bold text-white">₹18,400</span> already committed hai. Is amount ko available cash samajhna safe nahi hai.</p>
+</div>
+</div>
+</section>
+<!-- Summary Chip -->
+<section class="flex justify-center">
+<div class="inline-flex items-center gap-2 bg-surface-container py-2 px-4 rounded-full border border-white/5 text-sm">
+<span class="text-on-surface-variant">Available After Commitments:</span>
+<span class="font-label-mono text-label-mono text-on-surface">₹32,600</span>
+</div>
+</section>
+<!-- Upcoming Commitments List -->
+<section class="flex flex-col gap-bento-gap">
+<h2 class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-wider mb-2">Upcoming in 15 days</h2>
+<!-- Row 1: Rent (Amber/Warning) -->
+<div class="bento-card rounded-xl p-4 flex flex-col gap-3 relative overflow-hidden group hover:bg-white/[0.02] transition-colors">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-tertiary-container"></div>
+<div class="flex justify-between items-start pl-2">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-semibold text-white">Rent</span>
+<span class="text-[10px] uppercase font-bold bg-tertiary-container/20 text-tertiary-container px-2 py-0.5 rounded-sm">Due in 2 days</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-[16px]">autorenew</span>
+<span>Recurring</span>
+</div>
+</div>
+<div class="text-right">
+<div class="font-label-mono text-label-mono text-white text-base">₹12,000</div>
+</div>
+</div>
+<div class="pl-2 pt-2 border-t border-white/5 flex justify-end">
+<button class="text-xs font-semibold text-on-surface-variant hover:text-white transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Mark as paid
+                    </button>
+</div>
+</div>
+<!-- Row 2: Car EMI -->
+<div class="bento-card rounded-xl p-4 flex flex-col gap-3 hover:bg-white/[0.02] transition-colors">
+<div class="flex justify-between items-start">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-semibold text-white">Car EMI</span>
+<span class="text-[10px] uppercase font-bold bg-white/10 text-on-surface-variant px-2 py-0.5 rounded-sm">Due in 6 days</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-[16px]">autorenew</span>
+<span>Recurring</span>
+</div>
+</div>
+<div class="text-right">
+<div class="font-label-mono text-label-mono text-white text-base">₹4,500</div>
+</div>
+</div>
+<div class="pt-2 border-t border-white/5 flex justify-end">
+<button class="text-xs font-semibold text-on-surface-variant hover:text-white transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Mark as paid
+                    </button>
+</div>
+</div>
+<!-- Row 3: Netflix + Spotify -->
+<div class="bento-card rounded-xl p-4 flex flex-col gap-3 hover:bg-white/[0.02] transition-colors">
+<div class="flex justify-between items-start">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-semibold text-white">Netflix + Spotify</span>
+<span class="text-[10px] uppercase font-bold bg-white/10 text-on-surface-variant px-2 py-0.5 rounded-sm">Due in 9 days</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-[16px]">subscriptions</span>
+<span>Subscription</span>
+</div>
+</div>
+<div class="text-right">
+<div class="font-label-mono text-label-mono text-white text-base">₹900</div>
+</div>
+</div>
+<div class="pt-2 border-t border-white/5 flex justify-end">
+<button class="text-xs font-semibold text-on-surface-variant hover:text-white transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Mark as paid
+                    </button>
+</div>
+</div>
+<!-- Row 4: Credit Card Bill -->
+<div class="bento-card rounded-xl p-4 flex flex-col gap-3 hover:bg-white/[0.02] transition-colors">
+<div class="flex justify-between items-start">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-semibold text-white">Credit Card Bill</span>
+<span class="text-[10px] uppercase font-bold bg-white/10 text-on-surface-variant px-2 py-0.5 rounded-sm">Due in 12 days</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span>
+<span>Bill</span>
+</div>
+</div>
+<div class="text-right">
+<div class="font-label-mono text-label-mono text-white text-base">₹1,000</div>
+</div>
+</div>
+<div class="pt-2 border-t border-white/5 flex justify-end">
+<button class="text-xs font-semibold text-on-surface-variant hover:text-white transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Mark as paid
+                    </button>
+</div>
+</div>
+<!-- Add Commitment CTA -->
+<button class="w-full py-4 border border-white/10 rounded-xl text-on-surface-variant font-semibold hover:bg-white/5 transition-colors flex items-center justify-center gap-2 mt-2">
+<span class="material-symbols-outlined">add</span> Add commitment
+            </button>
+</section>
+<!-- Calculation Transparency -->
+<section class="bento-card rounded-xl p-6 mb-8" x-data="{ expanded: false }">
+<div class="flex justify-between items-center cursor-pointer" onclick="this.parentElement.classList.toggle('is-expanded')">
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-wider">Total Commitments</h3>
+<div class="flex items-center gap-2">
+<span class="font-label-mono text-label-mono text-white text-lg">₹18,400</span>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform duration-300 transform group-hover:rotate-180">expand_more</span>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-white/5 space-y-3 hidden expand-content">
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Current Available Cash</span>
+<span class="font-label-mono text-label-mono text-white">₹51,000</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-error">Total Commitments</span>
+<span class="font-label-mono text-label-mono text-error">-₹18,400</span>
+</div>
+<div class="mt-6 pt-4 border-t border-white/10 flex justify-between items-end">
+<div>
+<div class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-wider text-[10px] mb-1">Safe to spend</div>
+<div class="font-bold text-white text-sm">Available After Commitments</div>
+</div>
+<!-- HERO ACCENT RULE APPLIED HERE -->
+<div class="font-headline-lg-mobile text-headline-lg-mobile text-[#00E676] font-bold tracking-tight" style="text-shadow: 0 0 20px rgba(0, 230, 118, 0.4);">
+                        ₹32,600
+                    </div>
+</div>
+</div>
+<style>
+                .is-expanded .expand-content { display: block; }
+                .is-expanded .material-symbols-outlined { transform: rotate(180deg); }
+            </style>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-background/80 backdrop-blur-xl border-t border-white/5 flex justify-around items-center h-20 px-gutter pb-safe md:hidden">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 transition-colors w-16">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-mono text-label-mono text-[10px]">Home</span>
+</button>
+<!-- Active Tab: Insights (Mapping to Commitments semantic intent) -->
+<button class="flex flex-col items-center justify-center text-primary fill hover:text-primary/80 transition-colors scale-90 w-16">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-label-mono text-label-mono text-[10px]">Insights</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 transition-colors w-16">
+<span class="material-symbols-outlined mb-1">smart_toy</span>
+<span class="font-label-mono text-label-mono text-[10px]">Ask</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 transition-colors w-16">
+<span class="material-symbols-outlined mb-1">track_changes</span>
+<span class="font-label-mono text-label-mono text-[10px]">Goals</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 transition-colors w-16">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-label-mono text-label-mono text-[10px]">Profile</span>
+</button>
+</nav>
+<!-- Desktop Nav (Hidden on Mobile) -->
+<div class="hidden md:flex fixed top-0 w-full z-[40] bg-background border-b border-white/5 h-16 items-center justify-center gap-8 mt-16 shadow-lg shadow-black/50">
+<button class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-sm">Home</button>
+<button class="text-primary font-label-mono text-sm border-b-2 border-primary h-full px-2">Insights</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-sm">Ask</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-sm">Goals</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-sm">Profile</button>
+</div>
+</body></html>

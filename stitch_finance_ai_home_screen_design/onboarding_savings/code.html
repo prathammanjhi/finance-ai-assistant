@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Finance AI - Onboarding Step 5</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&amp;family=Sora:wght@700&amp;family=Hanken+Grotesk:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-container": "#344b63",
+                        "on-primary-fixed": "#001d34",
+                        "primary-container": "#7abcff",
+                        "tertiary": "#ffca7b",
+                        "inverse-surface": "#e1e2e8",
+                        "surface-container-high": "#272a2e",
+                        "on-background": "#e1e2e8",
+                        "tertiary-fixed-dim": "#fcbb4f",
+                        "on-primary": "#003256",
+                        "primary-fixed-dim": "#9bcbff",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-highest": "#323539",
+                        "secondary-fixed-dim": "#b1c9e6",
+                        "on-tertiary-fixed": "#281800",
+                        "on-surface-variant": "#c1c7d1",
+                        "inverse-primary": "#02629f",
+                        "outline-variant": "#414750",
+                        "secondary-fixed": "#d0e4ff",
+                        "primary-fixed": "#d0e4ff",
+                        "on-surface": "#e1e2e8",
+                        "tertiary-fixed": "#ffddaf",
+                        "surface-container-lowest": "#0b0e12",
+                        "inverse-on-surface": "#2e3135",
+                        "on-tertiary-fixed-variant": "#614000",
+                        "error": "#ffb4ab",
+                        "surface-variant": "#323539",
+                        "on-tertiary-container": "#634200",
+                        "error-container": "#93000a",
+                        "tertiary-container": "#ebac42",
+                        "on-secondary-fixed": "#021d33",
+                        "on-tertiary": "#442c00",
+                        "background": "#101418",
+                        "surface-bright": "#36393e",
+                        "on-primary-fixed-variant": "#004a7a",
+                        "surface-tint": "#9bcbff",
+                        "primary": "#b3d6ff",
+                        "on-secondary-container": "#a3bbd7",
+                        "secondary": "#b1c9e6",
+                        "outline": "#8b919b",
+                        "surface-container": "#1d2024",
+                        "surface-container-low": "#191c20",
+                        "on-error": "#690005",
+                        "surface-dim": "#101418",
+                        "on-secondary": "#1a3249",
+                        "on-secondary-fixed-variant": "#324961",
+                        "on-primary-container": "#004b7c",
+                        "surface": "#101418"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "grid-margin": "24px",
+                        "section-padding": "40px",
+                        "gutter": "16px",
+                        "bento-gap": "12px"
+                    },
+                    fontFamily: {
+                        "label-mono": ["JetBrains Mono"],
+                        "display-hero": ["Sora"],
+                        "headline-lg-mobile": ["Sora"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Sora"]
+                    },
+                    fontSize: {
+                        "label-mono": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "500" }],
+                        "display-hero": ["80px", { lineHeight: "88px", letterSpacing: "-0.04em", fontWeight: "700" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "body-md": ["16px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "400" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.03em", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .ai-pulse {
+            animation: pulse-ai 4s ease-in-out infinite alternate;
+        }
+        @keyframes pulse-ai {
+            0% { opacity: 0.7; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1.05); }
+        }
+        .glass-orb {
+            background: radial-gradient(circle at 30% 30%, rgba(122, 188, 255, 0.4), transparent 60%);
+            box-shadow: inset 0 0 20px rgba(122, 188, 255, 0.2), 0 0 40px rgba(122, 188, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface min-h-screen flex flex-col font-body-md">
+<!-- Header / Progress -->
+<header class="flex flex-col w-full px-grid-margin pt-6 pb-4 sticky top-0 bg-surface-container-lowest/80 backdrop-blur-md z-10">
+<div class="flex items-center justify-between mb-6">
+<button aria-label="Go back" class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<div class="font-label-mono text-label-mono text-on-surface-variant">
+                STEP 5 OF 5
+            </div>
+<div class="w-[24px]"></div> <!-- Spacer for balance -->
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-[2px] bg-surface-container-high rounded-full overflow-hidden flex gap-1">
+<div class="h-full bg-primary flex-1 rounded-full"></div>
+<div class="h-full bg-primary flex-1 rounded-full"></div>
+<div class="h-full bg-primary flex-1 rounded-full"></div>
+<div class="h-full bg-primary flex-1 rounded-full"></div>
+<div class="h-full bg-primary flex-1 rounded-full relative overflow-hidden">
+<div class="absolute inset-0 bg-white/20 animate-pulse"></div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-grid-margin md:px-section-padding flex flex-col max-w-2xl mx-auto w-full pb-section-padding">
+<!-- Hero Orb -->
+<div class="flex justify-center my-8 md:my-12 relative h-32 w-full">
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-primary/10 rounded-full blur-3xl ai-pulse"></div>
+<div class="w-24 h-24 rounded-full border border-primary/20 glass-orb relative z-10 flex items-center justify-center ai-pulse">
+<span class="material-symbols-outlined text-primary text-[40px]" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+</div>
+<!-- Typography -->
+<div class="text-center mb-10">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface mb-4">
+                Last step, bhai. Abhi kitni savings hai?
+            </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mx-auto">
+                This helps me set an accurate starting point for your Financial Health score and goals. Optional — you can update this anytime.
+            </p>
+</div>
+<!-- Input Card (Bento Style) -->
+<div class="bg-surface-variant/40 rounded-xl border border-white/[0.06] p-6 mb-8 relative overflow-hidden group hover:border-white/[0.1] transition-colors">
+<!-- Amount Input -->
+<div class="mb-8">
+<label class="block font-label-mono text-label-mono text-primary mb-2 uppercase">Savings Amount</label>
+<div class="relative flex items-center">
+<span class="absolute left-0 text-[32px] text-on-surface-variant font-headline-lg-mobile">₹</span>
+<input class="w-full bg-transparent border-0 border-b border-surface-container-high focus:border-primary focus:ring-0 text-[40px] font-headline-lg-mobile pl-8 py-2 text-on-surface placeholder:text-surface-container-highest transition-colors" placeholder="0" type="text" value="32,000"/>
+</div>
+</div>
+<!-- Type Selector -->
+<div>
+<label class="block font-label-mono text-label-mono text-on-surface-variant mb-3 uppercase">Category</label>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary font-body-md text-sm transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">health_and_safety</span>
+                        Emergency Fund
+                    </button>
+<button class="px-4 py-2 rounded-full border border-white/10 bg-surface-container-lowest hover:bg-surface-container-high text-on-surface-variant font-body-md text-sm transition-colors">
+                        General Savings
+                    </button>
+<button class="px-4 py-2 rounded-full border border-white/10 bg-surface-container-lowest hover:bg-surface-container-high text-on-surface-variant font-body-md text-sm transition-colors">
+                        Other
+                    </button>
+</div>
+</div>
+<!-- Ambient Card Glow -->
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none rounded-xl"></div>
+</div>
+<!-- Actions -->
+<div class="mt-auto flex flex-col gap-4">
+<button class="w-full bg-primary-container text-on-primary-container font-headline-lg-mobile text-[18px] py-4 rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2 relative overflow-hidden group shadow-[0_0_20px_rgba(122,188,255,0.2)]">
+<span class="relative z-10 font-bold">Finish Setup</span>
+<span class="material-symbols-outlined relative z-10 text-[20px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+<div class="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 rounded-full"></div>
+</button>
+<button class="w-full text-on-surface-variant font-body-md py-3 hover:text-on-surface transition-colors">
+                Skip for now
+            </button>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Finance AI - Chat Initiated</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700&amp;family=Sora:wght@400;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-fixed": "#d0e4ff",
+                      "secondary-fixed-dim": "#b1c9e6",
+                      "error-container": "#93000a",
+                      "primary-fixed-dim": "#9bcbff",
+                      "tertiary-fixed": "#ffddaf",
+                      "on-tertiary": "#442c00",
+                      "on-tertiary-fixed": "#281800",
+                      "on-secondary-fixed": "#021d33",
+                      "primary": "#b3d6ff",
+                      "surface-container-high": "#272a2e",
+                      "on-primary-fixed": "#001d34",
+                      "surface-variant": "#323539",
+                      "primary-fixed": "#d0e4ff",
+                      "on-secondary": "#1a3249",
+                      "error": "#ffb4ab",
+                      "on-tertiary-fixed-variant": "#614000",
+                      "tertiary-fixed-dim": "#fcbb4f",
+                      "secondary": "#b1c9e6",
+                      "inverse-on-surface": "#2e3135",
+                      "on-tertiary-container": "#634200",
+                      "surface-tint": "#9bcbff",
+                      "tertiary-container": "#ebac42",
+                      "secondary-container": "#344b63",
+                      "on-primary-container": "#004b7c",
+                      "on-secondary-fixed-variant": "#324961",
+                      "tertiary": "#ffca7b",
+                      "outline-variant": "#414750",
+                      "surface": "#101418",
+                      "outline": "#8b919b",
+                      "surface-container-lowest": "#0b0e12",
+                      "on-primary": "#003256",
+                      "surface-container-highest": "#323539",
+                      "on-surface-variant": "#c1c7d1",
+                      "on-secondary-container": "#a3bbd7",
+                      "on-surface": "#e1e2e8",
+                      "inverse-surface": "#e1e2e8",
+                      "on-background": "#e1e2e8",
+                      "surface-bright": "#36393e",
+                      "on-error": "#690005",
+                      "surface-dim": "#101418",
+                      "primary-container": "#7abcff",
+                      "surface-container": "#1d2024",
+                      "on-primary-fixed-variant": "#004a7a",
+                      "background": "#101418",
+                      "on-error-container": "#ffdad6",
+                      "inverse-primary": "#02629f",
+                      "surface-container-low": "#191c20"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "bento-gap": "12px",
+                      "gutter": "16px",
+                      "grid-margin": "24px",
+                      "section-padding": "40px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "display-hero": [
+                              "Sora"
+                      ],
+                      "headline-lg": [
+                              "Sora"
+                      ],
+                      "label-mono": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-lg-mobile": [
+                              "Sora"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-hero": [
+                              "80px",
+                              {
+                                      "lineHeight": "88px",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.03em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-mono": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0B0D12;
+            color: #e1e2e8;
+            font-family: 'Hanken Grotesk', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .ai-glass {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(122, 188, 255, 0.3);
+            border-left: 1px solid rgba(122, 188, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .ai-pulse {
+            animation: pulse-glow 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulse-glow {
+            0% {
+                box-shadow: 0 0 10px rgba(122, 188, 255, 0.2), inset 0 0 10px rgba(122, 188, 255, 0.1);
+            }
+            100% {
+                box-shadow: 0 0 25px rgba(122, 188, 255, 0.5), inset 0 0 20px rgba(122, 188, 255, 0.2);
+            }
+        }
+        
+        .fade-sweep-in {
+            animation: fadeSweepIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeSweepIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-inner-border {
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* Hide scrollbar for clean UI */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface h-screen flex flex-col overflow-hidden">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center px-gutter h-16 w-full z-50 fixed top-0 bg-background/80 backdrop-blur-xl">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-gradient-to-tr from-primary-container to-tertiary-container flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-surface-container-lowest text-sm font-bold" data-icon="blur_on">blur_on</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary-fixed-dim">Aura Finance</h1>
+</div>
+<button class="text-on-surface-variant hover:text-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<!-- Main Content Canvas (Scrollable) -->
+<main class="flex-1 overflow-y-auto pt-24 pb-48 px-gutter flex flex-col gap-grid-margin relative z-10 w-full max-w-3xl mx-auto">
+<!-- Context Header -->
+<div class="text-center mb-4 fade-sweep-in" style="animation-delay: 0.1s;">
+<p class="font-label-mono text-label-mono text-primary-fixed-dim uppercase tracking-widest mb-1">Ask your CFO</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Real-time financial intelligence</p>
+</div>
+<!-- User Bubble -->
+<div class="self-end max-w-[85%] bg-surface-variant text-on-surface rounded-2xl rounded-tr-sm px-5 py-4 card-inner-border fade-sweep-in" style="animation-delay: 0.2s;">
+<p class="font-body-md text-body-md">Can I afford to go to Bali next month? Tickets are around ₹45,000.</p>
+</div>
+<!-- AI Response Anchor -->
+<div class="self-start max-w-[95%] sm:max-w-[85%] ai-glass rounded-2xl rounded-tl-sm p-6 fade-sweep-in relative overflow-hidden" style="animation-delay: 0.4s;">
+<!-- Subtle background gradient hint -->
+<div class="absolute -top-10 -left-10 w-32 h-32 bg-primary-container/20 rounded-full blur-3xl"></div>
+<!-- AI Voice Lead -->
+<div class="flex items-start gap-3 mb-5 relative z-10">
+<div class="w-6 h-6 rounded-full bg-primary-container flex-shrink-0 flex items-center justify-center mt-1">
+<span class="material-symbols-outlined text-[14px] text-on-primary-container" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+<span class="text-primary-fixed-dim font-bold">Bhai,</span> technically afford kar sakta hai, but let's look at the math before you book those tickets.
+                 </p>
+</div>
+<!-- Stacked Calculation Card (Bento Style) -->
+<div class="bg-surface-container-low rounded-xl card-inner-border p-5 mb-5 flex flex-col gap-4 relative z-10">
+<div class="flex justify-between items-baseline border-b border-white/10 pb-3">
+<span class="font-label-mono text-label-mono text-on-surface-variant">CURRENT BALANCE</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold counter" data-target="51000">₹0</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-white/10 pb-3">
+<span class="font-label-mono text-label-mono text-on-surface-variant">UPCOMING COMMITMENTS</span>
+<span class="font-body-md text-body-md text-error">-₹18,400</span>
+</div>
+<div class="flex justify-between items-baseline pt-1">
+<span class="font-label-mono text-label-mono text-primary-fixed-dim font-bold">AVAILABLE AFTER</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-primary-fixed-dim font-bold counter" data-target="32600">₹0</span>
+</div>
+</div>
+<!-- Closing Advice -->
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-4 relative z-10">
+                 ₹45,000 ka trip abhi tight rakhega — thoda wait karke Nov mein plan kar to zyada comfortable rahega.
+             </p>
+<!-- Quiet Expansion Action -->
+<button class="flex items-center gap-1 font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors group relative z-10">
+                 How did you calculate this?
+                 <span class="material-symbols-outlined text-[16px] group-hover:translate-y-0.5 transition-transform" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+<!-- Follow-up Chips -->
+<div class="flex flex-wrap gap-3 mt-2 fade-sweep-in" style="animation-delay: 0.6s;">
+<button class="bg-transparent border border-white/10 hover:border-primary-fixed-dim/50 hover:bg-surface-container-highest px-4 py-2 rounded-full font-label-mono text-label-mono text-on-surface-variant hover:text-on-surface transition-all">
+                Review my subscriptions
+            </button>
+<button class="bg-transparent border border-white/10 hover:border-primary-fixed-dim/50 hover:bg-surface-container-highest px-4 py-2 rounded-full font-label-mono text-label-mono text-on-surface-variant hover:text-on-surface transition-all">
+                Can I afford a new phone?
+            </button>
+</div>
+<!-- Bottom padding for fixed elements -->
+<div class="h-20"></div>
+</main>
+<!-- Floating AI Button & Input Zone -->
+<div class="fixed bottom-24 left-0 w-full z-40 px-gutter flex flex-col items-center gap-4 fade-sweep-in" style="animation-delay: 0.8s;">
+<!-- ONE HERO ACCENT: Floating AI Button -->
+<button class="w-14 h-14 rounded-full bg-primary-container text-on-primary-container shadow-lg flex items-center justify-center ai-pulse transform transition-transform hover:scale-105 active:scale-95">
+<span class="material-symbols-outlined text-2xl" data-icon="auto_awesome" data-weight="fill">auto_awesome</span>
+</button>
+<!-- Input Bar -->
+<div class="w-full max-w-3xl mx-auto bg-surface-container-high rounded-full card-inner-border flex items-center px-2 py-1 shadow-lg backdrop-blur-md">
+<button class="p-3 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="mic">mic</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface font-body-md text-body-md placeholder:text-on-surface-variant/50 px-2" placeholder="Ask anything about your money..." type="text"/>
+<button class="p-3 text-primary-fixed-dim hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+</button>
+</div>
+</div>
+<!-- Bottom Nav Bar (Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-surface-container-lowest/85 backdrop-blur-md shadow-[0px_-4px_20px_rgba(0,0,0,0.04)] rounded-t-xl md:hidden">
+<div class="flex flex-col items-center justify-center text-on-surface-muted dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-high/50 rounded-lg transition-all scale-95 cursor-pointer">
+<span class="material-symbols-outlined mb-1 text-[20px]" data-icon="home">home</span>
+<span class="font-label-sm text-[10px]">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-muted dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-high/50 rounded-lg transition-all scale-95 cursor-pointer">
+<span class="material-symbols-outlined mb-1 text-[20px]" data-icon="analytics">analytics</span>
+<span class="font-label-sm text-[10px]">Insights</span>
+</div>
+<!-- Active State for 'Ask/AI' based on Semantic Mapping logic -->
+<div class="flex flex-col items-center justify-center bg-primary-fixed dark:bg-primary-container text-on-primary-fixed dark:text-on-primary-container rounded-full px-5 py-2 scale-95 cursor-pointer shadow-md">
+<span class="material-symbols-outlined mb-1 text-[20px]" data-icon="auto_awesome" data-weight="fill">auto_awesome</span>
+<span class="font-label-sm text-[10px] font-bold">AI</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-muted dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-high/50 rounded-lg transition-all scale-95 cursor-pointer">
+<span class="material-symbols-outlined mb-1 text-[20px]" data-icon="track_changes">track_changes</span>
+<span class="font-label-sm text-[10px]">Goals</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-muted dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-high/50 rounded-lg transition-all scale-95 cursor-pointer">
+<span class="material-symbols-outlined mb-1 text-[20px]" data-icon="person">person</span>
+<span class="font-label-sm text-[10px]">Profile</span>
+</div>
+</nav>
+<!-- Desktop Top App Bar replacement (hidden on mobile, shown on md up) -->
+<header class="hidden md:flex justify-between items-center px-grid-margin h-20 w-full z-50 fixed top-0 bg-background/90 backdrop-blur-xl border-b border-white/5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-gradient-to-tr from-primary-container to-tertiary-container flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-surface-container-lowest font-bold" data-icon="blur_on">blur_on</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary-fixed-dim tracking-tight">Aura Finance</h1>
+</div>
+<nav class="flex gap-8 items-center">
+<a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors" href="#">HOME</a>
+<a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors" href="#">INSIGHTS</a>
+<a class="font-label-mono text-label-mono text-primary-fixed-dim font-bold border-b-2 border-primary-fixed-dim pb-1" href="#">AI</a>
+<a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors" href="#">GOALS</a>
+<a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors" href="#">PROFILE</a>
+</nav>
+</header>
+<script>
+        // Number Counter Animation for Hero Numerals
+        document.addEventListener("DOMContentLoaded", () => {
+            const counters = document.querySelectorAll('.counter');
+            
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 1500; // ms
+                const steps = 60;
+                const stepTime = Math.abs(Math.floor(duration / steps));
+                let current = 0;
+                const increment = target / steps;
+
+                // Format currency
+                const formatter = new Intl.NumberFormat('en-IN', {
+                    style: 'currency',
+                    currency: 'INR',
+                    maximumFractionDigits: 0
+                });
+
+                // Delay start to match fade-sweep-in
+                setTimeout(() => {
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            counter.innerText = formatter.format(target);
+                            clearInterval(timer);
+                        } else {
+                            counter.innerText = formatter.format(Math.ceil(current));
+                        }
+                    }, stepTime);
+                }, 800); // Wait for card to mostly animate in
+            });
+        });
+    </script>
+</body></html>

@@ -85,7 +85,7 @@ def calculate_highest_spending_category(category_summary):
 def calculate_top_categories(category_summary):
     sorted_categories = category_summary.sort_values(ascending=False)
     top_categories = sorted_categories[:3]
-    return {"categories": top_categories}
+    return {"categories": top_categories.to_dict()}
 
 def calculate_expense_distribution(calculate_summary):
 
@@ -142,6 +142,33 @@ def filter_transactions_by_date(transactions, month=None, year=None):
     return transactions[
         (transactions["Date"].dt.month == today.month)
         & (transactions["Date"].dt.year == today.year)
+    ]
+
+def filter_income_by_date(income, month=None, year=None):
+    """Filter income by month and year."""
+
+    today = pd.Timestamp.now()
+
+    if month is not None and year is not None:
+        return income[
+            (income["Date"].dt.month == month)
+            & (income["Date"].dt.year == year)
+        ]
+
+    if month is not None:
+        return income[
+            (income["Date"].dt.month == month)
+            & (income["Date"].dt.year == today.year)
+        ]
+
+    if year is not None:
+        return income[
+            income["Date"].dt.year == year
+        ]
+
+    return income[
+        (income["Date"].dt.month == today.month)
+        & (income["Date"].dt.year == today.year)
     ]
 
 def calculate_savings(income_summary, expense_summary, commitment_summary):

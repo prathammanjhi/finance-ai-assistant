@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Finance AI - Ask AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700&amp;family=Hanken+Grotesk:wght@400;500;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "inverse-surface": "#e1e2e8",
+                        "surface-container": "#1d2024",
+                        "on-error": "#690005",
+                        "on-surface-variant": "#c1c7d1",
+                        "on-secondary-fixed-variant": "#324961",
+                        "secondary-fixed": "#d0e4ff",
+                        "primary-fixed": "#d0e4ff",
+                        "primary-fixed-dim": "#9bcbff",
+                        "tertiary-fixed-dim": "#fcbb4f",
+                        "surface-dim": "#101418",
+                        "outline-variant": "#414750",
+                        "surface-container-highest": "#323539",
+                        "on-primary-fixed": "#001d34",
+                        "outline": "#8b919b",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#281800",
+                        "surface-container-high": "#272a2e",
+                        "on-tertiary": "#442c00",
+                        "surface-tint": "#9bcbff",
+                        "on-primary": "#003256",
+                        "tertiary-container": "#ebac42",
+                        "secondary-fixed-dim": "#b1c9e6",
+                        "on-tertiary-container": "#634200",
+                        "surface": "#101418",
+                        "on-primary-fixed-variant": "#004a7a",
+                        "error": "#ffb4ab",
+                        "surface-bright": "#36393e",
+                        "error-container": "#93000a",
+                        "primary-container": "#7abcff",
+                        "background": "#101418",
+                        "on-secondary-fixed": "#021d33",
+                        "on-secondary-container": "#a3bbd7",
+                        "surface-variant": "#323539",
+                        "inverse-primary": "#02629f",
+                        "surface-container-lowest": "#0b0e12",
+                        "tertiary": "#ffca7b",
+                        "inverse-on-surface": "#2e3135",
+                        "surface-container-low": "#191c20",
+                        "secondary": "#b1c9e6",
+                        "tertiary-fixed": "#ffddaf",
+                        "on-surface": "#e1e2e8",
+                        "secondary-container": "#344b63",
+                        "on-secondary": "#1a3249",
+                        "on-tertiary-fixed-variant": "#614000",
+                        "on-primary-container": "#004b7c",
+                        "on-background": "#e1e2e8",
+                        "primary": "#b3d6ff"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        "grid-margin": "24px",
+                        "bento-gap": "12px",
+                        "section-padding": "40px",
+                        "gutter": "16px"
+                    },
+                    fontFamily: {
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Sora"],
+                        "label-mono": ["JetBrains Mono"],
+                        "display-hero": ["Sora"],
+                        "headline-lg": ["Sora"]
+                    },
+                    fontSize: {
+                        "body-md": ["16px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "400" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "label-mono": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "500" }],
+                        "display-hero": ["80px", { lineHeight: "88px", letterSpacing: "-0.04em", fontWeight: "700" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.03em", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0B0D12; /* Obsidian glass base */
+        }
+        .ai-glass {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid transparent;
+            border-image: linear-gradient(to bottom right, rgba(122, 188, 255, 0.3), rgba(255, 255, 255, 0)) 1;
+        }
+        @keyframes ambient-pulse {
+            0%, 100% { opacity: 0.8; box-shadow: 0 0 15px rgba(122, 188, 255, 0.1); }
+            50% { opacity: 1; box-shadow: 0 0 25px rgba(122, 188, 255, 0.2); }
+        }
+        .ai-pulse {
+            animation: ambient-pulse 4s ease-in-out infinite;
+        }
+        .bento-card {
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background-color: #101418;
+        }
+        /* Custom scrollbar for horizontal scrolling */
+        ::-webkit-scrollbar {
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="text-on-background font-body-md h-screen flex flex-col overflow-hidden">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky bg-background dark:bg-background flat no shadows flex justify-between items-center px-grid-margin py-4 w-full z-50">
+<button class="hover:opacity-80 transition-opacity Active: scale-95 transition-transform duration-150 text-primary dark:text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-surface dark:text-on-surface">Finance AI</h1>
+<button class="hover:opacity-80 transition-opacity Active: scale-95 transition-transform duration-150 text-on-surface-variant dark:text-on-surface-variant">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+</header>
+<!-- Main Content Area (Scrollable) -->
+<main class="flex-1 overflow-y-auto pb-48 pt-4 px-gutter md:px-grid-margin flex flex-col gap-6 w-full max-w-4xl mx-auto">
+<!-- Sub-header -->
+<div class="text-center md:text-left mb-2">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Ask your CFO</h2>
+<p class="text-on-surface-variant font-body-md mt-1">Real-time financial intelligence</p>
+</div>
+<!-- Chat Container -->
+<div class="flex flex-col gap-6">
+<!-- User Query Bubble -->
+<div class="self-end max-w-[85%] md:max-w-[70%]">
+<div class="bento-card rounded-2xl rounded-tr-sm p-4 text-on-surface font-body-md">
+                    Can I afford to go to Bali next month? Tickets are around ₹45,000.
+                </div>
+</div>
+<!-- AI Response Card -->
+<div class="self-start max-w-[95%] md:max-w-[85%] w-full">
+<div class="ai-glass ai-pulse rounded-2xl rounded-tl-sm p-5 flex flex-col gap-5 relative overflow-hidden">
+<!-- Subtle ambient glow background element inside card -->
+<div class="absolute -top-10 -left-10 w-32 h-32 bg-primary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<p class="text-on-surface font-body-md relative z-10 leading-relaxed">
+                        Bhai, technically afford kar sakta hai, but let's look at the math before you book those tickets.
+                    </p>
+<!-- Calculation Bento Card Inside -->
+<div class="bento-card rounded-xl p-4 flex flex-col gap-3 relative z-10">
+<div class="flex justify-between items-center border-b border-white/5 pb-3">
+<span class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-wider">Current Balance</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold counting-number" data-val="51000">₹0</span>
+</div>
+<div class="flex justify-between items-center py-1">
+<span class="font-label-mono text-label-mono text-error/80 uppercase">Upcoming Commitments</span>
+<span class="font-body-md text-error">-₹18,400</span>
+</div>
+<div class="flex justify-between items-center pt-2 border-t border-white/5">
+<span class="font-label-mono text-label-mono text-secondary uppercase">Available After</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface counting-number" data-val="32600">₹0</span>
+</div>
+</div>
+<p class="text-on-surface-variant font-body-md text-sm relative z-10">
+<strong class="text-on-surface">₹45,000 ka trip abhi tight rakhega</strong> — thoda wait karke Nov mein plan kar to zyada comfortable rahega.
+                    </p>
+<!-- Expandable Action -->
+<button class="flex items-center gap-2 text-primary-fixed-dim text-sm font-label-mono font-medium hover:text-primary transition-colors self-start mt-1 relative z-10">
+                        How did you calculate this?
+                        <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Spacer to ensure content doesn't hide behind fixed bottom elements -->
+<div class="h-8"></div>
+</main>
+<!-- Bottom Fixed Input & Nav Area -->
+<div class="fixed bottom-0 w-full z-50 bg-background/80 backdrop-blur-md pt-4">
+<!-- Suggested Questions (Horizontal Scroll) -->
+<div class="w-full overflow-x-auto pb-4 px-gutter md:px-grid-margin no-scrollbar">
+<div class="flex gap-3 w-max">
+<button class="px-4 py-2 rounded-full border border-outline-variant bg-surface-container-highest/50 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant transition-colors text-sm font-body-md whitespace-nowrap">
+                    Review my subscriptions
+                </button>
+<button class="px-4 py-2 rounded-full border border-outline-variant bg-surface-container-highest/50 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant transition-colors text-sm font-body-md whitespace-nowrap">
+                    Analyze recent spending
+                </button>
+<button class="px-4 py-2 rounded-full border border-outline-variant bg-surface-container-highest/50 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant transition-colors text-sm font-body-md whitespace-nowrap">
+                    Can I afford a new phone?
+                </button>
+</div>
+</div>
+<!-- Input Bar -->
+<div class="px-gutter md:px-grid-margin pb-6 max-w-4xl mx-auto w-full">
+<div class="bento-card rounded-full p-2 pl-4 pr-2 flex items-center gap-3 bg-surface-container focus-within:border-primary/50 transition-colors">
+<input class="bg-transparent border-none outline-none flex-1 text-on-surface placeholder:text-on-surface-variant/50 font-body-md focus:ring-0" placeholder="Ask anything about your money..." type="text"/>
+<button class="text-on-surface-variant hover:text-on-surface p-2 transition-colors">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<button class="bg-primary-container text-[#0B0D12] rounded-full p-3 flex items-center justify-center hover:opacity-90 transition-opacity shadow-[0_0_15px_rgba(122,188,255,0.4)]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+</div>
+<!-- BottomNavBar (Hidden on md and above per rules, but rules also say strictly use the JSON. Since rules state responsive pivot to hide on md, we add md:hidden) -->
+<nav class="md:hidden border-t border-white/5 bg-surface-container-low dark:bg-surface-container-low w-full flex justify-around items-center px-4 pb-6 pt-3 rounded-t-xl">
+<!-- Home -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:text-primary transition-colors Active: scale-90 transition-transform">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-body-md text-body-md text-xs">Home</span>
+</button>
+<!-- Insights -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:text-primary transition-colors Active: scale-90 transition-transform">
+<span class="material-symbols-outlined mb-1">query_stats</span>
+<span class="font-body-md text-body-md text-xs">Insights</span>
+</button>
+<!-- Ask (ACTIVE) -->
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 hover:text-primary transition-colors Active: scale-90 transition-transform">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-body-md text-body-md text-xs font-bold">Ask</span>
+</button>
+<!-- Goals -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:text-primary transition-colors Active: scale-90 transition-transform">
+<span class="material-symbols-outlined mb-1">track_changes</span>
+<span class="font-body-md text-body-md text-xs">Goals</span>
+</button>
+<!-- Profile -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:text-primary transition-colors Active: scale-90 transition-transform">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-body-md text-body-md text-xs">Profile</span>
+</button>
+</nav>
+</div>
+<!-- Simple number counting script for motion feel -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const counters = document.querySelectorAll('.counting-number');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-val');
+                const duration = 1500; // ms
+                const steps = 30;
+                const stepTime = Math.abs(Math.floor(duration / steps));
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += target / steps;
+                    if(current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    // Format as Indian Rupee string simply
+                    counter.innerText = '₹' + Math.floor(current).toLocaleString('en-IN');
+                }, stepTime);
+            });
+        });
+    </script>
+</body></html>

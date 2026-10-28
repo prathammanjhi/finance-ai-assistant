@@ -8,12 +8,14 @@ from src.core.analyzer import (
 )
 
 
-def process_budget(monthly_summary):
+def process_budget(monthly_summary, month=None, year=None):
 
     budget = load_budget()
 
     filtered_budget = filter_budget_by_date(
         budget,
+        month=month,
+        year=year,
     )
 
     budget_analysis = calculate_budget_analysis(

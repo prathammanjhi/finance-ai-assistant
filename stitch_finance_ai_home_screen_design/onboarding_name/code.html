@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Finance AI - Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700&amp;family=Hanken+Grotesk:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#004a7a",
+                        "primary-fixed": "#d0e4ff",
+                        "primary-container": "#7abcff",
+                        "tertiary-fixed": "#ffddaf",
+                        "on-tertiary-container": "#634200",
+                        "inverse-surface": "#e1e2e8",
+                        "on-secondary-fixed": "#021d33",
+                        "on-primary": "#003256",
+                        "surface-container-high": "#272a2e",
+                        "surface-container-low": "#191c20",
+                        "on-error-container": "#ffdad6",
+                        "on-surface": "#e1e2e8",
+                        "on-tertiary-fixed": "#281800",
+                        "primary": "#b3d6ff",
+                        "surface-dim": "#101418",
+                        "secondary-fixed": "#d0e4ff",
+                        "tertiary-container": "#ebac42",
+                        "secondary": "#b1c9e6",
+                        "on-tertiary": "#442c00",
+                        "outline": "#8b919b",
+                        "on-secondary-container": "#a3bbd7",
+                        "primary-fixed-dim": "#9bcbff",
+                        "surface-bright": "#36393e",
+                        "on-primary-container": "#004b7c",
+                        "on-primary-fixed": "#001d34",
+                        "tertiary-fixed-dim": "#fcbb4f",
+                        "surface-container": "#1d2024",
+                        "secondary-container": "#344b63",
+                        "on-background": "#e1e2e8",
+                        "outline-variant": "#414750",
+                        "surface": "#101418",
+                        "tertiary": "#ffca7b",
+                        "on-surface-variant": "#c1c7d1",
+                        "surface-container-lowest": "#0b0e12",
+                        "surface-tint": "#9bcbff",
+                        "on-secondary": "#1a3249",
+                        "on-error": "#690005",
+                        "secondary-fixed-dim": "#b1c9e6",
+                        "surface-variant": "#323539",
+                        "surface-container-highest": "#323539",
+                        "on-secondary-fixed-variant": "#324961",
+                        "inverse-on-surface": "#2e3135",
+                        "error-container": "#93000a",
+                        "background": "#101418",
+                        "inverse-primary": "#02629f",
+                        "on-tertiary-fixed-variant": "#614000",
+                        "error": "#ffb4ab"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "grid-margin": "24px",
+                        "gutter": "16px",
+                        "bento-gap": "12px",
+                        "section-padding": "40px"
+                    },
+                    "fontFamily": {
+                        "label-mono": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Sora"],
+                        "headline-lg": ["Sora"],
+                        "display-hero": ["Sora"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-mono": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+                        "display-hero": ["80px", { "lineHeight": "88px", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0B0D12; /* Obsidian Glass base */
+        }
+        
+        /* Orb Animation */
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 40px rgba(122, 188, 255, 0.2), inset 0 0 20px rgba(122, 188, 255, 0.3);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 60px rgba(122, 188, 255, 0.4), inset 0 0 30px rgba(122, 188, 255, 0.5);
+                transform: scale(1.02);
+            }
+        }
+        
+        .ai-orb {
+            animation: pulse-glow 4s ease-in-out infinite;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1), transparent 50%),
+                        linear-gradient(135deg, rgba(122, 188, 255, 0.4), rgba(74, 114, 255, 0.1));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Floating particles behind orb */
+        @keyframes float-particle {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            50% { transform: translateY(-20px) scale(1.2); opacity: 0.5; }
+            100% { transform: translateY(-40px) scale(1); opacity: 0; }
+        }
+        
+        .particle {
+            position: absolute;
+            background: #7ABCFF;
+            border-radius: 50%;
+            filter: blur(2px);
+        }
+    </style>
+</head>
+<body class="text-on-surface font-body-md min-h-screen flex flex-col items-center justify-center p-gutter md:p-grid-margin relative overflow-hidden">
+<!-- Top App Bar (Back action only, transactional) -->
+<header class="absolute top-0 w-full flex flex-col px-gutter md:px-grid-margin py-6 z-20">
+<div class="flex items-center w-full mb-4">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors p-2 -ml-2 rounded-full hover:bg-surface-variant/50 active:scale-95">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-1 bg-surface-container-high rounded-full overflow-hidden flex">
+<div class="h-full bg-primary-container w-1/5 rounded-full shadow-[0_0_8px_rgba(122,188,255,0.6)]"></div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-md flex flex-col items-center justify-center flex-grow z-10 pt-section-padding pb-24">
+<!-- AI Orb Centerpiece -->
+<div class="relative w-32 h-32 md:w-40 md:h-40 mb-12 flex items-center justify-center">
+<!-- Ambient backdrop glow -->
+<div class="absolute inset-0 bg-primary-container/10 rounded-full blur-3xl"></div>
+<!-- The Glassmorphic Orb -->
+<div class="ai-orb w-full h-full rounded-full relative z-10 flex items-center justify-center overflow-hidden">
+<!-- Inner reflections -->
+<div class="absolute w-full h-1/2 top-0 left-0 bg-gradient-to-b from-white/10 to-transparent rounded-t-full"></div>
+</div>
+<!-- Particles -->
+<div class="particle w-2 h-2 top-0 left-1/4" style="animation: float-particle 3s infinite 0.5s;"></div>
+<div class="particle w-1.5 h-1.5 bottom-10 right-1/4" style="animation: float-particle 4s infinite 1.2s;"></div>
+<div class="particle w-2.5 h-2.5 top-1/2 left-0" style="animation: float-particle 3.5s infinite 2s;"></div>
+</div>
+<!-- Typography Context -->
+<div class="text-center w-full mb-10 px-4">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-3 tracking-tight">
+                Let's start with the basics.<br/>What should I call you?
+            </h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                I use your name to keep our conversations personal.
+            </p>
+</div>
+<!-- Input Area -->
+<div class="w-full relative px-4">
+<input autocomplete="off" class="w-full bg-surface-container/50 border-b-2 border-surface-container-high focus:border-primary-container text-on-surface placeholder:text-on-surface-variant/50 px-4 py-4 rounded-t-lg transition-all duration-300 outline-none text-center font-headline-sm focus:bg-surface-variant/30 focus:shadow-[0_4px_20px_rgba(0,0,0,0.2)]" id="name-input" oninput="handleInput()" placeholder="Your preferred name" type="text"/>
+</div>
+</main>
+<!-- Bottom Action Area -->
+<div class="fixed bottom-0 w-full p-gutter md:p-grid-margin pb-8 bg-gradient-to-t from-[#0B0D12] via-[#0B0D12] to-transparent z-20 flex justify-center">
+<div class="w-full max-w-md px-4">
+<button class="w-full bg-surface-container-high text-on-surface-variant py-4 rounded-full font-label-mono text-label-mono uppercase tracking-widest transition-all duration-300 cursor-not-allowed opacity-70 flex items-center justify-center gap-2" disabled="" id="continue-btn">
+<span>Continue</span>
+<span class="material-symbols-outlined text-sm opacity-0 transition-opacity duration-300" data-icon="arrow_forward" id="btn-icon">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Interaction Script -->
+<script>
+        function handleInput() {
+            const input = document.getElementById('name-input');
+            const btn = document.getElementById('continue-btn');
+            const icon = document.getElementById('btn-icon');
+            
+            if (input.value.trim().length > 0) {
+                // Active State
+                btn.disabled = false;
+                btn.classList.remove('bg-surface-container-high', 'text-on-surface-variant', 'cursor-not-allowed', 'opacity-70');
+                btn.classList.add('bg-primary-container', 'text-[#0B0D12]', 'hover:opacity-90', 'active:scale-95', 'shadow-[0_0_20px_rgba(122,188,255,0.3)]');
+                icon.classList.remove('opacity-0');
+            } else {
+                // Disabled State
+                btn.disabled = true;
+                btn.classList.add('bg-surface-container-high', 'text-on-surface-variant', 'cursor-not-allowed', 'opacity-70');
+                btn.classList.remove('bg-primary-container', 'text-[#0B0D12]', 'hover:opacity-90', 'active:scale-95', 'shadow-[0_0_20px_rgba(122,188,255,0.3)]');
+                icon.classList.add('opacity-0');
+            }
+        }
+        
+        // Auto-focus input on load for immediate interaction
+        window.onload = () => {
+            setTimeout(() => {
+                document.getElementById('name-input').focus();
+            }, 500);
+        };
+    </script>
+</body></html>

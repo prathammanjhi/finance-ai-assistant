@@ -17,9 +17,11 @@ from src.core.analyzer import (
     calculate_savings,
     generate_financial_snapshot,
     generate_financial_insights,
+    filter_income_by_date,
 )
 
-def process_financial():
+
+def process_financial(month=None, year=None):
     transactions = load_transactions()
     income = load_income()
     commitments = load_commitments()
@@ -35,18 +37,31 @@ def process_financial():
     highest_spending = calculate_highest_spending_category(category_summary)
     top_three_categories = calculate_top_categories(category_summary)
 
-    monthly_transactions = filter_transactions_by_date(transactions)
+    monthly_transactions = filter_transactions_by_date(
+        transactions,
+        month=month,
+        year=year,
+    )
+
+    monthly_income = filter_income_by_date(
+        income,
+        month=month,
+        year=year,
+    )
+
+    monthly_income_summary = calculate_income(monthly_income)
+
     monthly_summary = calculate_summary(monthly_transactions)
     monthly_distribution = calculate_expense_distribution(monthly_summary)
     savings_summary = calculate_savings(
-        income_summary, 
-        summary, 
+        monthly_income_summary,
+        monthly_summary,
         commitment_summary,
-        )
+    )
     financial_snapshot = generate_financial_snapshot(
         monthly_summary,
         monthly_distribution,
-        income_summary,
+        monthly_income_summary,
         commitment_summary,
         financial_position,
         savings_summary,

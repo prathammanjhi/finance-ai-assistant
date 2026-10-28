@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign In - Finance AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400&amp;family=JetBrains+Mono:wght@500&amp;family=Sora:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface-variant": "#c1c7d1",
+                      "surface": "#101418",
+                      "background": "#101418",
+                      "inverse-on-surface": "#2e3135",
+                      "on-error-container": "#ffdad6",
+                      "secondary": "#b1c9e6",
+                      "on-background": "#e1e2e8",
+                      "outline-variant": "#414750",
+                      "primary-fixed-dim": "#9bcbff",
+                      "secondary-fixed": "#d0e4ff",
+                      "on-tertiary": "#442c00",
+                      "surface-dim": "#101418",
+                      "secondary-container": "#344b63",
+                      "on-secondary": "#1a3249",
+                      "on-secondary-fixed": "#021d33",
+                      "surface-tint": "#9bcbff",
+                      "tertiary-fixed": "#ffddaf",
+                      "inverse-primary": "#02629f",
+                      "surface-container-lowest": "#0b0e12",
+                      "on-primary": "#003256",
+                      "primary-container": "#7abcff",
+                      "on-secondary-container": "#a3bbd7",
+                      "on-tertiary-fixed-variant": "#614000",
+                      "outline": "#8b919b",
+                      "surface-container-high": "#272a2e",
+                      "on-surface": "#e1e2e8",
+                      "error-container": "#93000a",
+                      "on-tertiary-fixed": "#281800",
+                      "on-primary-container": "#004b7c",
+                      "secondary-fixed-dim": "#b1c9e6",
+                      "tertiary": "#ffca7b",
+                      "on-secondary-fixed-variant": "#324961",
+                      "surface-bright": "#36393e",
+                      "surface-container-highest": "#323539",
+                      "surface-container-low": "#191c20",
+                      "on-primary-fixed-variant": "#004a7a",
+                      "tertiary-container": "#ebac42",
+                      "on-error": "#690005",
+                      "error": "#ffb4ab",
+                      "inverse-surface": "#e1e2e8",
+                      "primary-fixed": "#d0e4ff",
+                      "on-tertiary-container": "#634200",
+                      "surface-variant": "#323539",
+                      "tertiary-fixed-dim": "#fcbb4f",
+                      "on-primary-fixed": "#001d34",
+                      "surface-container": "#1d2024",
+                      "primary": "#b3d6ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "bento-gap": "12px",
+                      "grid-margin": "24px",
+                      "section-padding": "40px"
+              },
+              "fontFamily": {
+                      "label-mono": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-lg": [
+                              "Sora"
+                      ],
+                      "headline-lg-mobile": [
+                              "Sora"
+                      ],
+                      "display-hero": [
+                              "Sora"
+                      ],
+                      "body-md": [
+                              "Hanken Grotesk"
+                      ]
+              },
+              "fontSize": {
+                      "label-mono": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.03em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-hero": [
+                              "80px",
+                              {
+                                      "lineHeight": "88px",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .glass-orb {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(122, 188, 255, 0.3);
+            box-shadow: 0 0 40px rgba(122, 188, 255, 0.1);
+            animation: pulse-ambient 4s infinite alternate;
+        }
+
+        @keyframes pulse-ambient {
+            0% { opacity: 0.8; transform: scale(0.98); }
+            100% { opacity: 1.0; transform: scale(1.02); }
+        }
+
+        .input-field {
+            background: rgba(255, 255, 255, 0.04);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .input-field:focus {
+            border-bottom-color: #7abcff;
+            outline: none;
+            background: rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface antialiased min-h-screen flex flex-col justify-center items-center px-grid-margin py-section-padding">
+<main class="w-full max-w-md flex flex-col gap-section-padding">
+<!-- Header Section -->
+<header class="flex flex-col items-center gap-8 text-center">
+<!-- Glassmorphic AI Orb -->
+<div class="w-24 h-24 rounded-full glass-orb flex items-center justify-center relative">
+<span class="material-symbols-outlined text-4xl text-primary-container" style="font-variation-settings: 'FILL' 1;">
+                    all_inclusive
+                </span>
+<!-- Subtle inner glow element -->
+<div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary-container/20 to-transparent pointer-events-none"></div>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface">
+                Welcome back.
+            </h1>
+</header>
+<!-- Form Section -->
+<form class="flex flex-col gap-6" onsubmit="event.preventDefault();">
+<!-- Email Field -->
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-wider" for="email">
+                    Email
+                </label>
+<input class="input-field w-full px-4 py-4 rounded-t-lg font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 border-0 border-b-2 transition-colors duration-200 focus:ring-0" id="email" placeholder="Enter your email" required="" type="email"/>
+</div>
+<!-- Password Field -->
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-wider" for="password">
+                    Password
+                </label>
+<input class="input-field w-full px-4 py-4 rounded-t-lg font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 border-0 border-b-2 transition-colors duration-200 focus:ring-0" id="password" placeholder="Enter your password" required="" type="password"/>
+<div class="flex justify-end mt-1">
+<a class="font-label-mono text-label-mono text-primary hover:text-primary-container transition-colors" href="#">
+                        Forgot password?
+                    </a>
+</div>
+</div>
+<!-- CTA Button -->
+<button class="w-full bg-primary-container hover:bg-primary text-[#000000] font-label-mono text-label-mono uppercase tracking-wider py-5 rounded-full transition-all duration-200 hover:opacity-90 active:scale-[0.98] mt-4" type="submit">
+                Continue
+            </button>
+</form>
+<!-- Footer -->
+<footer class="text-center mt-4">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                Don't have an account? 
+                <a class="text-primary hover:text-primary-container font-medium transition-colors ml-1" href="#">
+                    Create one
+                </a>
+</p>
+</footer>
+</main>
+</body></html>

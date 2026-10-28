@@ -1,10 +1,12 @@
 from src.core.processors import *
 
 
-
-def analyze_finances(workbook_path=None):
+def analyze_finances(workbook_path=None, month=None, year=None):
     # Load Data
-    financial = process_financial()
+    financial = process_financial(
+        month=month,
+        year=year,
+    )
 
     # Assets
     asset_summary, asset_snapshot = process_assets()
@@ -22,6 +24,8 @@ def analyze_finances(workbook_path=None):
     # Budget
     budget_analysis, budget_snapshot = process_budget(
         financial["monthly_summary"],
+        month=month,
+        year=year,
     )
 
     # Goals
@@ -51,7 +55,7 @@ def analyze_finances(workbook_path=None):
     # Financial Health
     financial_health_snapshot = process_financial_health(
         financial["financial_snapshot"],
-        budget_analysis,   
+        budget_analysis,
         financial["savings_summary"],
         emergency_summary,
         goal_snapshot,
@@ -61,7 +65,6 @@ def analyze_finances(workbook_path=None):
         net_worth_snapshot,
         wealth_health_snapshot,
     )
-
 
     results = {}
 
@@ -97,5 +100,3 @@ def analyze_finances(workbook_path=None):
     results["financial_health"] = financial_health_snapshot
 
     return results
-
-

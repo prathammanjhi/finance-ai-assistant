@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Finance AI - Cash Flow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;family=Sora:wght@100..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary-fixed-variant": "#614000",
+                        "surface-container-high": "#272a2e",
+                        "on-secondary-container": "#a3bbd7",
+                        "inverse-surface": "#e1e2e8",
+                        "surface": "#101418",
+                        "tertiary-container": "#ebac42",
+                        "on-primary-fixed-variant": "#004a7a",
+                        "surface-container": "#1d2024",
+                        "secondary-fixed": "#d0e4ff",
+                        "primary-fixed-dim": "#9bcbff",
+                        "on-background": "#e1e2e8",
+                        "surface-container-lowest": "#0b0e12",
+                        "error": "#ffb4ab",
+                        "on-secondary": "#1a3249",
+                        "on-surface": "#e1e2e8",
+                        "on-surface-variant": "#c1c7d1",
+                        "on-tertiary-fixed": "#281800",
+                        "on-primary": "#003256",
+                        "secondary": "#b1c9e6",
+                        "primary-fixed": "#d0e4ff",
+                        "on-tertiary-container": "#634200",
+                        "secondary-fixed-dim": "#b1c9e6",
+                        "on-primary-fixed": "#001d34",
+                        "outline": "#8b919b",
+                        "tertiary": "#ffca7b",
+                        "on-primary-container": "#004b7c",
+                        "primary-container": "#7abcff",
+                        "outline-variant": "#414750",
+                        "on-error-container": "#ffdad6",
+                        "inverse-primary": "#02629f",
+                        "inverse-on-surface": "#2e3135",
+                        "surface-dim": "#101418",
+                        "error-container": "#93000a",
+                        "surface-bright": "#36393e",
+                        "on-secondary-fixed-variant": "#324961",
+                        "secondary-container": "#344b63",
+                        "on-error": "#690005",
+                        "tertiary-fixed": "#ffddaf",
+                        "on-tertiary": "#442c00",
+                        "surface-container-low": "#191c20",
+                        "primary": "#b3d6ff",
+                        "surface-tint": "#9bcbff",
+                        "background": "#101418",
+                        "on-secondary-fixed": "#021d33",
+                        "tertiary-fixed-dim": "#fcbb4f",
+                        "surface-variant": "#323539",
+                        "surface-container-highest": "#323539"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        "section-padding": "40px",
+                        "bento-gap": "12px",
+                        "grid-margin": "24px",
+                        "gutter": "16px"
+                    },
+                    fontFamily: {
+                        "label-mono": ["JetBrains Mono"],
+                        "headline-lg": ["Sora"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Sora"],
+                        "display-hero": ["Sora"]
+                    },
+                    fontSize: {
+                        "label-mono": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "500" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.03em", fontWeight: "700" }],
+                        "body-md": ["16px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "400" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "display-hero": ["80px", { lineHeight: "88px", letterSpacing: "-0.04em", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-surface');
+        }
+        
+        /* Glassmorphism for AI cards */
+        .glass-ai {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid transparent;
+            border-image: linear-gradient(to bottom right, rgba(122, 188, 255, 0.3), transparent) 1;
+            position: relative;
+        }
+
+        .glass-ai::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(to bottom right, rgba(122, 188, 255, 0.3), transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .ambient-pulse {
+            animation: pulse-opacity 3s infinite alternate ease-in-out;
+        }
+        
+        @keyframes pulse-opacity {
+            0% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+
+        /* Base Card Styling */
+        .bento-card {
+            background-color: theme('colors.surface-container');
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: theme('borderRadius.xl');
+            transition: all 0.2s ease;
+        }
+        
+        .bento-card:hover {
+            background-color: rgba(255, 255, 255, 0.08); /* slight tonal lift */
+        }
+
+        /* Hero Text Gradient */
+        .text-hero-gradient {
+            background: linear-gradient(135deg, #7abcff 0%, #d0e4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glow-accent {
+            text-shadow: 0 0 20px rgba(122, 188, 255, 0.4);
+        }
+
+        /* Chart placeholder styling */
+        .chart-line {
+            stroke: theme('colors.primary');
+            stroke-width: 2;
+            fill: none;
+            filter: drop-shadow(0px 4px 6px rgba(122, 188, 255, 0.3));
+        }
+        .chart-area {
+            fill: url(#chart-gradient);
+        }
+
+        /* Expandable section */
+        .expandable-content {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.3s ease-out;
+        }
+        .expandable-content.expanded {
+            grid-template-rows: 1fr;
+        }
+        .expandable-inner {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky bg-background dark:bg-background flex justify-between items-center px-grid-margin py-4 z-50">
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-surface dark:text-on-surface">Finance AI</h1>
+<button class="text-primary dark:text-primary hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="max-w-4xl mx-auto px-gutter md:px-grid-margin flex flex-col gap-8 mt-4 md:mt-8">
+<!-- AI Insight Card -->
+<section class="glass-ai rounded-xl p-6 ambient-pulse">
+<div class="flex items-start gap-4">
+<div class="p-2 bg-primary-container/10 rounded-full flex-shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div>
+<h2 class="font-label-mono text-label-mono text-primary mb-2 uppercase tracking-wider">AI Insight</h2>
+<p class="text-on-surface">Bhai, tera cash flow positive hai. Income expenses se <span class="text-primary font-semibold">₹12,600</span> zyada hai, but next month ke commitments ko consider karna important hai.</p>
+</div>
+</div>
+</section>
+<!-- Flow Visual (Centerpiece) -->
+<section class="bento-card p-6 md:p-8 flex flex-col gap-6 relative overflow-hidden">
+<!-- Subtle background decorative element -->
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-2">Monthly Flow</h3>
+<div class="flex flex-col gap-8 relative z-10">
+<!-- Income -->
+<div class="flex justify-between items-center group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center border border-white/5">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="arrow_downward">arrow_downward</span>
+</div>
+<span class="text-on-surface">Income</span>
+</div>
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-surface">₹48,000</span>
+</div>
+<!-- Vertical Connector Line -->
+<div class="absolute left-5 top-10 bottom-32 w-px bg-gradient-to-b from-white/10 to-transparent"></div>
+<!-- Expenses -->
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center border border-white/5">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="arrow_upward">arrow_upward</span>
+</div>
+<span class="text-on-surface">Expenses</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-error font-medium">-</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-surface">₹35,400</span>
+</div>
+</div>
+<div class="h-px w-full bg-white/5 my-2"></div>
+<!-- Net Cash Flow (HERO) -->
+<div class="flex justify-between items-end mt-2">
+<div>
+<h4 class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-1">Net Cash Flow</h4>
+<span class="text-sm text-on-surface-variant">Available Liquidity</span>
+</div>
+<div class="text-right">
+<!-- ONE-HERO-ACCENT RULE applied here -->
+<span class="font-display-hero text-[48px] md:text-display-hero font-bold text-hero-gradient glow-accent leading-none block">₹12,600</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Trend Chart -->
+<section class="bento-card p-6">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase">6-Month Trend</h3>
+<span class="text-sm text-on-surface-variant">Aug - Jan</span>
+</div>
+<div class="h-48 w-full relative">
+<!-- SVG Chart Mockup -->
+<svg class="w-full h-full preserve-aspect-ratio-none" viewbox="0 0 400 150">
+<defs>
+<lineargradient id="chart-gradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#7abcff" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#7abcff" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<!-- Grid lines -->
+<line stroke="rgba(255,255,255,0.05)" stroke-dasharray="4" x1="0" x2="400" y1="120" y2="120"></line>
+<line stroke="rgba(255,255,255,0.05)" stroke-dasharray="4" x1="0" x2="400" y1="75" y2="75"></line>
+<!-- Area -->
+<path class="chart-area" d="M 0 100 Q 50 80 100 110 T 200 60 T 300 90 T 400 30 L 400 150 L 0 150 Z"></path>
+<!-- Line -->
+<path class="chart-line" d="M 0 100 Q 50 80 100 110 T 200 60 T 300 90 T 400 30"></path>
+<!-- Data Points -->
+<circle cx="100" cy="110" fill="#101418" r="4" stroke="#7abcff" stroke-width="2"></circle>
+<circle cx="200" cy="60" fill="#101418" r="4" stroke="#7abcff" stroke-width="2"></circle>
+<circle class="animate-pulse" cx="400" cy="30" fill="#7abcff" r="5"></circle>
+<!-- Callouts -->
+<g transform="translate(180, 30)">
+<rect fill="rgba(255,255,255,0.1)" height="20" rx="4" width="40"></rect>
+<text class="font-label-mono" fill="#e1e2e8" font-size="10" text-anchor="middle" x="20" y="14">HIGH</text>
+</g>
+</svg>
+</div>
+</section>
+<!-- Transparency Section -->
+<section class="bento-card">
+<button class="w-full p-6 flex justify-between items-center text-left focus:outline-none focus:bg-white/5 transition-colors rounded-xl" id="calc-toggle">
+<div>
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-1">Calculation Details</h3>
+<p class="text-sm text-on-surface">How we arrived at ₹12,600</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform duration-300" id="calc-icon">expand_more</span>
+</button>
+<div class="expandable-content" id="calc-content">
+<div class="expandable-inner px-6 pb-6 pt-0 border-t border-white/5 mt-2">
+<div class="bg-surface-container-low rounded-lg p-4 mt-4">
+<p class="font-label-mono text-label-mono text-on-surface-variant mb-4 text-center">Monthly Net Cash Flow = Monthly Income − Monthly Expenses</p>
+<div class="flex justify-between items-center py-2">
+<span class="text-on-surface">Total Income</span>
+<span class="text-on-surface font-medium">₹48,000</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-white/5 pb-4">
+<span class="text-on-surface">Total Expenses</span>
+<span class="text-error font-medium">- ₹35,400</span>
+</div>
+<div class="flex justify-between items-center pt-4">
+<span class="text-primary font-medium">Net Flow</span>
+<span class="text-primary font-bold">₹12,600</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA -->
+<a class="group flex items-center justify-between p-6 bg-surface-container rounded-xl border border-white/5 hover:border-primary/30 hover:bg-white/5 transition-all" href="#">
+<div>
+<span class="block font-label-mono text-label-mono text-on-surface-variant uppercase mb-1">Up Next</span>
+<span class="text-on-surface font-medium">View upcoming commitments</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</a>
+</main>
+<!-- BottomNavBar (Visible on Mobile) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 border-t border-white/5 bg-surface-container-low dark:bg-surface-container-low md:hidden rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-body-md text-[10px] leading-tight">Home</span>
+</button>
+<!-- Active Tab: Insights (Semantically matches "Cash Flow / Insights") -->
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 scale-90 transition-transform">
+<span class="material-symbols-outlined mb-1" data-icon="query_stats" style="font-variation-settings: 'FILL' 1;">query_stats</span>
+<span class="font-body-md text-[10px] leading-tight font-medium">Insights</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined mb-1" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-body-md text-[10px] leading-tight">Ask</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined mb-1" data-icon="track_changes">track_changes</span>
+<span class="font-body-md text-[10px] leading-tight">Goals</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-body-md text-[10px] leading-tight">Profile</span>
+</button>
+</nav>
+<!-- Desktop Side Nav Placeholder (Hidden on Mobile, simplified representation to adhere to instructions on layout pivot) -->
+<nav class="hidden md:flex flex-col fixed left-0 top-0 bottom-0 w-64 bg-surface-container-low border-r border-white/5 pt-20 px-4">
+<!-- Replicating Bottom Nav links for Desktop as requested by architecture pivot rules, though simplified -->
+<div class="flex flex-col gap-2 mt-8">
+<button class="flex items-center gap-4 text-on-surface-variant px-4 py-3 rounded-lg hover:bg-white/5 transition-colors w-full text-left">
+<span class="material-symbols-outlined" data-icon="home">home</span> Home
+            </button>
+<button class="flex items-center gap-4 bg-primary-container text-on-primary-container px-4 py-3 rounded-lg w-full text-left font-medium">
+<span class="material-symbols-outlined" data-icon="query_stats" style="font-variation-settings: 'FILL' 1;">query_stats</span> Insights
+            </button>
+<button class="flex items-center gap-4 text-on-surface-variant px-4 py-3 rounded-lg hover:bg-white/5 transition-colors w-full text-left">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span> Ask
+            </button>
+<button class="flex items-center gap-4 text-on-surface-variant px-4 py-3 rounded-lg hover:bg-white/5 transition-colors w-full text-left">
+<span class="material-symbols-outlined" data-icon="track_changes">track_changes</span> Goals
+            </button>
+<button class="flex items-center gap-4 text-on-surface-variant px-4 py-3 rounded-lg hover:bg-white/5 transition-colors w-full text-left">
+<span class="material-symbols-outlined" data-icon="person">person</span> Profile
+            </button>
+</div>
+</nav>
+<!-- Adjust main layout for desktop nav -->
+<style>
+        @media (min-width: 768px) {
+            main { margin-left: 16rem; /* 64 * 4px */ }
+        }
+    </style>
+<script>
+        // Simple accordion logic for calculation details
+        document.getElementById('calc-toggle').addEventListener('click', function() {
+            const content = document.getElementById('calc-content');
+            const icon = document.getElementById('calc-icon');
+            
+            content.classList.toggle('expanded');
+            
+            if (content.classList.contains('expanded')) {
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Finance AI - Financial Health</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;family=Sora:wght@100..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-variant": "#323539",
+                      "on-secondary-fixed-variant": "#324961",
+                      "outline-variant": "#414750",
+                      "on-secondary-container": "#a3bbd7",
+                      "error": "#ffb4ab",
+                      "tertiary-container": "#ebac42",
+                      "primary-fixed-dim": "#9bcbff",
+                      "secondary-container": "#344b63",
+                      "on-error": "#690005",
+                      "primary": "#b3d6ff",
+                      "surface-dim": "#101418",
+                      "secondary": "#b1c9e6",
+                      "surface-container-lowest": "#0b0e12",
+                      "on-surface-variant": "#c1c7d1",
+                      "on-background": "#e1e2e8",
+                      "on-secondary": "#1a3249",
+                      "secondary-fixed": "#d0e4ff",
+                      "on-tertiary": "#442c00",
+                      "surface-bright": "#36393e",
+                      "inverse-on-surface": "#2e3135",
+                      "surface-container-highest": "#323539",
+                      "surface-container": "#1d2024",
+                      "on-surface": "#e1e2e8",
+                      "error-container": "#93000a",
+                      "inverse-primary": "#02629f",
+                      "on-primary-fixed": "#001d34",
+                      "surface-container-low": "#191c20",
+                      "background": "#101418",
+                      "on-tertiary-fixed-variant": "#614000",
+                      "primary-container": "#7abcff",
+                      "tertiary": "#ffca7b",
+                      "primary-fixed": "#d0e4ff",
+                      "on-primary": "#003256",
+                      "secondary-fixed-dim": "#b1c9e6",
+                      "outline": "#8b919b",
+                      "on-tertiary-container": "#634200",
+                      "on-primary-container": "#004b7c",
+                      "on-error-container": "#ffdad6",
+                      "surface-container-high": "#272a2e",
+                      "on-secondary-fixed": "#021d33",
+                      "surface-tint": "#9bcbff",
+                      "on-tertiary-fixed": "#281800",
+                      "on-primary-fixed-variant": "#004a7a",
+                      "inverse-surface": "#e1e2e8",
+                      "surface": "#101418",
+                      "tertiary-fixed-dim": "#fcbb4f",
+                      "tertiary-fixed": "#ffddaf"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "section-padding": "40px",
+                      "bento-gap": "12px",
+                      "grid-margin": "24px"
+              },
+              "fontFamily": {
+                      "label-mono": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-lg": [
+                              "Sora"
+                      ],
+                      "headline-lg-mobile": [
+                              "Sora"
+                      ],
+                      "display-hero": [
+                              "Sora"
+                      ],
+                      "body-md": [
+                              "Hanken Grotesk"
+                      ]
+              },
+              "fontSize": {
+                      "label-mono": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.03em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-hero": [
+                              "80px",
+                              {
+                                      "lineHeight": "88px",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.surface-container-lowest');
+            color: theme('colors.on-background');
+        }
+        
+        .ai-glass {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid transparent;
+            border-image: linear-gradient(to bottom right, rgba(122, 188, 255, 0.3), transparent) 1;
+        }
+
+        .bento-card {
+            background-color: theme('colors.surface');
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: theme('borderRadius.xl');
+            transition: all 0.2s ease-in-out;
+        }
+        
+        .bento-card:hover {
+            background-color: rgba(255, 255, 255, 0.04);
+        }
+
+        .score-ring {
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: conic-gradient(theme('colors.primary') 82%, theme('colors.surface-variant') 0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .score-ring::before {
+            content: "";
+            position: absolute;
+            width: 232px;
+            height: 232px;
+            background-color: theme('colors.surface-container-lowest');
+            border-radius: 50%;
+        }
+
+        .score-ring-content {
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .pulse-ambient {
+            animation: pulse-ambient 4s infinite alternate;
+        }
+        
+        @keyframes pulse-ambient {
+            0% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+
+        /* Base SVG styling for charts */
+        .chart-svg text {
+            fill: theme('colors.on-surface-variant');
+            font-family: theme('fontFamily.label-mono');
+            font-size: 10px;
+        }
+        .chart-svg path {
+            stroke-width: 2;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen pb-[90px] md:pb-0 pt-16 md:pt-24 flex flex-col items-center">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full bg-background/80 backdrop-blur-xl border-b border-white/5 flex justify-between items-center px-gutter h-16 z-50 transition-opacity duration-200">
+<button class="text-on-surface-variant hover:opacity-80 transition-opacity duration-200 md:hidden flex items-center justify-center p-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
+</button>
+<div class="hidden md:flex items-center gap-8">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary tracking-tight">Finance AI</h1>
+<!-- Nav Links (Desktop) -->
+<nav class="flex gap-6">
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[20px]">home</span>
+                    Home
+                 </a>
+<a class="text-primary font-body-md text-body-md font-bold flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">query_stats</span>
+                    Insights
+                 </a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[20px]">smart_toy</span>
+                    Ask
+                 </a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[20px]">track_changes</span>
+                    Goals
+                 </a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[20px]">person</span>
+                    Profile
+                 </a>
+</nav>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary md:hidden">Finance AI</h1>
+<button class="text-on-surface-variant hover:opacity-80 transition-opacity duration-200 p-2 relative flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+</header>
+<main class="w-full max-w-[1200px] px-gutter md:px-grid-margin flex flex-col gap-section-padding mt-4 md:mt-8">
+<!-- AI Insight -->
+<section class="w-full max-w-3xl mx-auto pulse-ambient">
+<div class="ai-glass p-6 rounded-xl flex items-start gap-4">
+<span class="material-symbols-outlined text-primary text-[28px] mt-1" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<div>
+<h2 class="font-label-mono text-label-mono text-primary mb-2 uppercase tracking-wider">AI Insight</h2>
+<p class="font-body-md text-body-md text-on-background">Bhai, check this out. Your financial foundation is moving in the right direction. Balance looks solid, tension mat lo.</p>
+</div>
+</div>
+</section>
+<!-- Hero Score -->
+<section class="flex flex-col items-center justify-center py-12 md:py-24">
+<div class="score-ring shadow-[0_0_40px_rgba(122,188,255,0.15)]">
+<div class="score-ring-content">
+<span class="font-display-hero text-display-hero text-on-background">82</span>
+<span class="font-label-mono text-label-mono text-primary uppercase tracking-widest mt-2">Excellent</span>
+</div>
+</div>
+</section>
+<!-- Breakdown Grid & Chart -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-bento-gap">
+<!-- Grid (Left/Top) -->
+<div class="md:col-span-7 grid grid-cols-2 md:grid-cols-2 gap-bento-gap">
+<!-- Cash Flow -->
+<div class="bento-card p-5 flex flex-col justify-between h-32">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-outline-variant text-[20px]">account_balance_wallet</span>
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase">Cash Flow</h3>
+</div>
+<div class="flex items-center gap-2 mt-auto">
+<div class="w-2 h-2 rounded-full bg-[#4ade80]"></div>
+<span class="font-body-md text-body-md text-on-background">Positive</span>
+</div>
+</div>
+<!-- Budget Discipline -->
+<div class="bento-card p-5 flex flex-col justify-between h-32">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-outline-variant text-[20px]">receipt_long</span>
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase">Budget</h3>
+</div>
+<div class="flex items-center gap-2 mt-auto">
+<div class="w-2 h-2 rounded-full bg-[#4ade80]"></div>
+<span class="font-body-md text-body-md text-on-background">Optimized</span>
+</div>
+</div>
+<!-- Savings -->
+<div class="bento-card p-5 flex flex-col justify-between h-32">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-outline-variant text-[20px]">savings</span>
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase">Savings</h3>
+</div>
+<div class="flex items-center gap-2 mt-auto">
+<div class="w-2 h-2 rounded-full bg-[#4ade80]"></div>
+<span class="font-body-md text-body-md text-on-background">Stable</span>
+</div>
+</div>
+<!-- Debt -->
+<div class="bento-card p-5 flex flex-col justify-between h-32">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-outline-variant text-[20px]">credit_card</span>
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase">Debt</h3>
+</div>
+<div class="flex items-center gap-2 mt-auto">
+<div class="w-2 h-2 rounded-full bg-[#4ade80]"></div>
+<span class="font-body-md text-body-md text-on-background">Low</span>
+</div>
+</div>
+<!-- Spending Stability -->
+<div class="bento-card p-5 flex flex-col justify-between h-32">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-outline-variant text-[20px]">trending_up</span>
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase">Spending</h3>
+</div>
+<div class="flex items-center gap-2 mt-auto">
+<div class="w-2 h-2 rounded-full bg-[#4ade80]"></div>
+<span class="font-body-md text-body-md text-on-background">Stable</span>
+</div>
+</div>
+<!-- Goal Progress -->
+<div class="bento-card p-5 flex flex-col justify-between h-32">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-outline-variant text-[20px]">flag</span>
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase">Goals</h3>
+</div>
+<div class="flex items-center gap-2 mt-auto">
+<div class="w-2 h-2 rounded-full bg-[#4ade80]"></div>
+<span class="font-body-md text-body-md text-on-background">On Track</span>
+</div>
+</div>
+</div>
+<!-- Chart (Right/Bottom) -->
+<div class="md:col-span-5 bento-card p-6 flex flex-col items-center justify-center min-h-[300px] relative overflow-hidden">
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase absolute top-6 left-6">Dimension Spread</h3>
+<!-- Simple aesthetic representation of a radar chart -->
+<svg class="w-full h-full max-w-[240px] chart-svg opacity-80 mt-6" style="filter: drop-shadow(0 0 10px rgba(122,188,255,0.3));" viewbox="0 0 200 200">
+<!-- Background Grid -->
+<polygon fill="none" points="100,10 180,50 180,150 100,190 20,150 20,50" stroke="rgba(255,255,255,0.1)" stroke-width="1"></polygon>
+<polygon fill="none" points="100,30 160,60 160,140 100,170 40,140 40,60" stroke="rgba(255,255,255,0.1)" stroke-width="1"></polygon>
+<polygon fill="none" points="100,50 140,70 140,130 100,150 60,130 60,70" stroke="rgba(255,255,255,0.1)" stroke-width="1"></polygon>
+<!-- Axes -->
+<line stroke="rgba(255,255,255,0.1)" x1="100" x2="100" y1="100" y2="10"></line>
+<line stroke="rgba(255,255,255,0.1)" x1="100" x2="180" y1="100" y2="50"></line>
+<line stroke="rgba(255,255,255,0.1)" x1="100" x2="180" y1="100" y2="150"></line>
+<line stroke="rgba(255,255,255,0.1)" x1="100" x2="100" y1="100" y2="190"></line>
+<line stroke="rgba(255,255,255,0.1)" x1="100" x2="20" y1="100" y2="150"></line>
+<line stroke="rgba(255,255,255,0.1)" x1="100" x2="20" y1="100" y2="50"></line>
+<!-- Data Polygon -->
+<polygon fill="rgba(122,188,255,0.1)" points="100,30 170,55 160,130 100,160 50,140 30,60" stroke="#7ABCFF" stroke-width="2"></polygon>
+<!-- Data Points -->
+<circle cx="100" cy="30" fill="#7ABCFF" r="3"></circle>
+<circle cx="170" cy="55" fill="#7ABCFF" r="3"></circle>
+<circle cx="160" cy="130" fill="#7ABCFF" r="3"></circle>
+<circle cx="100" cy="160" fill="#7ABCFF" r="3"></circle>
+<circle cx="50" cy="140" fill="#7ABCFF" r="3"></circle>
+<circle cx="30" cy="60" fill="#7ABCFF" r="3"></circle>
+</svg>
+</div>
+</section>
+<!-- CTA -->
+<section class="flex justify-center mt-4">
+<button class="bg-primary-container text-on-primary-fixed-variant font-label-mono text-label-mono uppercase tracking-wider px-6 py-3 rounded-full hover:opacity-90 transition-opacity flex items-center gap-2">
+                 See what's dragging your score down
+                 <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</section>
+<!-- Calculation Transparency (Expandable) -->
+<section class="w-full max-w-3xl mx-auto mt-8 mb-12">
+<details class="bento-card group cursor-pointer">
+<summary class="p-6 flex justify-between items-center list-none font-body-md text-body-md text-on-surface-variant select-none">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">info</span>
+                        Proposed Model — not final production logic
+                    </span>
+<span class="material-symbols-outlined transform group-open:rotate-180 transition-transform duration-200">expand_more</span>
+</summary>
+<div class="px-6 pb-6 pt-2 border-t border-white/5 space-y-4">
+<div class="flex justify-between items-center font-label-mono text-label-mono">
+<span class="text-on-background">Cash Flow (15%)</span>
+<span class="text-primary">14/15</span>
+</div>
+<div class="flex justify-between items-center font-label-mono text-label-mono">
+<span class="text-on-background">Budget (20%)</span>
+<span class="text-primary">16/20</span>
+</div>
+<div class="flex justify-between items-center font-label-mono text-label-mono">
+<span class="text-on-background">Savings (20%)</span>
+<span class="text-primary">18/20</span>
+</div>
+<div class="flex justify-between items-center font-label-mono text-label-mono">
+<span class="text-on-background">Debt (15%)</span>
+<span class="text-primary">12/15</span>
+</div>
+<div class="flex justify-between items-center font-label-mono text-label-mono">
+<span class="text-on-background">Spending (15%)</span>
+<span class="text-primary">12/15</span>
+</div>
+<div class="flex justify-between items-center font-label-mono text-label-mono">
+<span class="text-on-background">Goals (15%)</span>
+<span class="text-primary">10/15</span>
+</div>
+<div class="pt-4 border-t border-white/5 flex justify-between items-center font-label-mono text-label-mono font-bold">
+<span class="text-on-background uppercase">Total Score</span>
+<span class="text-primary">82/100</span>
+</div>
+</div>
+</details>
+</section>
+</main>
+<!-- Bottom Nav Bar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe bg-surface-container-lowest/80 backdrop-blur-2xl z-50 md:hidden border-t border-white/5 shadow-none">
+<a class="flex flex-col items-center justify-center text-outline px-3 py-1 hover:text-primary transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-mono text-[10px] leading-tight font-medium tracking-wider">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-3 py-1 hover:text-primary transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">query_stats</span>
+<span class="font-label-mono text-[10px] leading-tight font-medium tracking-wider">Insights</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline px-3 py-1 hover:text-primary transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined mb-1">smart_toy</span>
+<span class="font-label-mono text-[10px] leading-tight font-medium tracking-wider">Ask</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline px-3 py-1 hover:text-primary transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined mb-1">track_changes</span>
+<span class="font-label-mono text-[10px] leading-tight font-medium tracking-wider">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline px-3 py-1 hover:text-primary transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-label-mono text-[10px] leading-tight font-medium tracking-wider">Profile</span>
+</a>
+</nav>
+</body></html>
